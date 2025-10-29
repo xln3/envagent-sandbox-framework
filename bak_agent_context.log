@@ -1,0 +1,3314 @@
+
+
+======================================================
+SESSION START: 2025-10-29 20:50:39
+COMMAND EXECUTED: git clone https://github.com/lmxyy/sige.git && cd sige
+======================================================
+
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace (ง •_•)ง git clone https://g
+ithub.com/lmxyy/sige.git && cd sige
+Cloning into 'sige'...
+remote: Enumerating objects: 791, done.
+remote: Counting objects: 100% (43/43), done.
+remote: Compressing objects: 100% (19/19), done.
+remote: Total 791 (delta 26), reused 24 (delta 24), pack-reused 748 (from 1)
+Receiving objects: 100% (791/791), 43.99 MiB | 9.68 MiB/s, done.
+Resolving deltas: 100% (438/438), done.
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 20:50:46
+COMMAND EXECUTED: ls -F
+======================================================
+
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง ls -F
+LICENSE      [1m[34massets[0m[39m[49m/          example.ipynb  setup.py
+MANIFEST.in  [1m[34mdiffusion[0m[39m[49m/       example.py     [1m[34msige[0m[39m[49m/
+README.md    [1m[34mdiffusion_demo[0m[39m[49m/  [1m[34mgaugan[0m[39m[49m/        [1m[34mstable-diffusion[0m[39m[49m/
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 20:50:52
+COMMAND EXECUTED: cat README.md | grep -Ei "cuda|python|torch|require|install|recommend"
+======================================================
+
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง cat README.md
+| grep -Ei "cuda|python|torch|require|install|recommend"
+*We introduce Spatially Incremental Generative Engine (SIGE),an engine that s
+electively performs computations at the edited regions for image editing appl
+ications. The computation and latency are measured for a single forward. For
+the above examples, SIGE significantly reduces the computation of [SDEdit](ht
+tps://github.com/ermongroup/SDEdit) with [DDPM](https://github.com/lucidrains
+/denoising-diffusion-py[1m[31mtorch[0m[39m[49m) (4-6x) and [Stable Diffusion](https://github.co
+m/CompVis/stable-diffusion) (8x), and [GauGAN](https://github.com/NVlabs/SPAD
+E) (15x) while preserving the image quality. When combined with existing mode
+l compression methods such as [GAN Compression](https://github.com/mit-han-la
+b/gan-compression), it further reduces the computation of GauGAN by 47x. On N
+VIDIA RTX 3090, SIGE achieves up to 7.2x speedups.*
+* [1m[31mPython[0m[39m[49m3
+* CPU, M1 GPU, or NVIDIA GPU + [1m[31mCUDA[0m[39m[49m CuDNN
+* [Py[1m[31mTorch[0m[39m[49m](https://py[1m[31mtorch[0m[39m[49m.org) >= 1.7. For M1 GPU support, please [1m[31minstall[0m[39m[49m [
+Py[1m[31mTorch[0m[39m[49m](https://py[1m[31mtorch[0m[39m[49m.org)>=2.0.
+### [1m[31mInstall[0m[39m[49mation
+After [1m[31minstall[0m[39m[49ming [Py[1m[31mTorch[0m[39m[49m](https://py[1m[31mtorch[0m[39m[49m.org), you should be able to [1m[31minstal
+l[0m[39m[49m SIGE with PyPI
+pip [1m[31minstall[0m[39m[49m sige
+pip [1m[31minstall[0m[39m[49m git+https://github.com/lmxyy/sige.git
+pip [1m[31minstall[0m[39m[49m -e .
+export PY[1m[31mTORCH[0m[39m[49m_ENABLE_MPS_FALLBACK=1
+See [example.py](https://github.com/lmxyy/sige/tree/main/example.py) for the
+minimal SIGE convolution example. Please first [1m[31minstall[0m[39m[49m SIGE with the above in
+structions and [[1m[31mtorch[0m[39m[49mprofile](https://github.com/zhijian-liu/[1m[31mtorch[0m[39m[49mprofile) wi
+th
+pip [1m[31minstall[0m[39m[49m [1m[31mtorch[0m[39m[49mprofile
+[1m[31mpython[0m[39m[49m example.py
+Our code is developed based on [SDEdit](https://github.com/ermongroup/SDEdit)
+, [ddim](https://github.com/ermongroup/ddim), [diffusion_distillation](https:
+//github.com/google-research/google-research/tree/master/diffusion_distillati
+on), [gan-compression](https://github.com/mit-han-lab/gan-compression), [dpm-
+solver](https://github.com/LuChengTHU/dpm-solver), and [stable-diffusion](htt
+ps://github.com/CompVis/stable-diffusion). We refer to [sbnet](https://github
+.com/uber-research/sbnet) for the tiling-based sparse convolution algorithm i
+mplementation. Our work is also inspired by the gather/scatter implementation
+s in [[1m[31mtorch[0m[39m[49msparse](https://github.com/mit-han-lab/[1m[31mtorch[0m[39m[49msparse).
+We thank [[1m[31mtorch[0m[39m[49mprofile](https://github.com/zhijian-liu/[1m[31mtorch[0m[39m[49mprofile) for MACs
+ measurement, [clean-fid](https://github.com/GaParmar/clean-fid) for FID comp
+utation and [drn](https://github.com/fyu/drn) for Cityscapes mIoU computation
+.
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 20:51:01
+COMMAND EXECUTED: pixi init --python 3.10
+======================================================
+
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง pixi init --py
+thon 3.10
+[1m[31merror:[0m[39m[49m unexpected argument '[1m[31m--python[0m[39m[49m' found
+
+  [1;4m[32mtip:[0m[39m[49m to pass '[1m[31m--python[0m[39m[49m' as a value, use '[1;4m[32m-- --python[0m[39m[49m'
+
+[1;4m[92mUsage:[0m[39m[49m [96mpixi init[39m [96m[OPTIONS][39m [96m[PATH][39m
+
+For more information, try '[96m--help[39m'.
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 20:51:06
+COMMAND EXECUTED: pixi init
+======================================================
+
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง pixi init
+[32m✔ [39mCreated /workspace/sige/pixi.toml
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 20:51:28
+COMMAND EXECUTED: pixi add python=3.10
+======================================================
+
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง pixi add pytho
+n=3.10
+[33m WARN[39m Using local manifest /workspace/sige/pixi.toml rather than /workspace/p
+ixi.toml from environment variable `PIXI_PROJECT_MANIFEST`
+[32m✔ [39mAdded [1mpython=3.10
+[0m[33m[49m WARN[39m Using local manifest /workspace/sige/pixi.toml rather than /workspace/p
+ixi.toml from environment variable `PIXI_PROJECT_MANIFEST`
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 20:51:34
+COMMAND EXECUTED: pixi install
+======================================================
+
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง pixi install
+[32m✔ [39mThe [35mdefault[39m environment has been installed.
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 20:51:42
+COMMAND EXECUTED: pixi shell
+======================================================
+
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง pixi shell
+
+(sige) (envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 21:12:46
+COMMAND EXECUTED: git clone https://github.com/lmxyy/sige.git && cd sige
+======================================================
+
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace (ง •_•)ง git clone https://gith
+ub.com/lmxyy/sige.git && cd sige
+Cloning into 'sige'...
+remote: Enumerating objects: 791, done.
+remote: Counting objects: 100% (43/43), done.
+remote: Compressing objects: 100% (19/19), done.
+remote: Total 791 (delta 26), reused 24 (delta 24), pack-reused 748 (from 1)
+Receiving objects: 100% (791/791), 43.99 MiB | 13.17 MiB/s, done.
+Resolving deltas: 100% (438/438), done.
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 21:12:48
+COMMAND EXECUTED: ls -F
+======================================================
+
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง ls -F
+LICENSE      [1m[34massets[0m[39m[49m/          example.ipynb  setup.py
+MANIFEST.in  [1m[34mdiffusion[0m[39m[49m/       example.py     [1m[34msige[0m[39m[49m/
+README.md    [1m[34mdiffusion_demo[0m[39m[49m/  [1m[34mgaugan[0m[39m[49m/        [1m[34mstable-diffusion[0m[39m[49m/
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 21:12:53
+COMMAND EXECUTED: cat README.md | grep -Ei "cuda|python|torch|require|install|recommend"
+======================================================
+
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง cat README.md | g
+rep -Ei "cuda|python|torch|require|install|recommend"
+*We introduce Spatially Incremental Generative Engine (SIGE),an engine that sele
+ctively performs computations at the edited regions for image editing applicatio
+ns. The computation and latency are measured for a single forward. For the above
+ examples, SIGE significantly reduces the computation of [SDEdit](https://github
+.com/ermongroup/SDEdit) with [DDPM](https://github.com/lucidrains/denoising-diff
+usion-py[1m[31mtorch[0m[39m[49m) (4-6x) and [Stable Diffusion](https://github.com/CompVis/stable-d
+iffusion) (8x), and [GauGAN](https://github.com/NVlabs/SPADE) (15x) while preser
+ving the image quality. When combined with existing model compression methods su
+ch as [GAN Compression](https://github.com/mit-han-lab/gan-compression), it furt
+her reduces the computation of GauGAN by 47x. On NVIDIA RTX 3090, SIGE achieves
+up to 7.2x speedups.*
+* [1m[31mPython[0m[39m[49m3
+* CPU, M1 GPU, or NVIDIA GPU + [1m[31mCUDA[0m[39m[49m CuDNN
+* [Py[1m[31mTorch[0m[39m[49m](https://py[1m[31mtorch[0m[39m[49m.org) >= 1.7. For M1 GPU support, please [1m[31minstall[0m[39m[49m [Py[1m[31mT
+orch[0m[39m[49m](https://py[1m[31mtorch[0m[39m[49m.org)>=2.0.
+### [1m[31mInstall[0m[39m[49mation
+After [1m[31minstall[0m[39m[49ming [Py[1m[31mTorch[0m[39m[49m](https://py[1m[31mtorch[0m[39m[49m.org), you should be able to [1m[31minstall[0m[39m[49m S
+IGE with PyPI
+pip [1m[31minstall[0m[39m[49m sige
+pip [1m[31minstall[0m[39m[49m git+https://github.com/lmxyy/sige.git
+pip [1m[31minstall[0m[39m[49m -e .
+export PY[1m[31mTORCH[0m[39m[49m_ENABLE_MPS_FALLBACK=1
+See [example.py](https://github.com/lmxyy/sige/tree/main/example.py) for the min
+imal SIGE convolution example. Please first [1m[31minstall[0m[39m[49m SIGE with the above instruct
+ions and [[1m[31mtorch[0m[39m[49mprofile](https://github.com/zhijian-liu/[1m[31mtorch[0m[39m[49mprofile) with
+pip [1m[31minstall[0m[39m[49m [1m[31mtorch[0m[39m[49mprofile
+[1m[31mpython[0m[39m[49m example.py
+Our code is developed based on [SDEdit](https://github.com/ermongroup/SDEdit), [
+ddim](https://github.com/ermongroup/ddim), [diffusion_distillation](https://gith
+ub.com/google-research/google-research/tree/master/diffusion_distillation), [gan
+-compression](https://github.com/mit-han-lab/gan-compression), [dpm-solver](http
+s://github.com/LuChengTHU/dpm-solver), and [stable-diffusion](https://github.com
+/CompVis/stable-diffusion). We refer to [sbnet](https://github.com/uber-research
+/sbnet) for the tiling-based sparse convolution algorithm implementation. Our wo
+rk is also inspired by the gather/scatter implementations in [[1m[31mtorch[0m[39m[49msparse](https
+://github.com/mit-han-lab/[1m[31mtorch[0m[39m[49msparse).
+We thank [[1m[31mtorch[0m[39m[49mprofile](https://github.com/zhijian-liu/[1m[31mtorch[0m[39m[49mprofile) for MACs me
+asurement, [clean-fid](https://github.com/GaParmar/clean-fid) for FID computatio
+n and [drn](https://github.com/fyu/drn) for Cityscapes mIoU computation.
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 21:13:01
+COMMAND EXECUTED: pixi init --python 3.10
+======================================================
+
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง pixi init --pytho
+n 3.10
+[1m[31merror:[0m[39m[49m unexpected argument '[1m[31m--python[0m[39m[49m' found
+
+  [1;4m[32mtip:[0m[39m[49m to pass '[1m[31m--python[0m[39m[49m' as a value, use '[1;4m[32m-- --python[0m[39m[49m'
+
+[1;4m[92mUsage:[0m[39m[49m [96mpixi init[39m [96m[OPTIONS][39m [96m[PATH][39m
+
+For more information, try '[96m--help[39m'.
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 21:13:06
+COMMAND EXECUTED:  pixi init
+======================================================
+
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง  pixi init
+[32m✔ [39mCreated /workspace/sige/pixi.toml
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 21:13:26
+COMMAND EXECUTED: pixi add python=3.10
+======================================================
+
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง pixi add pytho
+n=3.10
+[33m WARN[39m Using local manifest /workspace/sige/pixi.toml rather than /workspace/p
+ixi.toml from environment variable `PIXI_PROJECT_MANIFEST`
+[32m✔ [39mAdded [1mpython=3.10[0m[39m[49m
+[33m WARN[39m Using local manifest /workspace/sige/pixi.toml rather than /workspace/p
+ixi.toml from environment variable `PIXI_PROJECT_MANIFEST`
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 21:13:31
+COMMAND EXECUTED: pixi install
+======================================================
+
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง pixi install
+[32m✔ [39mThe [35mdefault[39m environment has been installed.
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 21:35:05
+COMMAND EXECUTED: git clone https://github.com/lmxyy/sige.git && cd sige
+======================================================
+
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace (ง •_•)ง git clone https://g
+ithub.com/lmxyy/sige.git && cd sige
+Cloning into 'sige'...
+remote: Enumerating objects: 791, done.
+remote: Counting objects: 100% (43/43), done.
+remote: Compressing objects: 100% (19/19), done.
+remote: Total 791 (delta 26), reused 24 (delta 24), pack-reused 748 (from 1)
+Receiving objects: 100% (791/791), 43.99 MiB | 8.54 MiB/s, done.
+Resolving deltas: 100% (438/438), done.
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 21:35:11
+COMMAND EXECUTED: ls -F
+======================================================
+
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง ls -F
+LICENSE      [1m[34massets[0m[39m[49m/          example.ipynb  setup.py
+MANIFEST.in  [1m[34mdiffusion[0m[39m[49m/       example.py     [1m[34msige[0m[39m[49m/
+README.md    [1m[34mdiffusion_demo[0m[39m[49m/  [1m[34mgaugan[0m[39m[49m/        [1m[34mstable-diffusion[0m[39m[49m/
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 21:35:17
+COMMAND EXECUTED: cat README.md | grep -Ei "cuda|python|torch|require|install|recommend"
+======================================================
+
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง cat README.md
+| grep -Ei "cuda|python|torch|require|install|recommend"
+*We introduce Spatially Incremental Generative Engine (SIGE),an engine that s
+electively performs computations at the edited regions for image editing appl
+ications. The computation and latency are measured for a single forward. For
+the above examples, SIGE significantly reduces the computation of [SDEdit](ht
+tps://github.com/ermongroup/SDEdit) with [DDPM](https://github.com/lucidrains
+/denoising-diffusion-py[1m[31mtorch[0m[39m[49m) (4-6x) and [Stable Diffusion](https://github.co
+m/CompVis/stable-diffusion) (8x), and [GauGAN](https://github.com/NVlabs/SPAD
+E) (15x) while preserving the image quality. When combined with existing mode
+l compression methods such as [GAN Compression](https://github.com/mit-han-la
+b/gan-compression), it further reduces the computation of GauGAN by 47x. On N
+VIDIA RTX 3090, SIGE achieves up to 7.2x speedups.*
+* [1m[31mPython[0m[39m[49m3
+* CPU, M1 GPU, or NVIDIA GPU + [1m[31mCUDA[0m[39m[49m CuDNN
+* [Py[1m[31mTorch[0m[39m[49m](https://py[1m[31mtorch[0m[39m[49m.org) >= 1.7. For M1 GPU support, please [1m[31minstall[0m[39m[49m [
+Py[1m[31mTorch[0m[39m[49m](https://py[1m[31mtorch[0m[39m[49m.org)>=2.0.
+### [1m[31mInstall[0m[39m[49mation
+After [1m[31minstall[0m[39m[49ming [Py[1m[31mTorch[0m[39m[49m](https://py[1m[31mtorch[0m[39m[49m.org), you should be able to [1m[31minstal
+l[0m[39m[49m SIGE with PyPI
+pip [1m[31minstall[0m[39m[49m sige
+pip [1m[31minstall[0m[39m[49m git+https://github.com/lmxyy/sige.git
+pip [1m[31minstall[0m[39m[49m -e .
+export PY[1m[31mTORCH[0m[39m[49m_ENABLE_MPS_FALLBACK=1
+See [example.py](https://github.com/lmxyy/sige/tree/main/example.py) for the
+minimal SIGE convolution example. Please first [1m[31minstall[0m[39m[49m SIGE with the above in
+structions and [[1m[31mtorch[0m[39m[49mprofile](https://github.com/zhijian-liu/[1m[31mtorch[0m[39m[49mprofile) wi
+th
+pip [1m[31minstall[0m[39m[49m [1m[31mtorch[0m[39m[49mprofile
+[1m[31mpython[0m[39m[49m example.py
+Our code is developed based on [SDEdit](https://github.com/ermongroup/SDEdit)
+, [ddim](https://github.com/ermongroup/ddim), [diffusion_distillation](https:
+//github.com/google-research/google-research/tree/master/diffusion_distillati
+on), [gan-compression](https://github.com/mit-han-lab/gan-compression), [dpm-
+solver](https://github.com/LuChengTHU/dpm-solver), and [stable-diffusion](htt
+ps://github.com/CompVis/stable-diffusion). We refer to [sbnet](https://github
+.com/uber-research/sbnet) for the tiling-based sparse convolution algorithm i
+mplementation. Our work is also inspired by the gather/scatter implementation
+s in [[1m[31mtorch[0m[39m[49msparse](https://github.com/mit-han-lab/[1m[31mtorch[0m[39m[49msparse).
+We thank [[1m[31mtorch[0m[39m[49mprofile](https://github.com/zhijian-liu/[1m[31mtorch[0m[39m[49mprofile) for MACs
+ measurement, [clean-fid](https://github.com/GaParmar/clean-fid) for FID comp
+utation and [drn](https://github.com/fyu/drn) for Cityscapes mIoU computation
+.
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 21:35:22
+COMMAND EXECUTED: pixi init --python 3.10
+======================================================
+
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง pixi init --py
+thon 3.10
+[1m[31merror:[0m[39m[49m unexpected argument '[1m[31m--python[0m[39m[49m' found
+
+  [1;4m[32mtip:[0m[39m[49m to pass '[1m[31m--python[0m[39m[49m' as a value, use '[1;4m[32m-- --python[0m[39m[49m'
+
+[1;4m[92mUsage:[0m[39m[49m [96mpixi init[39m [96m[OPTIONS][39m [96m[PATH][39m
+
+For more information, try '[96m--help[39m'.
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 21:35:27
+COMMAND EXECUTED: pixi init
+======================================================
+
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง pixi init
+[32m✔ [39mCreated /workspace/sige/pixi.toml
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 21:35:48
+COMMAND EXECUTED: pixi add python=3.10
+======================================================
+
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง pixi add pytho
+n=3.10
+[33m WARN[39m Using local manifest /workspace/sige/pixi.toml rather than /workspace/p
+ixi.toml from environment variable `PIXI_PROJECT_MANIFEST`
+[32m✔ [39mAdded [1mpython=3.10
+[0m[33m[49m WARN[39m Using local manifest /workspace/sige/pixi.toml rather than /workspace/p
+ixi.toml from environment variable `PIXI_PROJECT_MANIFEST`
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 21:35:53
+COMMAND EXECUTED: pixi install
+======================================================
+
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง pixi install
+[32m✔ [39mThe [35mdefault[39m environment has been installed.
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 21:35:59
+COMMAND EXECUTED:  pixi shell
+======================================================
+
+(envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง  pixi shell
+
+(sige) (envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 21:36:13
+COMMAND EXECUTED: which python
+======================================================
+
+(sige) (envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง which p
+ython
+/workspace/sige/.pixi/envs/default/bin/python
+(sige) (envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 21:37:12
+COMMAND EXECUTED: python --version && uv --version && nvidia-smi && nvcc -V && g++ --version
+======================================================
+
+(sige) (envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง python
+--version && uv --version && nvidia-smi && nvcc -V && g++ --version
+Python 3.10.19
+bash: uv: command not found
+(sige) (envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 21:38:35
+COMMAND EXECUTED: pixi add uv
+======================================================
+
+(sige) (envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง pixi ad
+d uv
+[33m WARN[39m Using local manifest /workspace/sige/pixi.toml rather than /workspace/p
+ixi.toml from environment variable `PIXI_PROJECT_MANIFEST`
+[32m✔ [39mAdded [1muv[0m[39m[49m [2m>=0.9.5,<0.10[0m[39m[49m
+[33m WARN[39m Using local manifest /workspace/sige/pixi.toml rather than /workspace/p
+ixi.toml from environment variable `PIXI_PROJECT_MANIFEST`
+(sige) (envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 21:39:44
+COMMAND EXECUTED: pixi install
+======================================================
+
+(sige) (envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง pixi in
+stall
+[32m✔ [39mThe [35mdefault[39m environment has been installed.
+(sige) (envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 21:40:07
+COMMAND EXECUTED: python --version && uv --version && nvidia-smi && nvcc -V && g++ --version
+======================================================
+
+(sige) (envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง python
+--version && uv --version && nvidia-smi && nvcc -V && g++ --version
+Python 3.10.19
+uv 0.9.5
+Wed Oct 29 13:40:06 2025
++----------------------------------------------------------------------------
+-------------+
+| NVIDIA-SMI 570.124.06             Driver Version: 570.124.06     CUDA Versi
+on: 12.8     |
+|-----------------------------------------+------------------------+---------
+-------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile
+ Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util
+  Compute M. |
+|                                         |                        |
+      MIG M. |
+|=========================================+========================+=========
+=============|
+|   0  NVIDIA GeForce RTX 3090        Off |   00000000:1A:00.0 Off |
+         N/A |
+| 30%   31C    P8             22W /  350W |      28MiB /  24576MiB |      0%
+     Default |
+|                                         |                        |
+         N/A |
++-----------------------------------------+------------------------+---------
+-------------+
+|   1  NVIDIA GeForce RTX 3090        Off |   00000000:1B:00.0 Off |
+         N/A |
+| 30%   34C    P8             24W /  350W |      21MiB /  24576MiB |      0%
+     Default |
+|                                         |                        |
+         N/A |
++-----------------------------------------+------------------------+---------
+-------------+
+|   2  NVIDIA GeForce RTX 3090        Off |   00000000:1C:00.0 Off |
+         N/A |
+| 30%   34C    P8             25W /  350W |      23MiB /  24576MiB |      0%
+     Default |
+|                                         |                        |
+         N/A |
++-----------------------------------------+------------------------+---------
+-------------+
+|   3  NVIDIA GeForce RTX 3090        Off |   00000000:1D:00.0 Off |
+         N/A |
+| 30%   35C    P8             24W /  350W |      25MiB /  24576MiB |      0%
+     Default |
+|                                         |                        |
+         N/A |
++-----------------------------------------+------------------------+---------
+-------------+
+|   4  NVIDIA GeForce RTX 3090        Off |   00000000:1E:00.0 Off |
+         N/A |
+| 30%   35C    P8             29W /  350W |      20MiB /  24576MiB |      0%
+     Default |
+|                                         |                        |
+         N/A |
++-----------------------------------------+------------------------+---------
+-------------+
+|   5  NVIDIA GeForce RTX 3090        Off |   00000000:3D:00.0 Off |
+         N/A |
+| 30%   31C    P8             23W /  350W |      20MiB /  24576MiB |      0%
+     Default |
+|                                         |                        |
+         N/A |
++-----------------------------------------+------------------------+---------
+-------------+
+|   6  NVIDIA GeForce RTX 3090        Off |   00000000:3E:00.0 Off |
+         N/A |
+| 30%   35C    P8             22W /  350W |      20MiB /  24576MiB |      0%
+     Default |
+|                                         |                        |
+         N/A |
++-----------------------------------------+------------------------+---------
+-------------+
+|   7  NVIDIA GeForce RTX 3090        Off |   00000000:3F:00.0 Off |
+         N/A |
+| 30%   32C    P8             25W /  350W |      23MiB /  24576MiB |      0%
+     Default |
+|                                         |                        |
+         N/A |
++-----------------------------------------+------------------------+---------
+-------------+
+|   8  NVIDIA GeForce RTX 3090        Off |   00000000:40:00.0 Off |
+         N/A |
+| 30%   34C    P8             22W /  350W |      22MiB /  24576MiB |      0%
+     Default |
+|                                         |                        |
+         N/A |
++-----------------------------------------+------------------------+---------
+-------------+
+|   9  NVIDIA GeForce RTX 3090        Off |   00000000:41:00.0 Off |
+         N/A |
+| 30%   33C    P8             25W /  350W |      21MiB /  24576MiB |      0%
+     Default |
+|                                         |                        |
+         N/A |
++-----------------------------------------+------------------------+---------
+-------------+
+
+
++----------------------------------------------------------------------------
+-------------+
+| Processes:
+             |
+|  GPU   GI   CI              PID   Type   Process name
+  GPU Memory |
+|        ID   ID
+  Usage      |
+|============================================================================
+=============|
++----------------------------------------------------------------------------
+-------------+
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2024 NVIDIA Corporation
+Built on Thu_Mar_28_02:18:24_PDT_2024
+Cuda compilation tools, release 12.4, V12.4.131
+Build cuda_12.4.r12.4/compiler.34097967_0
+g++ (Ubuntu 9.4.0-1ubuntu1~20.04.2) 9.4.0
+Copyright (C) 2019 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+(sige) (envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 21:42:55
+COMMAND EXECUTED: pixi add torch torchvision torchaudio pytorch-cuda=12.4 -c pytorch -c nvidia
+======================================================
+
+(sige) (envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง pixi ad
+d torch torchvision torchaudio pytorch-cuda=12.4 -c pytorch -c nvidia
+[1m[31merror:[0m[39m[49m unexpected argument '[1m[31m-c[0m[39m[49m' found
+
+  [1;4m[32mtip:[0m[39m[49m to pass '[1m[31m-c[0m[39m[49m' as a value, use '[1;4m[32m-- -c[0m[39m[49m'
+
+[1;4m[92mUsage:[0m[39m[49m [96mpixi add[39m [96m[OPTIONS][39m [96m<SPEC>...[39m
+
+For more information, try '[96m--help[39m'.
+(sige) (envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 21:43:26
+COMMAND EXECUTED: pixi channel add pytorch
+======================================================
+
+(sige) (envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง pixi ch
+annel add pytorch
+[1m[31merror:[0m[39m[49m unrecognized subcommand '[1m[31mchannel[0m[39m[49m'
+
+  [1;4m[32mtip[0m[39m[49m: a similar subcommand exists: '[1;4m[32ma[0m[39m[49m'
+
+[1;4m[92mUsage:[0m[39m[49m [96mpixi_cli[39m [96m<COMMAND>[39m
+
+For more information, try '[96m--help[39m'.
+(sige) (envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 21:43:47
+COMMAND EXECUTED: cat pixi.toml
+======================================================
+
+(sige) (envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง cat pix
+i.toml
+[workspace]
+channels = ["conda-forge"]
+name = "sige"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+python = "3.10.*"
+uv = ">=0.9.5,<0.10"
+(sige) (envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 21:44:07
+COMMAND EXECUTED: printf '[workspace]\nchannels = ["conda-forge", "pytorch", "nvidia"]\nname = "sige"\nplatforms = ["linux-64"]\nversion = "0.1.0"\n\n[tasks]\n\n[dependencies]\npython = "3.10.*"\nuv = ">=0.9.5,<0.10"\n' > pixi.toml
+======================================================
+
+(sige) (envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง printf
+[workspace]nchannels=[conda-forge,pytorch,nvidia]nname=sigenplatforms=[linux-
+64]nversion=0.1.0nn[tasks]nn[dependencies]npython=3.10.*nuv=>=0.9.5,<0.10n >
+pixi.toml
+bash: 0.10n: No such file or directory
+(sige) (envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 21:44:40
+COMMAND EXECUTED: cat <<EOF > pixi.toml
+======================================================
+
+(sige) (envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง cat <<E
+OF > pixi.toml
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+
+
+======================================================
+SESSION START: 2025-10-29 21:44:52
+COMMAND EXECUTED: [workspace]
+======================================================
+
+> [workspace]
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+
+
+======================================================
+SESSION START: 2025-10-29 21:45:04
+COMMAND EXECUTED: channels = ["conda-forge", "pytorch", "nvidia"]
+======================================================
+
+> channels = ["conda-forge", "pytorch", "nvidia"]
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+
+
+======================================================
+SESSION START: 2025-10-29 21:45:17
+COMMAND EXECUTED: name = "sige"
+======================================================
+
+> name = "sige"
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+
+
+======================================================
+SESSION START: 2025-10-29 21:45:29
+COMMAND EXECUTED: platforms = ["linux-64"]
+======================================================
+
+> platforms = ["linux-64"]
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+
+
+======================================================
+SESSION START: 2025-10-29 21:45:41
+COMMAND EXECUTED: version = "0.1.0"
+======================================================
+
+> version = "0.1.0"
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+
+
+======================================================
+SESSION START: 2025-10-29 21:45:53
+COMMAND EXECUTED: [tasks]
+======================================================
+
+> [tasks]
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+
+
+======================================================
+SESSION START: 2025-10-29 21:46:06
+COMMAND EXECUTED: [dependencies]
+======================================================
+
+> [dependencies]
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+
+
+======================================================
+SESSION START: 2025-10-29 21:46:18
+COMMAND EXECUTED: python = "3.10.*"
+======================================================
+
+> python = "3.10.*"
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+
+
+======================================================
+SESSION START: 2025-10-29 21:46:30
+COMMAND EXECUTED: uv = ">=0.9.5,<0.10"
+======================================================
+
+> uv = ">=0.9.5,<0.10"
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+
+
+======================================================
+SESSION START: 2025-10-29 21:46:31
+COMMAND EXECUTED: EOF
+======================================================
+
+> EOF
+(sige) (envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 21:47:36
+COMMAND EXECUTED: pixi add torch torchvision torchaudio pytorch-cuda=12.4
+======================================================
+
+(sige) (envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+                                                                      printf
+
+
+                                                                      pixi ad
+d torch torchvision torchaudio pytorch-cuda=12.4
+Error:   [31m×[39m failed to solve requirements of environment '[35mdefault[39m' for platform
+  [31m│[39m 'linux-64'
+[31m  ├─▶ [39m  [31m×[39m failed to solve the environment
+[31m  │   [39m
+[31m  ╰─▶ [39mCannot solve the request because of: No candidates were found for
+[31m      [39mtorch *.
+[31m      [39m
+
+(sige) (envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 21:48:12
+COMMAND EXECUTED: pixi add torch
+======================================================
+
+(sige) (envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง pixi ad
+d torch
+Error:   [31m×[39m failed to solve requirements of environment '[35mdefault[39m' for platform
+  [31m│[39m 'linux-64'
+[31m  ├─▶ [39m  [31m×[39m failed to solve the environment
+[31m  │   [39m
+[31m  ╰─▶ [39mCannot solve the request because of: No candidates were found for
+[31m      [39mtorch *.
+[31m      [39m
+
+(sige) (envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 21:49:12
+COMMAND EXECUTED: curl -v https://conda.anaconda.org/pytorch/linux-64/repodata.json | head -n 10
+======================================================
+
+2aad6c1cc317","size":8361478,"subdir":"linux-64","timestamp":1712670077475,"v
+ersion":"0.18.0"},"torchvision-0.18.1-py310_cpu.tar.bz2":{"build":"py310_cpu"
+,"build_number":0,"constrains":["cpuonly"],"depends":["ffmpeg >=4.2","libjpeg
+-turbo","libpng","numpy >=1.11","pillow >=5.3.0,!=8.3.*","python >=3.10,<3.11
+.0a0","pytorch 2.3.1","pytorch-mutex 1.0 cpu","requests"],"license":"BSD","md
+5":"b88cb21e4f1c3871da84e91e2ee4a387","name":"torchvision","sha256":"f982db7a
+872a3a52e4dcb5cc875f51b10439fa36b93c004c3bf85af20690ba9a","size":7097722,"sub
+dir":"linux-64","timestamp":1716983684492,"version":"0.18.1"},"torchvision-0.
+18.1-py310_cu118.tar.bz2":{"build":"py310_cu118","build_number":0,"constrains
+":["cpuonly <0"],"depends":["ffmpeg >=4.2","libjpeg-turbo","libpng","numpy >=
+1.11","pillow >=5.3.0,!=8.3.*","python >=3.10,<3.11.0a0","pytorch 2.3.1","pyt
+orch-cuda 11.8.*","pytorch-mutex 1.0 cuda","requests"],"license":"BSD","md5":
+"4b95836560b4139930e142a096a75a04","name":"torchvision","sha256":"2f11a92bad6
+21010d294f8fc932d603e35769097918a4224b53e32703eb3bce5","size":8605116,"subdir
+":"linux-64","timestamp":1716984396864,"version":"0.18.1"},"torchvision-0.18.
+1-py310_cu121.tar.bz2":{"build":"py310_cu121","build_number":0,"constrains":[
+"cpuonly <0"],"depends":["ffmpeg >=4.2","libjpeg-turbo","libpng","numpy >=1.1
+1","pillow >=5.3.0,!=8.3.*","python >=3.10,<3.11.0a0","pytorch 2.3.1","pytorc
+h-cuda 12.1.*","pytorch-mutex 1.0 cuda","requests"],"license":"BSD","md5":"cd
+ccabed0cb26de7be652ba21d49e6f7","name":"torchvision","sha256":"d45e7ae690f921
+e68ad8ecd76a4568cddbcfc626ae94d60cd34db322cd886eab","size":8549400,"subdir":"
+linux-64","timestamp":1716984075280,"version":"0.18.1"},"torchvision-0.18.1-p
+y311_cpu.tar.bz2":{"build":"py311_cpu","build_number":0,"constrains":["cpuonl
+y"],"depends":["ffmpeg >=4.2","libjpeg-turbo","libpng","numpy >=1.23.5","pill
+ow >=5.3.0,!=8.3.*","python >=3.11,<3.12.0a0","pytorch 2.3.1","pytorch-mutex
+1.0 cpu","requests"],"license":"BSD","md5":"382fa0cb191cea1530a69e331168dfa0"
+,"name":"torchvision","sha256":"e34ec7b7bc635cdfce19c6c07d733d331f649729629f8
+503a581bd5031d2a56d","size":7385080,"subdir":"linux-64","timestamp":171698370
+2337,"version":"0.18.1"},"torchvision-0.18.1-py311_cu118.tar.bz2":{"build":"p
+y311_cu118","build_number":0,"constrains":["cpuonly <0"],"depends":["ffmpeg >
+=4.2","libjpeg-turbo","libpng","numpy >=1.23.5","pillow >=5.3.0,!=8.3.*","pyt
+hon >=3.11,<3.12.0a0","pytorch 2.3.1","pytorch-cuda 11.8.*","pytorch-mutex 1.
+0 cuda","requests"],"license":"BSD","md5":"c6db0e03f540c6485bc18f6e15cf7dc7",
+"name":"torchvision","sha256":"3d7efa1ff093aca7959dcd196f0e5c12da35220ad4d22b
+532574c7119a978a1b","size":8884082,"subdir":"linux-64","timestamp":1716984093
+142,"version":"0.18.1"},"torchvision-0.18.1-py311_cu121.tar.bz2":{"build":"py
+311_cu121","build_number":0,"constrains":["cpuonly <0"],"depends":["ffmpeg >=
+4.2","libjpeg-turbo","libpng","numpy >=1.23.5","pillow >=5.3.0,!=8.3.*","pyth
+on >=3.11,<3.12.0a0","pytorch 2.3.1","pytorch-cuda 12.1.*","pytorch-mutex 1.0
+ cuda","requests"],"license":"BSD","md5":"91b2103d933d21b39c8c78ca8ac77c47","
+name":"torchvision","sha256":"dec417b5e8f0f9653c5ca751ca59646fe9119867ee3c6a5
+43916292ff254b649","size":8833574,"subdir":"linux-64","timestamp":17169840761
+79,"version":"0.18.1"},"torchvision-0.18.1-py312_cpu.tar.bz2":{"build":"py312
+_cpu","build_number":0,"constrains":["cpuonly"],"depends":["ffmpeg >=4.2","li
+bjpeg-turbo","libpng","numpy >=1.23.5","pillow >=5.3.0,!=8.3.*","python >=3.1
+2,<3.13.0a0","pytorch 2.3.1","pytorch-mutex 1.0 cpu","requests"],"license":"B
+SD","md5":"67eb40ef33437a9b930fa8dc6d3c96df","name":"torchvision","sha256":"0
+aec7b7cf4c5a56995861a48f60c626dbc27e97b4e244fd9df0837e249029886","size":73176
+44,"subdir":"linux-64","timestamp":1716983711634,"version":"0.18.1"},"torchvi
+sion-0.18.1-py312_cu118.tar.bz2":{"build":"py312_cu118","build_number":0,"con
+strains":["cpuonly <0"],"depends":["ffmpeg >=4.2","libjpeg-turbo","libpng","n
+umpy >=1.23.5","pillow >=5.3.0,!=8.3.*","python >=3.12,<3.13.0a0","pytorch 2.
+3.1","pytorch-cuda 11.8.*","pytorch-mutex 1.0 cuda","requests"],"license":"BS
+D","md5":"1e50fc06b6335dae08d04fb98779a78f","name":"torchvision","sha256":"db
+c7172882c253cac1e4d44ddb0eb917530c670f210ee4f6af0fc62bcfec7769","size":883717
+5,"subdir":"linux-64","timestamp":1716985322957,"version":"0.18.1"},"torchvis
+ion-0.18.1-py312_cu121.tar.bz2":{"build":"py312_cu121","build_number":0,"cons
+trains":["cpuonly <0"],"depends":["ffmpeg >=4.2","libjpeg-turbo","libpng","nu
+mpy >=1.23.5","pillow >=5.3.0,!=8.3.*","python >=3.12,<3.13.0a0","pytorch 2.3
+.1","pytorch-cuda 12.1.*","pytorch-mutex 1.0 cuda","requests"],"license":"BSD
+","md5":"af207a1ad37e23d43c1d6b9219f406df","name":"torchvision","sha256":"a6a
+a80799eb2ca2ceeb90bce235e6b9757ee241de384e072f12e3780263bd3d1","size":8818266
+,"subdir":"linux-64","timestamp":1716984061323,"version":"0.18.1"},"torchvisi
+on-0.18.1-py38_cpu.tar.bz2":{"build":"py38_cpu","build_number":0,"constrains"
+:["cpuonly"],"depends":["ffmpeg >=4.2","libjpeg-turbo","libpng","numpy >=1.11
+","pillow >=5.3.0,!=8.3.*","python >=3.8,<3.9.0a0","pytorch 2.3.1","pytorch-m
+utex 1.0 cpu","requests"],"license":"BSD","md5":"c997ba26b2605927c84ac590cfbe
+fd73","name":"torchvision","sha256":"beea7c41e61b87aa5b0eab0856096aaf829de713
+00e6133d6f551e1e920f17b2","size":12023400,"subdir":"linux-64","timestamp":171
+6983703219,"version":"0.18.1"},"torchvision-0.18.1-py38_cu118.tar.bz2":{"buil
+d":"py38_cu118","build_number":0,"constrains":["cpuonly <0"],"depends":["ffmp
+eg >=4.2","libjpeg-turbo","libpng","numpy >=1.11","pillow >=5.3.0,!=8.3.*","p
+ython >=3.8,<3.9.0a0","pytorch 2.3.1","pytorch-cuda 11.8.*","pytorch-mutex 1.
+0 cuda","requests"],"license":"BSD","md5":"5333af78c9cab0f2b92a00e4fb3d13a4",
+"name":"torchvision","sha256":"21bd8bf3a3c58affe696eca8f457764b1f8f35ed3149be
+e57da67e63fb2d3d94","size":13499167,"subdir":"linux-64","timestamp":171698410
+3490,"version":"0.18.1"},"torchvision-0.18.1-py38_cu121.tar.bz2":{"build":"py
+38_cu121","build_number":0,"constrains":["cpuonly <0"],"depends":["ffmpeg >=4
+.2","libjpeg-turbo","libpng","numpy >=1.11","pillow >=5.3.0,!=8.3.*","python
+>=3.8,<3.9.0a0","pytorch 2.3.1","pytorch-cuda 12.1.*","pytorch-mutex 1.0 cuda
+","requests"],"license":"BSD","md5":"746e96ed33b684f5eb11c69748bb78fc","name"
+:"torchvision","sha256":"a998a3a9f0e6e0a1ec1a436ce34ea3c2fd245170b71dc8288a9d
+f99d0e6ad70b","size":13499415,"subdir":"linux-64","timestamp":1716984091562,"
+version":"0.18.1"},"torchvision-0.18.1-py39_cpu.tar.bz2":{"build":"py39_cpu",
+"build_number":0,"constrains":["cpuonly"],"depends":["ffmpeg >=4.2","libjpeg-
+turbo","libpng","numpy >=1.11","pillow >=5.3.0,!=8.3.*","python >=3.9,<3.10.0
+a0","pytorch 2.3.1","pytorch-mutex 1.0 cpu","requests"],"license":"BSD","md5"
+:"354d874059d9518e905dfbef6e850e80","name":"torchvision","sha256":"3aff6afa6a
+a4805b1db07db8b79edb1d2d393ecbed3bf2f0a068f93ca584637a","size":6888032,"subdi
+r":"linux-64","timestamp":1716983680303,"version":"0.18.1"},"torchvision-0.18
+.1-py39_cu118.tar.bz2":{"build":"py39_cu118","build_number":0,"constrains":["
+cpuonly <0"],"depends":["ffmpeg >=4.2","libjpeg-turbo","libpng","numpy >=1.11
+","pillow >=5.3.0,!=8.3.*","python >=3.9,<3.10.0a0","pytorch 2.3.1","pytorch-
+cuda 11.8.*","pytorch-mutex 1.0 cuda","requests"],"license":"BSD","md5":"fa97
+454d33f46485a75177443139d284","name":"torchvision","sha256":"be9aa07f8b05d7fc
+da229f8d8c3d37428904bbc0cb1236db41c914f9ef182893","size":8388264,"subdir":"li
+nux-64","timestamp":1716984078977,"version":"0.18.1"},"torchvision-0.18.1-py3
+9_cu121.tar.bz2":{"build":"py39_cu121","build_number":0,"constrains":["cpuonl
+y <0"],"depends":["ffmpeg >=4.2","libjpeg-turbo","libpng","numpy >=1.11","pil
+low >=5.3.0,!=8.3.*","python >=3.9,<3.10.0a0","pytorch 2.3.1","pytorch-cuda 1
+2.1.*","pytorch-mutex 1.0 cuda","requests"],"license":"BSD","md5":"63656d20b9
+c026437b5a2845442ec950","name":"torchvision","sha256":"ab8c825e3906a1c33bec2c
+fddb8061bc7cb55b798b5442358efbd21ec0f5677b","size":8367907,"subdir":"linux-64
+","timestamp":1716984063813,"version":"0.18.1"},"torchvision-0.19.0-py310_cpu
+.tar.bz2":{"build":"py310_cpu","build_number":0,"constrains":["cpuonly"],"dep
+ends":["ffmpeg >=4.2","libjpeg-turbo","libpng","numpy >=1.11","pillow >=5.3.0
+,!=8.3.*","python >=3.10,<3.11.0a0","pytorch 2.4.0","pytorch-mutex 1.0 cpu","
+requests"],"license":"BSD","md5":"da6c0a14a95d4ea39d8f7d3feda5a4df","name":"t
+orchvision","sha256":"7a112ce52607cedc3d5f7766854b30311c5fa0148a215c1c6a2f3be
+257d2436e","size":7154068,"subdir":"linux-64","timestamp":1720563416845,"vers
+ion":"0.19.0"},"torchvision-0.19.0-py310_cu118.tar.bz2":{"build":"py310_cu118
+","build_number":0,"constrains":["cpuonly <0"],"depends":["ffmpeg >=4.2","lib
+jpeg-turbo","libpng","numpy >=1.11","pillow >=5.3.0,!=8.3.*","python >=3.10,<
+3.11.0a0","pytorch 2.4.0","pytorch-cuda 11.8.*","pytorch-mutex 1.0 cuda","req
+uests"],"license":"BSD","md5":"354285571957aeef6fbfe6fe291bdf29","name":"torc
+hvision","sha256":"968313e198f3bce221a29c580b6616e554ec42ca51ff089085738d689b
+489152","size":8675291,"subdir":"linux-64","timestamp":1720563865574,"version
+":"0.19.0"},"torchvision-0.19.0-py310_cu121.tar.bz2":{"build":"py310_cu121","
+build_number":0,"constrains":["cpuonly <0"],"depends":["ffmpeg >=4.2","libjpe
+g-turbo","libpng","numpy >=1.11","pillow >=5.3.0,!=8.3.*","python >=3.10,<3.1
+1.0a0","pytorch 2.4.0","pytorch-cuda 12.1.*","pytorch-mutex 1.0 cuda","reques
+ts"],"license":"BSD","md5":"b3881740301c3cb40567749afeccc844","name":"torchvi
+sion","sha256":"b7611b43a1ec00d4a14df8a20c956010ae1d5b774c87da54d099535752577
+19f","size":8656125,"subdir":"linux-64","timestamp":1720563853865,"version":"
+0.19.0"},"torchvision-0.19.0-py310_cu124.tar.bz2":{"build":"py310_cu124","bui
+ld_number":0,"constrains":["cpuonly <0"],"depends":["ffmpeg >=4.2","libjpeg-t
+urbo","libpng","numpy >=1.11","pillow >=5.3.0,!=8.3.*","python >=3.10,<3.11.0
+a0","pytorch 2.4.0","pytorch-cuda 12.4.*","pytorch-mutex 1.0 cuda","requests"
+],"license":"BSD","md5":"889ed2ed041f60cf80815576e3929b70","name":"torchvisio
+n","sha256":"3b23605535ab893b07fe5208ad085640cf5de73105bbbbce74ff509b99c96df6
+","size":8568822,"subdir":"linux-64","timestamp":1720563825496,"version":"0.1
+9.0"},"torchvision-0.19.0-py311_cpu.tar.bz2":{"build":"py311_cpu","build_numb
+er":0,"constrains":["cpuonly"],"depends":["ffmpeg >=4.2","libjpeg-turbo","lib
+png","numpy >=1.23.5","pillow >=5.3.0,!=8.3.*","python >=3.11,<3.12.0a0","pyt
+orch 2.4.0","pytorch-mutex 1.0 cpu","requests"],"license":"BSD","md5":"ea6939
+ea1e00bcd10e637d0292493e96","name":"torchvision","sha256":"9417eb4c4d91569e40
+e4af1753fea9096a26511d52b8263c353ebfd44d082a4e","size":7438670,"subdir":"linu
+x-64","timestamp":1720563419313,"version":"0.19.0"},"torchvision-0.19.0-py311
+_cu118.tar.bz2":{"build":"py311_cu118","build_number":0,"constrains":["cpuonl
+y <0"],"depends":["ffmpeg >=4.2","libjpeg-turbo","libpng","numpy >=1.23.5","p
+illow >=5.3.0,!=8.3.*","python >=3.11,<3.12.0a0","pytorch 2.4.0","pytorch-cud
+a 11.8.*","pytorch-mutex 1.0 cuda","requests"],"license":"BSD","md5":"a399ab4
+11aff74b5b6d914c80e2f5981","name":"torchvision","sha256":"37983c4d87382a44de5
+b548e660d3547e47bc2ac443642eac3076a5851061007","size":8949834,"subdir":"linux
+-64","timestamp":1720563865730,"version":"0.19.0"},"torchvision-0.19.0-py311_
+cu121.tar.bz2":{"build":"py311_cu121","build_number":0,"constrains":["cpuonly
+ <0"],"depends":["ffmpeg >=4.2","libjpeg-turbo","libpng","numpy >=1.23.5","pi
+llow >=5.3.0,!=8.3.*","python >=3.11,<3.12.0a0","pytorch 2.4.0","pytorch-cuda
+ 12.1.*","pytorch-mutex 1.0 cuda","requests"],"license":"BSD","md5":"565baf9b
+784faa80dfc81937055963e1","name":"torchvision","sha256":"78f56f94082cd1545a3d
+6c97e8ccf90761db085d1d594fddad2fc2a04b75838e","size":8924159,"subdir":"linux-
+64","timestamp":1720637031054,"version":"0.19.0"},"torchvision-0.19.0-py311_c
+u124.tar.bz2":{"build":"py311_cu124","build_number":0,"constrains":["cpuonly
+<0"],"depends":["ffmpeg >=4.2","libjpeg-turbo","libpng","numpy >=1.23.5","pil
+low >=5.3.0,!=8.3.*","python >=3.11,<3.12.0a0","pytorch 2.4.0","pytorch-cuda
+12.4.*","pytorch-mutex 1.0 cuda","requests"],"license":"BSD","md5":"9fabed389
+795ec65c004408ea928c4da","name":"torchvision","sha256":"8102ade7f5a97eff811fa
+1a1ea64ac2903d58c59df45daa0df951308bcfd26b9","size":8847691,"subdir":"linux-6
+4","timestamp":1720563828273,"version":"0.19.0"},"torchvision-0.19.0-py312_cp
+u.tar.bz2":{"build":"py312_cpu","build_number":0,"constrains":["cpuonly"],"de
+pends":["ffmpeg >=4.2","libjpeg-turbo","libpng","numpy >=1.23.5","pillow >=5.
+3.0,!=8.3.*","python >=3.12,<3.13.0a0","pytorch 2.4.0","pytorch-mutex 1.0 cpu
+","requests"],"license":"BSD","md5":"88eef98f350fcd96dea49c6f0fdbfa27","name"
+:"torchvision","sha256":"de4384fcb12dfcaf2f444fffbbb4d6fa2e60acd1602dd827af91
+02a1e449ac31","size":7364849,"subdir":"linux-64","timestamp":1720563412234,"v
+ersion":"0.19.0"},"torchvision-0.19.0-py312_cu118.tar.bz2":{"build":"py312_cu
+118","build_number":0,"constrains":["cpuonly <0"],"depends":["ffmpeg >=4.2","
+libjpeg-turbo","libpng","numpy >=1.23.5","pillow >=5.3.0,!=8.3.*","python >=3
+.12,<3.13.0a0","pytorch 2.4.0","pytorch-cuda 11.8.*","pytorch-mutex 1.0 cuda"
+,"requests"],"license":"BSD","md5":"9745cf48c88e31b05e4cb26804d2c387","name":
+"torchvision","sha256":"19c58c884b52fcaa018d8e7c742acd03a7a9dbf9f8d7c54d5ed93
+d2399e8ba70","size":8875840,"subdir":"linux-64","timestamp":1720563865865,"ve
+rsion":"0.19.0"},"torchvision-0.19.0-py312_cu121.tar.bz2":{"build":"py312_cu1
+21","build_number":0,"constrains":["cpuonly <0"],"depends":["ffmpeg >=4.2","l
+ibjpeg-turbo","libpng","numpy >=1.23.5","pillow >=5.3.0,!=8.3.*","python >=3.
+12,<3.13.0a0","pytorch 2.4.0","pytorch-cuda 12.1.*","pytorch-mutex 1.0 cuda",
+"requests"],"license":"BSD","md5":"0f81bc92d280820c65d85ce9802f1ea9","name":"
+torchvision","sha256":"88ec66ccaaa43034e54fa15bb220abe61c9eaaf75b32138ed3a608
+ec53948071","size":8876729,"subdir":"linux-64","timestamp":1720563853616,"ver
+sion":"0.19.0"},"torchvision-0.19.0-py312_cu124.tar.bz2":{"build":"py312_cu12
+4","build_number":0,"constrains":["cpuonly <0"],"depends":["ffmpeg >=4.2","li
+bjpeg-turbo","libpng","numpy >=1.23.5","pillow >=5.3.0,!=8.3.*","python >=3.1
+2,<3.13.0a0","pytorch 2.4.0","pytorch-cuda 12.4.*","pytorch-mutex 1.0 cuda","
+requests"],"license":"BSD","md5":"73e63c252ebd5db1cea947085d6f8e75","name":"t
+orchvision","sha256":"100fa1adae081158dcac29149dce22942b71761f378aaa00a99a2d3
+ac3d9f971","size":8820903,"subdir":"linux-64","timestamp":1720563863032,"vers
+ion":"0.19.0"},"torchvision-0.19.0-py38_cpu.tar.bz2":{"build":"py38_cpu","bui
+ld_number":0,"constrains":["cpuonly"],"depends":["ffmpeg >=4.2","libjpeg-turb
+o","libpng","numpy >=1.11","pillow >=5.3.0,!=8.3.*","python >=3.8,<3.9.0a0","
+pytorch 2.4.0","pytorch-mutex 1.0 cpu","requests"],"license":"BSD","md5":"c4c
+6b44216d2238037c337c2f70e3446","name":"torchvision","sha256":"d60721dd911c717
+fa8f8c76c7ab8f913460d740f0082015eb2ee92f55e32aa05","size":12184562,"subdir":"
+linux-64","timestamp":1720563441151,"version":"0.19.0"},"torchvision-0.19.0-p
+y38_cu118.tar.bz2":{"build":"py38_cu118","build_number":0,"constrains":["cpuo
+nly <0"],"depends":["ffmpeg >=4.2","libjpeg-turbo","libpng","numpy >=1.11","p
+illow >=5.3.0,!=8.3.*","python >=3.8,<3.9.0a0","pytorch 2.4.0","pytorch-cuda
+11.8.*","pytorch-mutex 1.0 cuda","requests"],"license":"BSD","md5":"b2cfab9d5
+16d2d0b052826636cf96df8","name":"torchvision","sha256":"dbccad24f592575ae08e1
+3fc00f59aaea5e9aa5572cbee47acf279cd54878672","size":13727238,"subdir":"linux-
+64","timestamp":1720563880742,"version":"0.19.0"},"torchvision-0.19.0-py38_cu
+121.tar.bz2":{"build":"py38_cu121","build_number":0,"constrains":["cpuonly <0
+"],"depends":["ffmpeg >=4.2","libjpeg-turbo","libpng","numpy >=1.11","pillow
+>=5.3.0,!=8.3.*","python >=3.8,<3.9.0a0","pytorch 2.4.0","pytorch-cuda 12.1.*
+","pytorch-mutex 1.0 cuda","requests"],"license":"BSD","md5":"d0d3d612d792288
+df88ac8f89ec92aec","name":"torchvision","sha256":"01b613c8f18d52e79d9202aafda
+0c242149e9d3c67d0deb546b53c212a26c8cf","size":13673934,"subdir":"linux-64","t
+imestamp":1720563857318,"version":"0.19.0"},"torchvision-0.19.0-py38_cu124.ta
+r.bz2":{"build":"py38_cu124","build_number":0,"constrains":["cpuonly <0"],"de
+pends":["ffmpeg >=4.2","libjpeg-turbo","libpng","numpy >=1.11","pillow >=5.3.
+0,!=8.3.*","python >=3.8,<3.9.0a0","pytorch 2.4.0","pytorch-cuda 12.4.*","pyt
+orch-mutex 1.0 cuda","requests"],"license":"BSD","md5":"2ce0e88f3171253adf153
+9c40012a807","name":"torchvision","sha256":"c1678f704470e7c2c75cfebb363c2bb38
+83e3454a74730092d971011cb1e7456","size":13601851,"subdir":"linux-64","timesta
+mp":1720563843838,"version":"0.19.0"},"torchvision-0.19.0-py39_cpu.tar.bz2":{
+"build":"py39_cpu","build_number":0,"constrains":["cpuonly"],"depends":["ffmp
+eg >=4.2","libjpeg-turbo","libpng","numpy >=1.11","pillow >=5.3.0,!=8.3.*","p
+ython >=3.9,<3.10.0a0","pytorch 2.4.0","pytorch-mutex 1.0 cpu","requests"],"l
+icense":"BSD","md5":"e705aae61c946695a1738053e0218a29","name":"torchvision","
+sha256":"2d0ab9669644695e121744360d101ad29bbcbe166dfcf0521868986d8675e06a","s
+ize":6948965,"subdir":"linux-64","timestamp":1720563401134,"version":"0.19.0"
+},"torchvision-0.19.0-py39_cu118.tar.bz2":{"build":"py39_cu118","build_number
+":0,"constrains":["cpuonly <0"],"depends":["ffmpeg >=4.2","libjpeg-turbo","li
+bpng","numpy >=1.11","pillow >=5.3.0,!=8.3.*","python >=3.9,<3.10.0a0","pytor
+ch 2.4.0","pytorch-cuda 11.8.*","pytorch-mutex 1.0 cuda","requests"],"license
+":"BSD","md5":"a4e0413131508441a81df9a1f2c54913","name":"torchvision","sha256
+":"10411ab3c5a8df60ebb89f53785cc67ef223e37761a75f068e971337651aa51d","size":8
+465973,"subdir":"linux-64","timestamp":1720563851110,"version":"0.19.0"},"tor
+chvision-0.19.0-py39_cu121.tar.bz2":{"build":"py39_cu121","build_number":0,"c
+onstrains":["cpuonly <0"],"depends":["ffmpeg >=4.2","libjpeg-turbo","libpng",
+"numpy >=1.11","pillow >=5.3.0,!=8.3.*","python >=3.9,<3.10.0a0","pytorch 2.4
+.0","pytorch-cuda 12.1.*","pytorch-mutex 1.0 cuda","requests"],"license":"BSD
+","md5":"004503178e797b208a3061d3df8dd44b","name":"torchvision","sha256":"320
+2c1c2aee78709dbd84b13c6a1cf8baf17de54811550f620e80d40c42b588e","size":8419644
+,"subdir":"linux-64","timestamp":1720564837167,"version":"0.19.0"},"torchvisi
+on-0.19.0-py39_cu124.tar.bz2":{"build":"py39_cu124","build_number":0,"constra
+ins":["cpuonly <0"],"depends":["ffmpeg >=4.2","libjpeg-turbo","libpng","numpy
+ >=1.11","pillow >=5.3.0,!=8.3.*","python >=3.9,<3.10.0a0","pytorch 2.4.0","p
+ytorch-cuda 12.4.*","pytorch-mutex 1.0 cuda","requests"],"license":"BSD","md5
+":"d00684cd6b4ecebe2aff3bdbc9e2cdc8","name":"torchvision","sha256":"394813651
+2cfcc804d1f5d7776ed178ac23173909079f4f4de38324bb5d7a558","size":8346163,"subd
+ir":"linux-64","timestamp":1720563809074,"version":"0.19.0"},"torchvision-0.1
+9.1-py310_cpu.tar.bz2":{"build":"py310_cpu","build_number":0,"constrains":["c
+puonly"],"depends":["ffmpeg >=4.2.2,<5.0.0","libjpeg-turbo","libpng","numpy >
+=1.11","pillow >=5.3.0,!=8.3.*","python >=3.10,<3.11.0a0","pytorch 2.4.1","py
+torch-mutex 1.0 cpu","requests"],"license":"BSD","md5":"243671713fc5c7908e96c
+533c427ea4d","name":"torchvision","sha256":"d6193b816a88ee82d683a1b34f5835196
+b8f7c75275233029750760d2a62fff3","size":7151376,"subdir":"linux-64","timestam
+p":1724848443617,"version":"0.19.1"},"torchvision-0.19.1-py310_cu118.tar.bz2"
+:{"build":"py310_cu118","build_number":0,"constrains":["cpuonly <0"],"depends
+":["ffmpeg >=4.2.2,<5.0.0","libjpeg-turbo","libpng","numpy >=1.11","pillow >=
+5.3.0,!=8.3.*","python >=3.10,<3.11.0a0","pytorch 2.4.1","pytorch-cuda 11.8.*
+","pytorch-mutex 1.0 cuda","requests"],"license":"BSD","md5":"53960f939af57f4
+113e48e498242f3d7","name":"torchvision","sha256":"483385897370123cf110ce8e4b5
+7c4b9b9cff4d2410e9291a5c0fb1cb360ad65","size":8680697,"subdir":"linux-64","ti
+mestamp":1724848866628,"version":"0.19.1"},"torchvision-0.19.1-py310_cu121.ta
+r.bz2":{"build":"py310_cu121","build_number":0,"constrains":["cpuonly <0"],"d
+epends":["ffmpeg >=4.2.2,<5.0.0","libjpeg-turbo","libpng","numpy >=1.11","pil
+low >=5.3.0,!=8.3.*","python >=3.10,<3.11.0a0","pytorch 2.4.1","pytorch-cuda
+12.1.*","pytorch-mutex 1.0 cuda","requests"],"license":"BSD","md5":"50192a54f
+dab595d533783c4a429beb8","name":"torchvision","sha256":"5115a3f09c41d357c8997
+133717fb5664dbaae5065ba708d0e64c8a43cf4b8b7","size":8652595,"subdir":"linux-6
+4","timestamp":1724848847145,"version":"0.19.1"},"torchvision-0.19.1-py310_cu
+124.tar.bz2":{"build":"py310_cu124","build_number":0,"constrains":["cpuonly <
+0"],"depends":["ffmpeg >=4.2.2,<5.0.0","libjpeg-turbo","libpng","numpy >=1.11
+","pillow >=5.3.0,!=8.3.*","python >=3.10,<3.11.0a0","pytorch 2.4.1","pytorch
+-cuda 12.4.*","pytorch-mutex 1.0 cuda","requests"],"license":"BSD","md5":"e9e
+3e7516b754569a6f2bb5be7617871","name":"torchvision","sha256":"fa90f25a922c253
+1fdd5de574990a31c1d12448fab61a52bf27abbacd178a2af","size":8587732,"subdir":"l
+inux-64","timestamp":1724848870299,"version":"0.19.1"},"torchvision-0.19.1-py
+311_cpu.tar.bz2":{"build":"py311_cpu","build_number":0,"constrains":["cpuonly
+"],"depends":["ffmpeg >=4.2.2,<5.0.0","libjpeg-turbo","libpng","numpy >=1.23.
+5","pillow >=5.3.0,!=8.3.*","python >=3.11,<3.12.0a0","pytorch 2.4.1","pytorc
+h-mutex 1.0 cpu","requests"],"license":"BSD","md5":"2f79673563e213a007202688d
+e06eeb9","name":"torchvision","sha256":"8f4808b0db5552ebf4779c1959bde991f3da3
+aff40bc1068305c69f9fa88a476","size":7440451,"subdir":"linux-64","timestamp":1
+724848452349,"version":"0.19.1"},"torchvision-0.19.1-py311_cu118.tar.bz2":{"b
+uild":"py311_cu118","build_number":0,"constrains":["cpuonly <0"],"depends":["
+ffmpeg >=4.2.2,<5.0.0","libjpeg-turbo","libpng","numpy >=1.23.5","pillow >=5.
+3.0,!=8.3.*","python >=3.11,<3.12.0a0","pytorch 2.4.1","pytorch-cuda 11.8.*",
+"pytorch-mutex 1.0 cuda","requests"],"license":"BSD","md5":"ef04fba167a325ecc
+29126c05fc75f16","name":"torchvision","sha256":"cad0da6f188f533facad9928f3537
+2d8f3dae562fbc580a3aaef43c6597e8d84","size":8959506,"subdir":"linux-64","time
+stamp":1724848858736,"version":"0.19.1"},"torchvision-0.19.1-py311_cu121.tar.
+bz2":{"build":"py311_cu121","build_number":0,"constrains":["cpuonly <0"],"dep
+ends":["ffmpeg >=4.2.2,<5.0.0","libjpeg-turbo","libpng","numpy >=1.23.5","pil
+low >=5.3.0,!=8.3.*","python >=3.11,<3.12.0a0","pytorch 2.4.1","pytorch-cuda
+12.1.*","pytorch-mutex 1.0 cuda","requests"],"license":"BSD","md5":"32519646c
+0e208fd15483fd0eb14d21b","name":"torchvision","sha256":"8907954190081cae12c81
+76a8d15e8af12aaf9a4453f771edbbe471179b8fa36","size":8939150,"subdir":"linux-6
+4","timestamp":1724848866963,"version":"0.19.1"},"torchvision-0.19.1-py311_cu
+124.tar.bz2":{"build":"py311_cu124","build_number":0,"constrains":["cpuonly <
+0"],"depends":["ffmpeg >=4.2.2,<5.0.0","libjpeg-turbo","libpng","numpy >=1.23
+.5","pillow >=5.3.0,!=8.3.*","python >=3.11,<3.12.0a0","pytorch 2.4.1","pytor
+ch-cuda 12.4.*","pytorch-mutex 1.0 cuda","requests"],"license":"BSD","md5":"8
+6aaa85ee2f25a16867abf61be289fde","name":"torchvision","sha256":"67741be9e1050
+4b8f70211ab488eb0493c76b0579a4628384f3458eca19e7939","size":8847818,"subdir":
+"linux-64","timestamp":1724848856715,"version":"0.19.1"},"torchvision-0.19.1-
+py312_cpu.tar.bz2":{"build":"py312_cpu","build_number":0,"constrains":["cpuon
+ly"],"depends":["ffmpeg >=4.2.2,<5.0.0","libjpeg-turbo","libpng","numpy >=1.2
+3.5","pillow >=5.3.0,!=8.3.*","python >=3.12,<3.13.0a0","pytorch 2.4.1","pyto
+rch-mutex 1.0 cpu","requests"],"license":"BSD","md5":"dfd35c98b34778fc74b0b89
+40286bbba","name":"torchvision","sha256":"a145a9684daf46e96baf942553ea1dd6717
+04c2c89e318d51739dbf89bd3d095","size":7363712,"subdir":"linux-64","timestamp"
+:1724848450334,"version":"0.19.1"},"torchvision-0.19.1-py312_cu118.tar.bz2":{
+"build":"py312_cu118","build_number":0,"constrains":["cpuonly <0"],"depends":
+["ffmpeg >=4.2.2,<5.0.0","libjpeg-turbo","libpng","numpy >=1.23.5","pillow >=
+5.3.0,!=8.3.*","python >=3.12,<3.13.0a0","pytorch 2.4.1","pytorch-cuda 11.8.*
+","pytorch-mutex 1.0 cuda","requests"],"license":"BSD","md5":"25639953d4f5a32
+65118fc08c1e5d807","name":"torchvision","sha256":"e1b0d8e2bcf1f724bbcaae07992
+4b5d40c85bdcab0ce34eda5bc0054fe2d8265","size":8881268,"subdir":"linux-64","ti
+mestamp":1724848862913,"version":"0.19.1"},"torchvision-0.19.1-py312_cu121.ta
+r.bz2":{"build":"py312_cu121","build_number":0,"constrains":["cpuonly <0"],"d
+epends":["ffmpeg >=4.2.2,<5.0.0","libjpeg-turbo","libpng","numpy >=1.23.5","p
+illow >=5.3.0,!=8.3.*","python >=3.12,<3.13.0a0","pytorch 2.4.1","pytorch-cud
+a 12.1.*","pytorch-mutex 1.0 cuda","requests"],"license":"BSD","md5":"3c74e9b
+a8e683865af35bad2a7a55aad","name":"torchvision","sha256":"9232080d65561a6d06c
+58ef76c1251d41f9fd12a974485527c1389373f097b8c","size":8880024,"subdir":"linux
+-64","timestamp":1724848865906,"version":"0.19.1"},"torchvision-0.19.1-py312_
+cu124.tar.bz2":{"build":"py312_cu124","build_number":0,"constrains":["cpuonly
+ <0"],"depends":["ffmpeg >=4.2.2,<5.0.0","libjpeg-turbo","libpng","numpy >=1.
+23.5","pillow >=5.3.0,!=8.3.*","python >=3.12,<3.13.0a0","pytorch 2.4.1","pyt
+orch-cuda 12.4.*","pytorch-mutex 1.0 cuda","requests"],"license":"BSD","md5":
+"b8de98e3009b0c4567c9181dd34702e1","name":"torchvision","sha256":"628d3a42e4a
+5ef2ef15d794c457f0095025b65b904e06e56ebd1c0a3fc49460e","size":8777899,"subdir
+":"linux-64","timestamp":1724848883073,"version":"0.19.1"},"torchvision-0.19.
+1-py38_cpu.tar.bz2":{"build":"py38_cpu","build_number":0,"constrains":["cpuon
+ly"],"depends":["ffmpeg >=4.2.2,<5.0.0","libjpeg-turbo","libpng","numpy >=1.1
+1","pillow >=5.3.0,!=8.3.*","python >=3.8,<3.9.0a0","pytorch 2.4.1","pytorch-
+mutex 1.0 cpu","requests"],"license":"BSD","md5":"d25736417cf47cf4267087a1aed
+f73d5","name":"torchvision","sha256":"89f8b9cee1879290ea5bb5f3f2fb0f7a6dc16df
+3531b92c5e681c2e656c41cd8","size":12187216,"subdir":"linux-64","timestamp":17
+24848463186,"version":"0.19.1"},"torchvision-0.19.1-py38_cu118.tar.bz2":{"bui
+ld":"py38_cu118","build_number":0,"constrains":["cpuonly <0"],"depends":["ffm
+peg >=4.2.2,<5.0.0","libjpeg-turbo","libpng","numpy >=1.11","pillow >=5.3.0,!
+=8.3.*","python >=3.8,<3.9.0a0","pytorch 2.4.1","pytorch-cuda 11.8.*","pytorc
+h-mutex 1.0 cuda","requests"],"license":"BSD","md5":"513d0a5a01cae2db892b3444
+745dfbc8","name":"torchvision","sha256":"393980b86ca69188c6cf54a0f55b044fdea3
+362b4082e3e6b1a20f4f40a2875c","size":13708643,"subdir":"linux-64","timestamp"
+:1724848890648,"version":"0.19.1"},"torchvision-0.19.1-py38_cu121.tar.bz2":{"
+build":"py38_cu121","build_number":0,"constrains":["cpuonly <0"],"depends":["
+ffmpeg >=4.2.2,<5.0.0","libjpeg-turbo","libpng","numpy >=1.11","pillow >=5.3.
+0,!=8.3.*","python >=3.8,<3.9.0a0","pytorch 2.4.1","pytorch-cuda 12.1.*","pyt
+orch-mutex 1.0 cuda","requests"],"license":"BSD","md5":"51b01d6865d9a722ceda3
+145eb177e49","name":"torchvision","sha256":"0b16f0ca221eb576d58a0759e29f8f451
+6c2707c4eda369cd155cfd5792b33cb","size":13663740,"subdir":"linux-64","timesta
+mp":1724848873292,"version":"0.19.1"},"torchvision-0.19.1-py38_cu124.tar.bz2"
+:{"build":"py38_cu124","build_number":0,"constrains":["cpuonly <0"],"depends"
+:["ffmpeg >=4.2.2,<5.0.0","libjpeg-turbo","libpng","numpy >=1.11","pillow >=5
+.3.0,!=8.3.*","python >=3.8,<3.9.0a0","pytorch 2.4.1","pytorch-cuda 12.4.*","
+pytorch-mutex 1.0 cuda","requests"],"license":"BSD","md5":"2fe2e8af25e0a9272c
+8899ec7ff67047","name":"torchvision","sha256":"e1baffb63695167c57488fa1e8adb9
+b219a471144582b8beb06e5302716e3835","size":13609003,"subdir":"linux-64","time
+stamp":1724848903155,"version":"0.19.1"},"torchvision-0.19.1-py39_cpu.tar.bz2
+":{"build":"py39_cpu","build_number":0,"constrains":["cpuonly"],"depends":["f
+fmpeg >=4.2.2,<5.0.0","libjpeg-turbo","libpng","numpy >=1.11","pillow >=5.3.0
+,!=8.3.*","python >=3.9,<3.10.0a0","pytorch 2.4.1","pytorch-mutex 1.0 cpu","r
+equests"],"license":"BSD","md5":"9ef3b335d3b7a10739a3708b6bd5cd40","name":"to
+rchvision","sha256":"c49fbf20b41d00364b5caede5fe039cfe88842a8151fcf36f44da991
+53141687","size":6941023,"subdir":"linux-64","timestamp":1724848432867,"versi
+on":"0.19.1"},"torchvision-0.19.1-py39_cu118.tar.bz2":{"build":"py39_cu118","
+build_number":0,"constrains":["cpuonly <0"],"depends":["ffmpeg >=4.2.2,<5.0.0
+","libjpeg-turbo","libpng","numpy >=1.11","pillow >=5.3.0,!=8.3.*","python >=
+3.9,<3.10.0a0","pytorch 2.4.1","pytorch-cuda 11.8.*","pytorch-mutex 1.0 cuda"
+,"requests"],"license":"BSD","md5":"6b43c238254fedb31766c83414c92c63","name":
+"torchvision","sha256":"8e3bf83da747618c98c937318893792c116e56a652ed07821667e
+e1f0a1fbd7d","size":8474995,"subdir":"linux-64","timestamp":1724848875145,"ve
+rsion":"0.19.1"},"torchvision-0.19.1-py39_cu121.tar.bz2":{"build":"py39_cu121
+","build_number":0,"constrains":["cpuonly <0"],"depends":["ffmpeg >=4.2.2,<5.
+0.0","libjpeg-turbo","libpng","numpy >=1.11","pillow >=5.3.0,!=8.3.*","python
+ >=3.9,<3.10.0a0","pytorch 2.4.1","pytorch-cuda 12.1.*","pytorch-mutex 1.0 cu
+da","requests"],"license":"BSD","md5":"45e4b37e515c53c75fb7292443680291","nam
+e":"torchvision","sha256":"664744689a439094f5e064899997c5dfd59f4d1d901c7a2583
+56e81645e8b1b0","size":8435381,"subdir":"linux-64","timestamp":1724848872837,
+"version":"0.19.1"},"torchvision-0.19.1-py39_cu124.tar.bz2":{"build":"py39_cu
+124","build_number":0,"constrains":["cpuonly <0"],"depends":["ffmpeg >=4.2.2,
+<5.0.0","libjpeg-turbo","libpng","numpy >=1.11","pillow >=5.3.0,!=8.3.*","pyt
+hon >=3.9,<3.10.0a0","pytorch 2.4.1","pytorch-cuda 12.4.*","pytorch-mutex 1.0
+ cuda","requests"],"license":"BSD","md5":"2efaf5d023094c7cecfe7801d5b3022b","
+name":"torchvision","sha256":"1bece17c8a991b9c9f393d7a18912bef43dce03e75a01bb
+97e49dea8732c7542","size":8344186,"subdir":"linux-64","timestamp":17248488883
+79,"version":"0.19.1"},"torchvision-0.20.0-py310_cpu.tar.bz2":{"build":"py310
+_cpu","build_number":0,"constrains":["cpuonly"],"depends":["ffmpeg >=4.2.2,<5
+.0.0","libjpeg-turbo","libpng","libwebp","numpy >=1.11","pillow >=5.3.0,!=8.3
+.*","python >=3.10,<3.11.0a0","pytorch 2.5.0","pytorch-mutex 1.0 cpu","reques
+ts"],"license":"BSD","md5":"59956ca3a42e88c6a73853a5cb57c05e","name":"torchvi
+sion","sha256":"5de6a522dc9e4d06d74b85d01f9262825916c27249b266a276b300a7adc04
+f76","size":7205273,"subdir":"linux-64","timestamp":1728945102834,"version":"
+0.20.0"},"torchvision-0.20.0-py310_cu118.tar.bz2":{"build":"py310_cu118","bui
+ld_number":0,"constrains":["cpuonly <0"],"depends":["ffmpeg >=4.2.2,<5.0.0","
+libjpeg-turbo","libpng","libwebp","numpy >=1.11","pillow >=5.3.0,!=8.3.*","py
+thon >=3.10,<3.11.0a0","pytorch 2.5.0","pytorch-cuda 11.8.*","pytorch-mutex 1
+.0 cuda","requests"],"license":"BSD","md5":"14f7957160d069d5b73414a98d48553a"
+,"name":"torchvision","sha256":"1e3aa0656bdc8de28d3235af4c50b17475efa0df7a724
+3e23d0c1b3696e1cc20","size":8732225,"subdir":"linux-64","timestamp":172894555
+3637,"version":"0.20.0"},"torchvision-0.20.0-py310_cu121.tar.bz2":{"build":"p
+y310_cu121","build_number":0,"constrains":["cpuonly <0"],"depends":["ffmpeg >
+=4.2.2,<5.0.0","libjpeg-turbo","libpng","libwebp","numpy >=1.11","pillow >=5.
+3.0,!=8.3.*","python >=3.10,<3.11.0a0","pytorch 2.5.0","pytorch-cuda 12.1.*",
+"pytorch-mutex 1.0 cuda","requests"],"license":"BSD","md5":"2738bf5f511e384a3
+8b03fa238064bff","name":"torchvision","sha256":"e0c124f295e6f7aeb7dde46137423
+99a3322d1476d21e29ee82da34c27a0c111","size":8709180,"subdir":"linux-64","time
+stamp":1728945542757,"version":"0.20.0"},"torchvision-0.20.0-py310_cu124.tar.
+bz2":{"build":"py310_cu124","build_number":0,"constrains":["cpuonly <0"],"dep
+ends":["ffmpeg >=4.2.2,<5.0.0","libjpeg-turbo","libpng","libwebp","numpy >=1.
+11","pillow >=5.3.0,!=8.3.*","python >=3.10,<3.11.0a0","pytorch 2.5.0","pytor
+ch-cuda 12.4.*","pytorch-mutex 1.0 cuda","requests"],"license":"BSD","md5":"b
+6620db7d23420f57601477020e66dfa","name":"torchvision","sha256":"2d59012bfea58
+9b0658fcff2012cc93d04f2c17ae1d83d7f6c227a6b560043c8","size":8615549,"subdir":
+"linux-64","timestamp":1728945549577,"version":"0.20.0"},"torchvision-0.20.0-
+py311_cpu.tar.bz2":{"build":"py311_cpu","build_number":0,"constrains":["cpuon
+ly"],"depends":["ffmpeg >=4.2.2,<5.0.0","libjpeg-turbo","libpng","libwebp","n
+umpy >=1.23.5","pillow >=5.3.0,!=8.3.*","python >=3.11,<3.12.0a0","pytorch 2.
+5.0","pytorch-mutex 1.0 cpu","requests"],"license":"BSD","md5":"acf7d9455c0b4
+d706ab304b6507d8400","name":"torchvision","sha256":"69a3f0c587b20fcc95813a5b6
+f590b6b29c41ae120d68c44bec1ed3399b115ba","size":7480907,"subdir":"linux-64","
+timestamp":1728945097811,"version":"0.20.0"},"torchvision-0.20.0-py311_cu118.
+tar.bz2":{"build":"py311_cu118","build_number":0,"constrains":["cpuonly <0"],
+"depends":["ffmpeg >=4.2.2,<5.0.0","libjpeg-turbo","libpng","libwebp","numpy
+>=1.23.5","pillow >=5.3.0,!=8.3.*","python >=3.11,<3.12.0a0","pytorch 2.5.0",
+"pytorch-cuda 11.8.*","pytorch-mutex 1.0 cuda","requests"],"license":"BSD","m
+d5":"7d1011c0344cc68e8a0d62431feca058","name":"torchvision","sha256":"463910e
+a627a8035d1d68d6709f25cfa6fb676691a3c0816d8e05e8dce81f7a4","size":9026212,"su
+bdir":"linux-64","timestamp":1728945568746,"version":"0.20.0"},"torchvision-0
+.20.0-py311_cu121.tar.bz2":{"build":"py311_cu121","build_number":0,"constrain
+s":["cpuonly <0"],"depends":["ffmpeg >=4.2.2,<5.0.0","libjpeg-turbo","libpng"
+,"libwebp","numpy >=1.23.5","pillow >=5.3.0,!=8.3.*","python >=3.11,<3.12.0a0
+","pytorch 2.5.0","pytorch-cuda 12.1.*","pytorch-mutex 1.0 cuda","requests"],
+"license":"BSD","md5":"ab1f84e53b128d82a70b11b89d5ee1dd","name":"torchvision"
+,"sha256":"ad98d33ac601713e0caa7d2db3ede9d2091e5f1c63a4fae2165b4e19fcdc9efc",
+"size":8957433,"subdir":"linux-64","timestamp":1728945559339,"version":"0.20.
+0"},"torchvision-0.20.0-py311_cu124.tar.bz2":{"build":"py311_cu124","build_nu
+mber":0,"constrains":["cpuonly <0"],"depends":["ffmpeg >=4.2.2,<5.0.0","libjp
+eg-turbo","libpng","libwebp","numpy >=1.23.5","pillow >=5.3.0,!=8.3.*","pytho
+n >=3.11,<3.12.0a0","pytorch 2.5.0","pytorch-cuda 12.4.*","pytorch-mutex 1.0
+cuda","requests"],"license":"BSD","md5":"c187c7e09b20aa6f7a39fc6639227a68","n
+ame":"torchvision","sha256":"f598e75af753e7563975a678810a927a87ca70de20a2c1ac
+74ecd537c6f9d08c","size":8905987,"subdir":"linux-64","timestamp":172894556533
+4,"version":"0.20.0"},"torchvision-0.20.0-py312_cpu.tar.bz2":{"build":"py312_
+cpu","build_number":0,"constrains":["cpuonly"],"depends":["ffmpeg >=4.2.2,<5.
+0.0","libjpeg-turbo","libpng","libwebp","numpy >=1.23.5","pillow >=5.3.0,!=8.
+3.*","python >=3.12,<3.13.0a0","pytorch 2.5.0","pytorch-mutex 1.0 cpu","reque
+sts"],"license":"BSD","md5":"9cd4122473f835b1d5719ba13c0dad93","name":"torchv
+ision","sha256":"7ac8e5469f1b90c6db0cf233a08bedc63fee769a0177daaecc2724b780d4
+a4f8","size":7438406,"subdir":"linux-64","timestamp":1728945103543,"version":
+"0.20.0"},"torchvision-0.20.0-py312_cu118.tar.bz2":{"build":"py312_cu118","bu
+ild_number":0,"constrains":["cpuonly <0"],"depends":["ffmpeg >=4.2.2,<5.0.0",
+"libjpeg-turbo","libpng","libwebp","numpy >=1.23.5","pillow >=5.3.0,!=8.3.*",
+"python >=3.12,<3.13.0a0","pytorch 2.5.0","pytorch-cuda 11.8.*","pytorch-mute
+x 1.0 cuda","requests"],"license":"BSD","md5":"28c9349fb5f1527ed1269dfc178d04
+40","name":"torchvision","sha256":"dbcb0570aaa2784fe2d61d9f1adf6e988da839fca6
+3fbfa6411fcb488e709669","size":8954791,"subdir":"linux-64","timestamp":172894
+5566756,"version":"0.20.0"},"torchvision-0.20.0-py312_cu121.tar.bz2":{"build"
+:"py312_cu121","build_number":0,"constrains":["cpuonly <0"],"depends":["ffmpe
+g >=4.2.2,<5.0.0","libjpeg-turbo","libpng","libwebp","numpy >=1.23.5","pillow
+ >=5.3.0,!=8.3.*","python >=3.12,<3.13.0a0","pytorch 2.5.0","pytorch-cuda 12.
+1.*","pytorch-mutex 1.0 cuda","requests"],"license":"BSD","md5":"a1d9c8b95de2
+5862e300a07a2cf37b96","name":"torchvision","sha256":"94558ac65eddbecc4f41f02d
+b5d25f22af60055ed1db98c98986f04a0ab4a08b","size":8919311,"subdir":"linux-64",
+"timestamp":1728945556954,"version":"0.20.0"},"torchvision-0.20.0-py312_cu124
+.tar.bz2":{"build":"py312_cu124","build_number":0,"constrains":["cpuonly <0"]
+,"depends":["ffmpeg >=4.2.2,<5.0.0","libjpeg-turbo","libpng","libwebp","numpy
+ >=1.23.5","pillow >=5.3.0,!=8.3.*","python >=3.12,<3.13.0a0","pytorch 2.5.0"
+,"pytorch-cuda 12.4.*","pytorch-mutex 1.0 cuda","requests"],"license":"BSD","
+md5":"654bcdaa02ad721998452fafa9b3df0b","name":"torchvision","sha256":"27b1de
+1f083f61f2e2bc9192663db771aa1aac532a4e987aff2f2900492fb7e6","size":8884550,"s
+ubdir":"linux-64","timestamp":1728945557446,"version":"0.20.0"},"torchvision-
+0.20.0-py38_cpu.tar.bz2":{"build":"py38_cpu","build_number":0,"constrains":["
+cpuonly"],"depends":["ffmpeg >=4.2.2,<5.0.0","libjpeg-turbo","libpng","libweb
+p","numpy >=1.11","pillow >=5.3.0,!=8.3.*","python >=3.8,<3.9.0a0","pytorch 2
+.4.1","pytorch-mutex 1.0 cpu","requests"],"license":"BSD","md5":"a1149b575efc
+9ac5552d6e9bf537327b","name":"torchvision","sha256":"5f547b24700f42181961c7aa
+5fc280fa32610dea354c952ad93d40c084e7e23a","size":12411853,"subdir":"linux-64"
+,"timestamp":1726235251961,"version":"0.20.0"},"torchvision-0.20.0-py38_cu118
+.tar.bz2":{"build":"py38_cu118","build_number":0,"constrains":["cpuonly <0"],
+"depends":["ffmpeg >=4.2.2,<5.0.0","libjpeg-turbo","libpng","libwebp","numpy
+>=1.11","pillow >=5.3.0,!=8.3.*","python >=3.8,<3.9.0a0","pytorch 2.4.1","pyt
+orch-cuda 11.8.*","pytorch-mutex 1.0 cuda","requests"],"license":"BSD","md5":
+"f5d47d4116c0cf1e4125b50549618c5d","name":"torchvision","sha256":"6847c603c9a
+f2ee1ae8944ead41cca7b3019667c17d54bfc693448b1e4548e8d","size":13891882,"subdi
+r":"linux-64","timestamp":1726235900784,"version":"0.20.0"},"torchvision-0.20
+.0-py38_cu121.tar.bz2":{"build":"py38_cu121","build_number":0,"constrains":["
+cpuonly <0"],"depends":["ffmpeg >=4.2.2,<5.0.0","libjpeg-turbo","libpng","lib
+webp","numpy >=1.11","pillow >=5.3.0,!=8.3.*","python >=3.8,<3.9.0a0","pytorc
+h 2.4.1","pytorch-cuda 12.1.*","pytorch-mutex 1.0 cuda","requests"],"license"
+:"BSD","md5":"b403211a4dbc36c98de3923e0c10df23","name":"torchvision","sha256"
+:"c4e294ff81af4f0e0e1750db44c8f8306284f53b680f60c581c80c78745eefec","size":13
+910346,"subdir":"linux-64","timestamp":1726235892258,"version":"0.20.0"},"tor
+chvision-0.20.0-py38_cu124.tar.bz2":{"build":"py38_cu124","build_number":0,"c
+onstrains":["cpuonly <0"],"depends":["ffmpeg >=4.2.2,<5.0.0","libjpeg-turbo",
+"libpng","libwebp","numpy >=1.11","pillow >=5.3.0,!=8.3.*","python >=3.8,<3.9
+.0a0","pytorch 2.4.1","pytorch-cuda 12.4.*","pytorch-mutex 1.0 cuda","request
+s"],"license":"BSD","md5":"12dba6630937b4f7d0d7f22b18b9c66c","name":"torchvis
+ion","sha256":"171c66800cd842dbf286481204bf8d974766447a6015f97cb5ae5b4e092702
+0f","size":13821279,"subdir":"linux-64","timestamp":1726235885869,"version":"
+0.20.0"},"torchvision-0.20.0-py39_cpu.tar.bz2":{"build":"py39_cpu","build_num
+ber":0,"constrains":["cpuonly"],"depends":["ffmpeg >=4.2.2,<5.0.0","libjpeg-t
+urbo","libpng","libwebp","numpy >=1.11","pillow >=5.3.0,!=8.3.*","python >=3.
+9,<3.10.0a0","pytorch 2.5.0","pytorch-mutex 1.0 cpu","requests"],"license":"B
+SD","md5":"2811ac270abe4b88a100440c4b4f382a","name":"torchvision","sha256":"3
+19dfebc50d4d3e28fcd8a5162de82228d15d344f7efb38d49a334ab74c2273b","size":70025
+19,"subdir":"linux-64","timestamp":1728945080376,"version":"0.20.0"},"torchvi
+sion-0.20.0-py39_cu118.tar.bz2":{"build":"py39_cu118","build_number":0,"const
+rains":["cpuonly <0"],"depends":["ffmpeg >=4.2.2,<5.0.0","libjpeg-turbo","lib
+png","libwebp","numpy >=1.11","pillow >=5.3.0,!=8.3.*","python >=3.9,<3.10.0a
+0","pytorch 2.5.0","pytorch-cuda 11.8.*","pytorch-mutex 1.0 cuda","requests"]
+,"license":"BSD","md5":"dc090f7c158e5d174e79dde737c95235","name":"torchvision
+","sha256":"3b2382dd71fcd3ce300ab3e522b1e8dc613344a814454453ece8d809657b113f"
+,"size":8521207,"subdir":"linux-64","timestamp":1728945547309,"version":"0.20
+.0"},"torchvision-0.20.0-py39_cu121.tar.bz2":{"build":"py39_cu121","build_num
+ber":0,"constrains":["cpuonly <0"],"depends":["ffmpeg >=4.2.2,<5.0.0","libjpe
+g-turbo","libpng","libwebp","numpy >=1.11","pillow >=5.3.0,!=8.3.*","python >
+=3.9,<3.10.0a0","pytorch 2.5.0","pytorch-cuda 12.1.*","pytorch-mutex 1.0 cuda
+","requests"],"license":"BSD","md5":"fc0bc2eb6333e440bf4103db6a098fe0","name"
+:"torchvision","sha256":"d74e9ffde5d85cfd77dff3ed441cc6a4acaca2987bd135ed2608
+9790b8f75be7","size":8506307,"subdir":"linux-64","timestamp":1728945550976,"v
+ersion":"0.20.0"},"torchvision-0.20.0-py39_cu124.tar.bz2":{"build":"py39_cu12
+4","build_number":0,"constrains":["cpuonly <0"],"depends":["ffmpeg >=4.2.2,<5
+.0.0","libjpeg-turbo","libpng","libwebp","numpy >=1.11","pillow >=5.3.0,!=8.3
+.*","python >=3.9,<3.10.0a0","pytorch 2.5.0","pytorch-cuda 12.4.*","pytorch-m
+utex 1.0 cuda","requests"],"license":"BSD","md5":"3218ed748584078af67a4ca227b
+b1d64","name":"torchvision","sha256":"7cea8ff507ef6eb144322b4ac89d405ce2c52ee
+45c6450e5df07667b0c676e93","size":8420681,"subdir":"linux-64","timestamp":172
+8945549727,"version":"0.20.0"},"torchvision-0.20.1-py310_cpu.tar.bz2":{"build
+":"py310_cpu","build_number":0,"constrains":["cpuonly"],"depends":["ffmpeg >=
+4.2.2,<5.0.0","libjpeg-turbo","libpng","libwebp","numpy >=1.11","pillow >=5.3
+.0,!=8.3.*","python >=3.10,<3.11.0a0","pytorch 2.5.1","pytorch-mutex 1.0 cpu"
+,"requests"],"license":"BSD","md5":"eba1b20d0534e8435e4a335c39d716df","name":
+"torchvision","sha256":"408eae2b64a279fdfdfcfab94ea15f401f30d091db6bcb824474e
+a0bb1103e22","size":7215505,"subdir":"linux-64","timestamp":1729685404247,"ve
+rsion":"0.20.1"},"torchvision-0.20.1-py310_cu118.tar.bz2":{"build":"py310_cu1
+18","build_number":0,"constrains":["cpuonly <0"],"depends":["ffmpeg >=4.2.2,<
+5.0.0","libjpeg-turbo","libpng","libwebp","numpy >=1.11","pillow >=5.3.0,!=8.
+3.*","python >=3.10,<3.11.0a0","pytorch 2.5.1","pytorch-cuda 11.8.*","pytorch
+-mutex 1.0 cuda","requests"],"license":"BSD","md5":"c99ba2e68529834f5d70b7c68
+4998cf3","name":"torchvision","sha256":"eef2496c6396f2d8889641459b521481cc4fa
+282893cf756619b3f9dbe39960f","size":8739370,"subdir":"linux-64","timestamp":1
+729685739232,"version":"0.20.1"},"torchvision-0.20.1-py310_cu121.tar.bz2":{"b
+uild":"py310_cu121","build_number":0,"constrains":["cpuonly <0"],"depends":["
+ffmpeg >=4.2.2,<5.0.0","libjpeg-turbo","libpng","libwebp","numpy >=1.11","pil
+low >=5.3.0,!=8.3.*","python >=3.10,<3.11.0a0","pytorch 2.5.1","pytorch-cuda
+12.1.*","pytorch-mutex 1.0 cuda","requests"],"license":"BSD","md5":"894ebd724
+54015d5f4b1c8c05ce0ce36","name":"torchvision","sha256":"6646c13ea79888f78a299
+8ec457849afd23759031d8e2925c0c0a77c71288876","size":8710728,"subdir":"linux-6
+4","timestamp":1729685726205,"version":"0.20.1"},"torchvision-0.20.1-py310_cu
+124.tar.bz2":{"build":"py310_cu124","build_number":0,"constrains":["cpuonly <
+0"],"depends":["ffmpeg >=4.2.2,<5.0.0","libjpeg-turbo","libpng","libwebp","nu
+mpy >=1.11","pillow >=5.3.0,!=8.3.*","python >=3.10,<3.11.0a0","pytorch 2.5.1
+","pytorch-cuda 12.4.*","pytorch-mutex 1.0 cuda","requests"],"license":"BSD",
+"md5":"a46cbedb506a5e1b25a0f74502d5065f","name":"torchvision","sha256":"0e431
+9d753e0d30bafc0409249ea3db12b7e630283de285126aad1ec0603327d","size":8627201,"
+subdir":"linux-64","timestamp":1729685732626,"version":"0.20.1"},"torchvision
+-0.20.1-py311_cpu.tar.bz2":{"build":"py311_cpu","build_number":0,"constrains"
+:["cpuonly"],"depends":["ffmpeg >=4.2.2,<5.0.0","libjpeg-turbo","libpng","lib
+webp","numpy >=1.23.5","pillow >=5.3.0,!=8.3.*","python >=3.11,<3.12.0a0","py
+torch 2.5.1","pytorch-mutex 1.0 cpu","requests"],"license":"BSD","md5":"2ae24
+13f409e5761809445ba1b328477","name":"torchvision","sha256":"f8f2bcc1562290a42
+50f01eb7cd989bd7dc052ed1087f320f5ccf5a7eb2bbef4","size":7481787,"subdir":"lin
+ux-64","timestamp":1729685393119,"version":"0.20.1"},"torchvision-0.20.1-py31
+1_cu118.tar.bz2":{"build":"py311_cu118","build_number":0,"constrains":["cpuon
+ly <0"],"depends":["ffmpeg >=4.2.2,<5.0.0","libjpeg-turbo","libpng","libwebp"
+,"numpy >=1.23.5","pillow >=5.3.0,!=8.3.*","python >=3.11,<3.12.0a0","pytorch
+ 2.5.1","pytorch-cuda 11.8.*","pytorch-mutex 1.0 cuda","requests"],"license":
+"BSD","md5":"249b5e9cb1d56568a6dea4dbf87cc7b6","name":"torchvision","sha256":
+"b5b0c237cac394216ddbeecafed292d2798d68bad92ad72029f5409265621569","size":902
+6180,"subdir":"linux-64","timestamp":1729685742076,"version":"0.20.1"},"torch
+vision-0.20.1-py311_cu121.tar.bz2":{"build":"py311_cu121","build_number":0,"c
+onstrains":["cpuonly <0"],"depends":["ffmpeg >=4.2.2,<5.0.0","libjpeg-turbo",
+"libpng","libwebp","numpy >=1.23.5","pillow >=5.3.0,!=8.3.*","python >=3.11,<
+3.12.0a0","pytorch 2.5.1","pytorch-cuda 12.1.*","pytorch-mutex 1.0 cuda","req
+uests"],"license":"BSD","md5":"2ee006ade18f31fc8b4f76847acbe389","name":"torc
+hvision","sha256":"257874a095ec4247d4d36473592105de39f724582cdd5f3f75db43d023
+03fe86","size":8998369,"subdir":"linux-64","timestamp":1729685751345,"version
+":"0.20.1"},"torchvision-0.20.1-py311_cu124.tar.bz2":{"build":"py311_cu124","
+build_number":0,"constrains":["cpuonly <0"],"depends":["ffmpeg >=4.2.2,<5.0.0
+","libjpeg-turbo","libpng","libwebp","numpy >=1.23.5","pillow >=5.3.0,!=8.3.*
+","python >=3.11,<3.12.0a0","pytorch 2.5.1","pytorch-cuda 12.4.*","pytorch-mu
+tex 1.0 cuda","requests"],"license":"BSD","md5":"4f0972c1bf11124ca71ce4b8422d
+53c1","name":"torchvision","sha256":"414bc3839183ffac6871a7e404d881cf03924ade
+298cfb03062b26f5b041d4f8","size":8913579,"subdir":"linux-64","timestamp":1729
+685738693,"version":"0.20.1"},"torchvision-0.20.1-py312_cpu.tar.bz2":{"build"
+:"py312_cpu","build_number":0,"constrains":["cpuonly"],"depends":["ffmpeg >=4
+.2.2,<5.0.0","libjpeg-turbo","libpng","libwebp","numpy >=1.23.5","pillow >=5.
+3.0,!=8.3.*","python >=3.12,<3.13.0a0","pytorch 2.5.1","pytorch-mutex 1.0 cpu
+","requests"],"license":"BSD","md5":"0cc3fb144166a74745a5f35297ae52b7","name"
+:"torchvision","sha256":"5ea31790d240ea6ed04e78c964ba8bdd0c3ef18ab046b694fc9e
+6f55ce506100","size":7421858,"subdir":"linux-64","timestamp":1729685395751,"v
+ersion":"0.20.1"},"torchvision-0.20.1-py312_cu118.tar.bz2":{"build":"py312_cu
+118","build_number":0,"constrains":["cpuonly <0"],"depends":["ffmpeg >=4.2.2,
+<5.0.0","libjpeg-turbo","libpng","libwebp","numpy >=1.23.5","pillow >=5.3.0,!
+=8.3.*","python >=3.12,<3.13.0a0","pytorch 2.5.1","pytorch-cuda 11.8.*","pyto
+rch-mutex 1.0 cuda","requests"],"license":"BSD","md5":"099b789928e248878d2cf5
+cab0905e73","name":"torchvision","sha256":"dc78bb3f5ed167361fcfd3446ae74781fe
+eb4d5bc2b2933578ffd9bbb5d0972a","size":8959167,"subdir":"linux-64","timestamp
+":1729685734191,"version":"0.20.1"},"torchvision-0.20.1-py312_cu121.tar.bz2":
+{"build":"py312_cu121","build_number":0,"constrains":["cpuonly <0"],"depends"
+:["ffmpeg >=4.2.2,<5.0.0","libjpeg-turbo","libpng","libwebp","numpy >=1.23.5"
+,"pillow >=5.3.0,!=8.3.*","python >=3.12,<3.13.0a0","pytorch 2.5.1","pytorch-
+cuda 12.1.*","pytorch-mutex 1.0 cuda","requests"],"license":"BSD","md5":"d784
+32f95c45e2866e2f1bc3740b709a","name":"torchvision","sha256":"4aa23da06ea194b6
+aba386319993874fafff8a69efcf2d0bf7b784051f712aef","size":8941874,"subdir":"li
+nux-64","timestamp":1729685727653,"version":"0.20.1"},"torchvision-0.20.1-py3
+12_cu124.tar.bz2":{"build":"py312_cu124","build_number":0,"constrains":["cpuo
+nly <0"],"depends":["ffmpeg >=4.2.2,<5.0.0","libjpeg-turbo","libpng","libwebp
+","numpy >=1.23.5","pillow >=5.3.0,!=8.3.*","python >=3.12,<3.13.0a0","pytorc
+h 2.5.1","pytorch-cuda 12.4.*","pytorch-mutex 1.0 cuda","requests"],"license"
+:"BSD","md5":"78462dd4e3b3ec3a7be1c15c965a1e1e","name":"torchvision","sha256"
+:"6464f9d35637850ade42e1545d722cf002d877c659b67aace5c741ced4e84420","size":88
+53063,"subdir":"linux-64","timestamp":1729685732961,"version":"0.20.1"},"torc
+hvision-0.20.1-py39_cpu.tar.bz2":{"build":"py39_cpu","build_number":0,"constr
+ains":["cpuonly"],"depends":["ffmpeg >=4.2.2,<5.0.0","libjpeg-turbo","libpng"
+,"libwebp","numpy >=1.11","pillow >=5.3.0,!=8.3.*","python >=3.9,<3.10.0a0","
+pytorch 2.5.1","pytorch-mutex 1.0 cpu","requests"],"license":"BSD","md5":"213
+753aabae719b808450d39901a9b67","name":"torchvision","sha256":"cc064f888c1feeb
+669a2ffb10f2908e7fde2022543e1d79abd1d17c139ab22bd","size":7000888,"subdir":"l
+inux-64","timestamp":1729685377144,"version":"0.20.1"},"torchvision-0.20.1-py
+39_cu118.tar.bz2":{"build":"py39_cu118","build_number":0,"constrains":["cpuon
+ly <0"],"depends":["ffmpeg >=4.2.2,<5.0.0","libjpeg-turbo","libpng","libwebp"
+,"numpy >=1.11","pillow >=5.3.0,!=8.3.*","python >=3.9,<3.10.0a0","pytorch 2.
+5.1","pytorch-cuda 11.8.*","pytorch-mutex 1.0 cuda","requests"],"license":"BS
+D","md5":"31158d3e16a7a90646c394736a261637","name":"torchvision","sha256":"6d
+21400ebc834f32b5fa81c14fc84606452de8b64dc8c90d44274a6e642f4f81","size":851509
+4,"subdir":"linux-64","timestamp":1729685725639,"version":"0.20.1"},"torchvis
+ion-0.20.1-py39_cu121.tar.bz2":{"build":"py39_cu121","build_number":0,"constr
+ains":["cpuonly <0"],"depends":["ffmpeg >=4.2.2,<5.0.0","libjpeg-turbo","libp
+ng","libwebp","numpy >=1.11","pillow >=5.3.0,!=8.3.*","python >=3.9,<3.10.0a0
+","pytorch 2.5.1","pytorch-cuda 12.1.*","pytorch-mutex 1.0 cuda","requests"],
+"license":"BSD","md5":"36be459e671e2392956f08fa08789289","name":"torchvision"
+,"sha256":"e49e5ff7a5ae2d20f8931597d68992c002799bbbf226f481f9d39fc216c9fc81",
+"size":8492115,"subdir":"linux-64","timestamp":1729685703717,"version":"0.20.
+1"},"torchvision-0.20.1-py39_cu124.tar.bz2":{"build":"py39_cu124","build_numb
+er":0,"constrains":["cpuonly <0"],"depends":["ffmpeg >=4.2.2,<5.0.0","libjpeg
+-turbo","libpng","libwebp","numpy >=1.11","pillow >=5.3.0,!=8.3.*","python >=
+3.9,<3.10.0a0","pytorch 2.5.1","pytorch-cuda 12.4.*","pytorch-mutex 1.0 cuda"
+,"requests"],"license":"BSD","md5":"f316caa9b9ae45641122901bf53ec099","name":
+"torchvision","sha256":"901912a37e7de098badf21dfac7d008ca13025021881e3039175c
+3f3dc2261dc","size":8407520,"subdir":"linux-64","timestamp":1729685701005,"ve
+rsion":"0.20.1"},"torchvision-0.6.1-py35_cpu.tar.bz2":{"build":"py35_cpu","bu
+ild_number":0,"depends":["numpy >=1.11","pillow >=4.1.1","python >=3.5,<3.6.0
+a0","pytorch 1.5.1"],"features":"cpuonly","license":"BSD","md5":"d51577005985
+4fb14220e77b253323be","name":"torchvision","sha256":"53c76633acf6a44266aa516e
+97a7c889a4e56d81957ce99a6fdf943031831af9","size":11478830,"subdir":"linux-64"
+,"timestamp":1592246382205,"version":"0.6.1"},"torchvision-0.6.1-py35_cu101.t
+ar.bz2":{"build":"py35_cu101","build_number":0,"depends":["cudatoolkit >=10.1
+,<10.2","numpy >=1.11","pillow >=4.1.1","python >=3.5,<3.6.0a0","pytorch 1.5.
+1"],"license":"BSD","md5":"a3dff149cf1a379c78480b2cb65d6031","name":"torchvis
+ion","sha256":"d56bdc378594bf529039f48a0998d17cc56e0a9d98616216569b776afa2eb5
+cc","size":12349430,"subdir":"linux-64","timestamp":1592246368406,"version":"
+0.6.1"},"torchvision-0.6.1-py35_cu102.tar.bz2":{"build":"py35_cu102","build_n
+umber":0,"depends":["cudatoolkit >=10.2,<10.3","numpy >=1.11","pillow >=4.1.1
+","python >=3.5,<3.6.0a0","pytorch 1.5.1"],"license":"BSD","md5":"c2065d9ba37
+a217a26e9cfc850d2a938","name":"torchvision","sha256":"364aea3500bfb640e631c6c
+576796ea8b5a67ba2cef9656307d0eefd8d8cff6c","size":12345205,"subdir":"linux-64
+","timestamp":1592246417927,"version":"0.6.1"},"torchvision-0.6.1-py35_cu92.t
+ar.bz2":{"build":"py35_cu92","build_number":0,"depends":["cudatoolkit >=9.2,<
+9.3","numpy >=1.11","pillow >=4.1.1","python >=3.5,<3.6.0a0","pytorch 1.5.1"]
+,"license":"BSD","md5":"d04114d9642b0e6fd7e654af8172a103","name":"torchvision
+","sha256":"35470a3c56d925baa64225bbd509f54d7707abec3577c20f6b96e977a677a93a"
+,"size":12222247,"subdir":"linux-64","timestamp":1592246505250,"version":"0.6
+.1"},"torchvision-0.6.1-py36_cpu.tar.bz2":{"build":"py36_cpu","build_number":
+0,"depends":["numpy >=1.11","pillow >=4.1.1","python >=3.6,<3.7.0a0","pytorch
+ 1.5.1"],"features":"cpuonly","license":"BSD","md5":"d7e84ed4e411d7b24900cf20
+96651e64","name":"torchvision","sha256":"02a6604647dfd68890fed4f71dd00ba97f16
+8f0dc0ab2346bcc9e35fa37ec3f4","size":11489946,"subdir":"linux-64","timestamp"
+:1592246504850,"version":"0.6.1"},"torchvision-0.6.1-py36_cu101.tar.bz2":{"bu
+ild":"py36_cu101","build_number":0,"depends":["cudatoolkit >=10.1,<10.2","num
+py >=1.11","pillow >=4.1.1","python >=3.6,<3.7.0a0","pytorch 1.5.1"],"license
+":"BSD","md5":"002000e769bd7d95a0ea2fde819b120d","name":"torchvision","sha256
+":"3b5f092cf5e3d687229729163405794b241e93333cf7f7bb23312c10ca7ffeed","size":1
+2351832,"subdir":"linux-64","timestamp":1592246528319,"version":"0.6.1"},"tor
+chvision-0.6.1-py36_cu102.tar.bz2":{"build":"py36_cu102","build_number":0,"de
+pends":["cudatoolkit >=10.2,<10.3","numpy >=1.11","pillow >=4.1.1","python >=
+3.6,<3.7.0a0","pytorch 1.5.1"],"license":"BSD","md5":"7bea3e4a46af2c3770033ca
+529c7ac3b","name":"torchvision","sha256":"5d5d543947197731526c7ea45ef4104aafd
+aae3f873e5f50d6af5960b2242a4c","size":12332777,"subdir":"linux-64","timestamp
+":1592246452608,"version":"0.6.1"},"torchvision-0.6.1-py36_cu92.tar.bz2":{"bu
+ild":"py36_cu92","build_number":0,"depends":["cudatoolkit >=9.2,<9.3","numpy
+>=1.11","pillow >=4.1.1","python >=3.6,<3.7.0a0","pytorch 1.5.1"],"license":"
+BSD","md5":"d966b03323720efd7287f8df665ebc24","name":"torchvision","sha256":"
+634cd344ce5c2fb2e19957c186bd4158dac84b4584bb4cddecd9ae5650881833","size":1223
+2213,"subdir":"linux-64","timestamp":1592246435093,"version":"0.6.1"},"torchv
+ision-0.6.1-py37_cpu.tar.bz2":{"build":"py37_cpu","build_number":0,"depends":
+["numpy >=1.11","pillow >=4.1.1","python >=3.7,<3.8.0a0","pytorch 1.5.1"],"fe
+atures":"cpuonly","license":"BSD","md5":"3c608266c610e3d75ea52b134123daac","n
+ame":"torchvision","sha256":"816ab18f3e4de1a4f7171eb8d03fb3ae4bc4731a52bfc5b9
+79f05e6c735d05f7","size":11518231,"subdir":"linux-64","timestamp":15922463914
+25,"version":"0.6.1"},"torchvision-0.6.1-py37_cu101.tar.bz2":{"build":"py37_c
+u101","build_number":0,"depends":["cudatoolkit >=10.1,<10.2","numpy >=1.11","
+pillow >=4.1.1","python >=3.7,<3.8.0a0","pytorch 1.5.1"],"license":"BSD","md5
+":"c9da10514283c64d61aac85d70d7f9cd","name":"torchvision","sha256":"3703b38cb
+13c079c53de6920a052cb3e8ba0dafc961fe5cc2e08c665c005be81","size":12318199,"sub
+dir":"linux-64","timestamp":1592246452258,"version":"0.6.1"},"torchvision-0.6
+.1-py37_cu102.tar.bz2":{"build":"py37_cu102","build_number":0,"depends":["cud
+atoolkit >=10.2,<10.3","numpy >=1.11","pillow >=4.1.1","python >=3.7,<3.8.0a0
+","pytorch 1.5.1"],"license":"BSD","md5":"268d297154a431938609f890de219505","
+name":"torchvision","sha256":"1662212eb7a32db4464f8a7bab3c681e769dc4c375d7f3e
+b66c62875c9c1c2d0","size":12316364,"subdir":"linux-64","timestamp":1592246579
+377,"version":"0.6.1"},"torchvision-0.6.1-py37_cu92.tar.bz2":{"build":"py37_c
+u92","build_number":0,"depends":["cudatoolkit >=9.2,<9.3","numpy >=1.11","pil
+low >=4.1.1","python >=3.7,<3.8.0a0","pytorch 1.5.1"],"license":"BSD","md5":"
+7baecfe331d996d415faf2dc084aaf09","name":"torchvision","sha256":"20efeff948bf
+476c76dba78b082691ede7ab6572b9c42f54ed3f18c90c9a5888","size":12240512,"subdir
+":"linux-64","timestamp":1592246268059,"version":"0.6.1"},"torchvision-0.6.1-
+py38_cpu.tar.bz2":{"build":"py38_cpu","build_number":0,"depends":["numpy >=1.
+11","pillow >=4.1.1","python >=3.8,<3.9.0a0","pytorch 1.5.1"],"features":"cpu
+only","license":"BSD","md5":"13f979d4e4de0608fb036cbdd0968899","name":"torchv
+ision","sha256":"c7f70f3a38653769d6788c4bf80322268700f3c0c9b7fe5603024b7bb422
+708b","size":11496019,"subdir":"linux-64","timestamp":1592246342814,"version"
+:"0.6.1"},"torchvision-0.6.1-py38_cu101.tar.bz2":{"build":"py38_cu101","build
+_number":0,"depends":["cudatoolkit >=10.1,<10.2","numpy >=1.11","pillow >=4.1
+.1","python >=3.8,<3.9.0a0","pytorch 1.5.1"],"license":"BSD","md5":"b88b2616b
+66b301b39d082576f54feed","name":"torchvision","sha256":"f9ca97c95d25605fd2160
+453dcd70c7c4e20348839c937651e9bc71acbf95373","size":12320256,"subdir":"linux-
+64","timestamp":1592246509279,"version":"0.6.1"},"torchvision-0.6.1-py38_cu10
+2.tar.bz2":{"build":"py38_cu102","build_number":0,"depends":["cudatoolkit >=1
+0.2,<10.3","numpy >=1.11","pillow >=4.1.1","python >=3.8,<3.9.0a0","pytorch 1
+.5.1"],"license":"BSD","md5":"1052a0efdbcaac31f84f4840f4e82897","name":"torch
+vision","sha256":"2d5f153a8af217a1ee586dc831553548f8f83d5a61e914d4f7a1aa6bd7e
+f0891","size":12342617,"subdir":"linux-64","timestamp":1592246353031,"version
+":"0.6.1"},"torchvision-0.6.1-py38_cu92.tar.bz2":{"build":"py38_cu92","build_
+number":0,"depends":["cudatoolkit >=9.2,<9.3","numpy >=1.11","pillow >=4.1.1"
+,"python >=3.8,<3.9.0a0","pytorch 1.5.1"],"license":"BSD","md5":"9f81d77948a4
+476d9092ded31bf9bedb","name":"torchvision","sha256":"a7e0fa61d19f01a7c1cbfdcb
+4bcc7bda8ae59433e4e71d23f397f1e304a65025","size":12185075,"subdir":"linux-64"
+,"timestamp":1592246381919,"version":"0.6.1"},"torchvision-0.7.0-py36_cpu.tar
+.bz2":{"build":"py36_cpu","build_number":0,"depends":["numpy >=1.11","pillow
+>=4.1.1","python >=3.6,<3.7.0a0","pytorch 1.6.0"],"features":"cpuonly","licen
+se":"BSD","md5":"8c38edfb27de9b9d07a3ef640dba41e8","name":"torchvision","sha2
+56":"9986473abd23dca761727778be74a9a02e63d1b2330c8a317cd9bf0863393a54","size"
+:10817748,"subdir":"linux-64","timestamp":1595638466544,"version":"0.7.0"},"t
+orchvision-0.7.0-py36_cu101.tar.bz2":{"build":"py36_cu101","build_number":0,"
+depends":["cudatoolkit >=10.1,<10.2","numpy >=1.11","pillow >=4.1.1","python
+>=3.6,<3.7.0a0","pytorch 1.6.0"],"license":"BSD","md5":"83e82f929f13bae519493
+ba16f1d73e8","name":"torchvision","sha256":"cc0d603c6ef1958c35c162b0afbebaa38
+83d5ad31ac9f60e113ab6f96221260c","size":11551784,"subdir":"linux-64","timesta
+mp":1595638516384,"version":"0.7.0"},"torchvision-0.7.0-py36_cu102.tar.bz2":{
+"build":"py36_cu102","build_number":0,"depends":["cudatoolkit >=10.2,<10.3","
+numpy >=1.11","pillow >=4.1.1","python >=3.6,<3.7.0a0","pytorch 1.6.0"],"lice
+nse":"BSD","md5":"208ba6ff06df1c82223bbbb179f3c20a","name":"torchvision","sha
+256":"cf372c5bc55d4007920d9d8f6d2313527e2cf12730128d86b1b3ee0712951343","size
+":11529939,"subdir":"linux-64","timestamp":1595638551951,"version":"0.7.0"},"
+torchvision-0.7.0-py36_cu92.tar.bz2":{"build":"py36_cu92","build_number":0,"d
+epends":["cudatoolkit >=9.2,<9.3","numpy >=1.11","pillow >=4.1.1","python >=3
+.6,<3.7.0a0","pytorch 1.6.0"],"license":"BSD","md5":"c8ec5dd1f148dc6f24fb9d9a
+dbad7a66","name":"torchvision","sha256":"432254d2e867baf685f8e3afbce59befbea6
+71d9067a212ee92fc4e5f5d9f78c","size":11417943,"subdir":"linux-64","timestamp"
+:1595638518294,"version":"0.7.0"},"torchvision-0.7.0-py37_cpu.tar.bz2":{"buil
+d":"py37_cpu","build_number":0,"depends":["numpy >=1.11","pillow >=4.1.1","py
+thon >=3.7,<3.8.0a0","pytorch 1.6.0"],"features":"cpuonly","license":"BSD","m
+d5":"b5f36cf65449ef5f7895a8e31ef4deac","name":"torchvision","sha256":"bffcece
+91252c2185f203f1f78f48fbbe520a2120b4c1d50ff1ae4ec0b087315","size":10748924,"s
+ubdir":"linux-64","timestamp":1595638448911,"version":"0.7.0"},"torchvision-0
+.7.0-py37_cu101.tar.bz2":{"build":"py37_cu101","build_number":0,"depends":["c
+udatoolkit >=10.1,<10.2","numpy >=1.11","pillow >=4.1.1","python >=3.7,<3.8.0
+a0","pytorch 1.6.0"],"license":"BSD","md5":"8176dbe9cdc8b5ae85bd29a577d63c57"
+,"name":"torchvision","sha256":"c520270ec87af6c6f64a11ff1f54e2ee7c7e043ce0a57
+40dacc5dbce863ae22b","size":11513389,"subdir":"linux-64","timestamp":15956385
+16448,"version":"0.7.0"},"torchvision-0.7.0-py37_cu102.tar.bz2":{"build":"py3
+7_cu102","build_number":0,"depends":["cudatoolkit >=10.2,<10.3","numpy >=1.11
+","pillow >=4.1.1","python >=3.7,<3.8.0a0","pytorch 1.6.0"],"license":"BSD","
+md5":"1d3b9e2152ab8dc3d26823c39230fe46","name":"torchvision","sha256":"f32b40
+48be927873f70a16dc053af30ba9fb48c53b769c385bfd868a3db5f376","size":11527284,"
+subdir":"linux-64","timestamp":1595638514044,"version":"0.7.0"},"torchvision-
+0.7.0-py37_cu92.tar.bz2":{"build":"py37_cu92","build_number":0,"depends":["cu
+datoolkit >=9.2,<9.3","numpy >=1.11","pillow >=4.1.1","python >=3.7,<3.8.0a0"
+,"pytorch 1.6.0"],"license":"BSD","md5":"743952e907eebd4096a8d8f2bd35d8ac","n
+ame":"torchvision","sha256":"321f2d16e67d2cca5e93a6833938eb857dfff46ea25eceed
+c76825d9ddc54fdb","size":11410811,"subdir":"linux-64","timestamp":15956385709
+36,"version":"0.7.0"},"torchvision-0.7.0-py38_cpu.tar.bz2":{"build":"py38_cpu
+","build_number":0,"depends":["numpy >=1.11","pillow >=4.1.1","python >=3.8,<
+3.9.0a0","pytorch 1.6.0"],"features":"cpuonly","license":"BSD","md5":"f3057e2
+7f2211d5808eb156ba0c0bd06","name":"torchvision","sha256":"749aa12bc2c50146d35
+0fe243934e5665efa21aaccf2b328a523193b0fb9669b","size":10831112,"subdir":"linu
+x-64","timestamp":1595638440179,"version":"0.7.0"},"torchvision-0.7.0-py38_cu
+101.tar.bz2":{"build":"py38_cu101","build_number":0,"depends":["cudatoolkit >
+=10.1,<10.2","numpy >=1.11","pillow >=4.1.1","python >=3.8,<3.9.0a0","pytorch
+ 1.6.0"],"license":"BSD","md5":"eaffbdf157118a0904e0a6a01f74b222","name":"tor
+chvision","sha256":"9ea1dc831c8aea773c1c5c27cbb3a6c9985df1f272af1d11d49a58dd8
+eddf902","size":11516291,"subdir":"linux-64","timestamp":1595638554379,"versi
+on":"0.7.0"},"torchvision-0.7.0-py38_cu102.tar.bz2":{"build":"py38_cu102","bu
+ild_number":0,"depends":["cudatoolkit >=10.2,<10.3","numpy >=1.11","pillow >=
+4.1.1","python >=3.8,<3.9.0a0","pytorch 1.6.0"],"license":"BSD","md5":"801008
+9fb093c94453b071cd6d353a86","name":"torchvision","sha256":"0f3e7056f984c9a57b
+7b8e82155d223a52fe573206c2bc6545d83d76466f2f08","size":11449780,"subdir":"lin
+ux-64","timestamp":1595638424733,"version":"0.7.0"},"torchvision-0.7.0-py38_c
+u92.tar.bz2":{"build":"py38_cu92","build_number":0,"depends":["cudatoolkit >=
+9.2,<9.3","numpy >=1.11","pillow >=4.1.1","python >=3.8,<3.9.0a0","pytorch 1.
+6.0"],"license":"BSD","md5":"aca41c5934f26541346d50680ffd382b","name":"torchv
+ision","sha256":"f76af55940b7534feda99a7f9a0f6c92861dafe9fd32fda812f70d239520
+9da7","size":11419214,"subdir":"linux-64","timestamp":1595638509533,"version"
+:"0.7.0"},"torchvision-0.8.0-py36_cpu.tar.bz2":{"build":"py36_cpu","build_num
+ber":0,"depends":["jpeg","libpng","numpy >=1.11","pillow >=4.1.1","python >=3
+.6,<3.7.0a0","pytorch 1.7.0"],"features":"cpuonly","license":"BSD","md5":"dc4
+4e6572c3fa27886257dca661ffb38","name":"torchvision","sha256":"dfb777da39edbbe
+838a19fa9f2a97bb0a0f22c7a0124d4b839ac5cfc23e78464","size":18031870,"subdir":"
+linux-64","timestamp":1603752073318,"version":"0.8.0"},"torchvision-0.8.0-py3
+6_cu101.tar.bz2":{"build":"py36_cu101","build_number":0,"depends":["cudatoolk
+it >=10.1,<10.2","jpeg","libpng","numpy >=1.11","pillow >=4.1.1","python >=3.
+6,<3.7.0a0","pytorch 1.7.0"],"license":"BSD","md5":"f55bf05b7812ab84820b64b7e
+61a46f8","name":"torchvision","sha256":"73d4d4d592f3a686c02dcb357e68c2d13da70
+6d485b5d280fa7cb6aaccfa083a","size":18712943,"subdir":"linux-64","timestamp":
+1603752270135,"version":"0.8.0"},"torchvision-0.8.0-py36_cu102.tar.bz2":{"bui
+ld":"py36_cu102","build_number":0,"depends":["cudatoolkit >=10.2,<10.3","jpeg
+","libpng","numpy >=1.11","pillow >=4.1.1","python >=3.6,<3.7.0a0","pytorch 1
+.7.0"],"license":"BSD","md5":"866b7527da23497e8964f86e924e0a72","name":"torch
+vision","sha256":"cfebc7c497fcea87ad404d3da7d2c53a6a144d36d9b56a88fb916681786
+57eb1","size":18670826,"subdir":"linux-64","timestamp":1603752298972,"version
+":"0.8.0"},"torchvision-0.8.0-py36_cu110.tar.bz2":{"build":"py36_cu110","buil
+d_number":0,"depends":["cudatoolkit >=11.0,<11.1","jpeg","libpng","numpy >=1.
+11","pillow >=4.1.1","python >=3.6,<3.7.0a0","pytorch 1.7.0"],"license":"BSD"
+,"md5":"b5586cd57e9cf2caec70a3f650a61618","name":"torchvision","sha256":"b0aa
+15bcaa0c5db841483212ad448ad049ca09d21f51dd1fea39f8711e3c1b3f","size":18850325
+,"subdir":"linux-64","timestamp":1603752279354,"version":"0.8.0"},"torchvisio
+n-0.8.0-py36_cu92.tar.bz2":{"build":"py36_cu92","build_number":0,"depends":["
+cudatoolkit >=9.2,<9.3","jpeg","libpng","numpy >=1.11","pillow >=4.1.1","pyth
+on >=3.6,<3.7.0a0","pytorch 1.7.0"],"license":"BSD","md5":"5f8028d55cbbd2006a
+df95e6efc5b1ab","name":"torchvision","sha256":"8954d8c045819ca51a7475ca96e736
+e8c211ec93b44439b4359af6ea79b56985","size":18649291,"subdir":"linux-64","time
+stamp":1603752101911,"version":"0.8.0"},"torchvision-0.8.0-py37_cpu.tar.bz2":
+{"build":"py37_cpu","build_number":0,"depends":["jpeg","libpng","numpy >=1.11
+","pillow >=4.1.1","python >=3.7,<3.8.0a0","pytorch 1.7.0"],"features":"cpuon
+ly","license":"BSD","md5":"e5603e3c276002e512b7ab4a50d0c0ca","name":"torchvis
+ion","sha256":"967fb256311ea62a65541cce1f181bcc414ffd5e92ee79695dfb13d64a1d38
+91","size":17987116,"subdir":"linux-64","timestamp":1603752198431,"version":"
+0.8.0"},"torchvision-0.8.0-py37_cu101.tar.bz2":{"build":"py37_cu101","build_n
+umber":0,"depends":["cudatoolkit >=10.1,<10.2","jpeg","libpng","numpy >=1.11"
+,"pillow >=4.1.1","python >=3.7,<3.8.0a0","pytorch 1.7.0"],"license":"BSD","m
+d5":"4451945a828f7caffdfbe0d00a2117af","name":"torchvision","sha256":"02b1b41
+aa51ea92d6572bcc72b2d9fe4c7a17bcffb01db2dc26f896def43df63","size":18751985,"s
+ubdir":"linux-64","timestamp":1603752254047,"version":"0.8.0"},"torchvision-0
+.8.0-py37_cu102.tar.bz2":{"build":"py37_cu102","build_number":0,"depends":["c
+udatoolkit >=10.2,<10.3","jpeg","libpng","numpy >=1.11","pillow >=4.1.1","pyt
+hon >=3.7,<3.8.0a0","pytorch 1.7.0"],"license":"BSD","md5":"f93ef265bb5ca9216
+7e630cfe5a9b48c","name":"torchvision","sha256":"06c4c995f4ec6e91c098c4c69f3ad
+1682d90884b623eb514b679b716f5d114fd","size":18662326,"subdir":"linux-64","tim
+estamp":1603752171535,"version":"0.8.0"},"torchvision-0.8.0-py37_cu110.tar.bz
+2":{"build":"py37_cu110","build_number":0,"depends":["cudatoolkit >=11.0,<11.
+1","jpeg","libpng","numpy >=1.11","pillow >=4.1.1","python >=3.7,<3.8.0a0","p
+ytorch 1.7.0"],"license":"BSD","md5":"d482c1e3343c0ed02ad3ad554ab9066f","name
+":"torchvision","sha256":"b66cd74f14ce0e2c714cfdc1a9d17003b321a62da48858ca147
+093f28c7e6e05","size":18690949,"subdir":"linux-64","timestamp":1603752278507,
+"version":"0.8.0"},"torchvision-0.8.0-py37_cu92.tar.bz2":{"build":"py37_cu92"
+,"build_number":0,"depends":["cudatoolkit >=9.2,<9.3","jpeg","libpng","numpy
+>=1.11","pillow >=4.1.1","python >=3.7,<3.8.0a0","pytorch 1.7.0"],"license":"
+BSD","md5":"ab17f4368e71a6ee1542b38136b1c8cf","name":"torchvision","sha256":"
+2badaaef490540fdf614dcb0bef6eb9ead52300198df0a048e67173ed3d85f39","size":1853
+0901,"subdir":"linux-64","timestamp":1603752145835,"version":"0.8.0"},"torchv
+ision-0.8.0-py38_cpu.tar.bz2":{"build":"py38_cpu","build_number":0,"depends":
+["jpeg","libpng","numpy >=1.11","pillow >=4.1.1","python >=3.8,<3.9.0a0","pyt
+orch 1.7.0"],"features":"cpuonly","license":"BSD","md5":"0af688d16af48b47996c
+169e56882804","name":"torchvision","sha256":"6edcf372153415e007bb1c68a1771e94
+93d0052cff3057442e0b9d4a2bf2128f","size":17942839,"subdir":"linux-64","timest
+amp":1603752246104,"version":"0.8.0"},"torchvision-0.8.0-py38_cu101.tar.bz2":
+{"build":"py38_cu101","build_number":0,"depends":["cudatoolkit >=10.1,<10.2",
+"jpeg","libpng","numpy >=1.11","pillow >=4.1.1","python >=3.8,<3.9.0a0","pyto
+rch 1.7.0"],"license":"BSD","md5":"a410a91eb8df44d91c3f635ebff1205d","name":"
+torchvision","sha256":"dbd9aca274f14f14bc655d42c4730b3289698fb60c83c62eb1fbc7
+f39a521bb0","size":18734119,"subdir":"linux-64","timestamp":1603752324845,"ve
+rsion":"0.8.0"},"torchvision-0.8.0-py38_cu102.tar.bz2":{"build":"py38_cu102",
+"build_number":0,"depends":["cudatoolkit >=10.2,<10.3","jpeg","libpng","numpy
+ >=1.11","pillow >=4.1.1","python >=3.8,<3.9.0a0","pytorch 1.7.0"],"license":
+"BSD","md5":"4dc4fddb4b3952eb4562900e797b4619","name":"torchvision","sha256":
+"4f589a11aa882582bd4f443cb86d2a1139ebe45b6cb0269608f2cd5785f67859","size":186
+48775,"subdir":"linux-64","timestamp":1603752281303,"version":"0.8.0"},"torch
+vision-0.8.0-py38_cu110.tar.bz2":{"build":"py38_cu110","build_number":0,"depe
+nds":["cudatoolkit >=11.0,<11.1","jpeg","libpng","numpy >=1.11","pillow >=4.1
+.1","python >=3.8,<3.9.0a0","pytorch 1.7.0"],"license":"BSD","md5":"740f3f8ea
+8e3a2da3344ab07bafe3090","name":"torchvision","sha256":"3d5059b02563c2269f6a6
+ccc88854df63ce3f6eb8c5b610ee8821f3e9fdb03f6","size":18758533,"subdir":"linux-
+64","timestamp":1603752221701,"version":"0.8.0"},"torchvision-0.8.0-py38_cu92
+.tar.bz2":{"build":"py38_cu92","build_number":0,"depends":["cudatoolkit >=9.2
+,<9.3","jpeg","libpng","numpy >=1.11","pillow >=4.1.1","python >=3.8,<3.9.0a0
+","pytorch 1.7.0"],"license":"BSD","md5":"e2cdbb2ef70c03281efd477eec8e603a","
+name":"torchvision","sha256":"47212c594dd6fef63d0f50ef4165c03d26f09c654ddaa20
+db87aae1ed60aed37","size":18544797,"subdir":"linux-64","timestamp":1603752331
+260,"version":"0.8.0"},"torchvision-0.8.1-py36_cpu.tar.bz2":{"build":"py36_cp
+u","build_number":0,"depends":["jpeg","libpng","numpy >=1.11","pillow >=4.1.1
+","python >=3.6,<3.7.0a0","pytorch 1.7.0"],"features":"cpuonly","license":"BS
+D","md5":"7ee3d28eed8f8eb1eb8a020b23a3ec7f","name":"torchvision","sha256":"24
+0c4d8e5b68f454883324360ea15ef1db3e114ef96792f18515e069abbc5bb6","size":179680
+96,"subdir":"linux-64","timestamp":1603831091872,"version":"0.8.1"},"torchvis
+ion-0.8.1-py36_cu101.tar.bz2":{"build":"py36_cu101","build_number":0,"depends
+":["cudatoolkit >=10.1,<10.2","jpeg","libpng","numpy >=1.11","pillow >=4.1.1"
+,"python >=3.6,<3.7.0a0","pytorch 1.7.0"],"license":"BSD","md5":"2adfaa3c36f2
+d2a5d0adf25d721509b4","name":"torchvision","sha256":"277d3abd278b0945cf109740
+8d4a556580f02e4ecda22517257ad6f04a3d35c7","size":18753796,"subdir":"linux-64"
+,"timestamp":1603831184940,"version":"0.8.1"},"torchvision-0.8.1-py36_cu102.t
+ar.bz2":{"build":"py36_cu102","build_number":0,"depends":["cudatoolkit >=10.2
+,<10.3","jpeg","libpng","numpy >=1.11","pillow >=4.1.1","python >=3.6,<3.7.0a
+0","pytorch 1.7.0"],"license":"BSD","md5":"ba43ca3691d07fe6e3e027274326f587",
+"name":"torchvision","sha256":"170873d0155e2ae95abadc0e5d659f6a5f1c7db3d29ad3
+09af9aab74a3c11a88","size":18745539,"subdir":"linux-64","timestamp":160383118
+8880,"version":"0.8.1"},"torchvision-0.8.1-py36_cu110.tar.bz2":{"build":"py36
+_cu110","build_number":0,"depends":["cudatoolkit >=11.0,<11.1","jpeg","libpng
+","numpy >=1.11","pillow >=4.1.1","python >=3.6,<3.7.0a0","pytorch 1.7.0"],"l
+icense":"BSD","md5":"7d559edd7936e9c99e2aa6fb603c3f76","name":"torchvision","
+sha256":"2d9147854693fb35ecaf923136f3608c300fe9e8b3e644302d271ea83e4df4cd","s
+ize":18797296,"subdir":"linux-64","timestamp":1603831040342,"version":"0.8.1"
+},"torchvision-0.8.1-py36_cu92.tar.bz2":{"build":"py36_cu92","build_number":0
+,"depends":["cudatoolkit >=9.2,<9.3","jpeg","libpng","numpy >=1.11","pillow >
+=4.1.1","python >=3.6,<3.7.0a0","pytorch 1.7.0"],"license":"BSD","md5":"d83f6
+2bab3a3b69ab854b309c2a9a6d5","name":"torchvision","sha256":"7b15db94836c57aa5
+4d254514d6ac08d73395dc06bb203f3b2b066c9dd592b2b","size":18641198,"subdir":"li
+nux-64","timestamp":1603831161186,"version":"0.8.1"},"torchvision-0.8.1-py37_
+cpu.tar.bz2":{"build":"py37_cpu","build_number":0,"depends":["jpeg","libpng",
+"numpy >=1.11","pillow >=4.1.1","python >=3.7,<3.8.0a0","pytorch 1.7.0"],"fea
+tures":"cpuonly","license":"BSD","md5":"111ea3e9f7934c6bd52ff13d5de87140","na
+me":"torchvision","sha256":"7d886c77c1ef061ac091ec18ec3617cb052a4cd5660fb68ba
+08d139c10af3928","size":18039001,"subdir":"linux-64","timestamp":160383111813
+2,"version":"0.8.1"},"torchvision-0.8.1-py37_cu101.tar.bz2":{"build":"py37_cu
+101","build_number":0,"depends":["cudatoolkit >=10.1,<10.2","jpeg","libpng","
+numpy >=1.11","pillow >=4.1.1","python >=3.7,<3.8.0a0","pytorch 1.7.0"],"lice
+nse":"BSD","md5":"8c036165bac9e060c8f499bf970cef15","name":"torchvision","sha
+256":"d77a31d10163e47bc59c528783de6f774bd4b7a845b19d875cf8ae70d031a9b6","size
+":18669422,"subdir":"linux-64","timestamp":1603831177274,"version":"0.8.1"},"
+torchvision-0.8.1-py37_cu102.tar.bz2":{"build":"py37_cu102","build_number":0,
+"depends":["cudatoolkit >=10.2,<10.3","jpeg","libpng","numpy >=1.11","pillow
+>=4.1.1","python >=3.7,<3.8.0a0","pytorch 1.7.0"],"license":"BSD","md5":"2922
+6b9c50fa8f4ec8e47359cfa99893","name":"torchvision","sha256":"1df26f82d09db556
+8a013214948a7e0cde89fcec4f170b3fc16cd35b22447fda","size":18687247,"subdir":"l
+inux-64","timestamp":1603831148683,"version":"0.8.1"},"torchvision-0.8.1-py37
+_cu110.tar.bz2":{"build":"py37_cu110","build_number":0,"depends":["cudatoolki
+t >=11.0,<11.1","jpeg","libpng","numpy >=1.11","pillow >=4.1.1","python >=3.7
+,<3.8.0a0","pytorch 1.7.0"],"license":"BSD","md5":"6da0c8ca4f3ce9e30458353e39
+c3d901","name":"torchvision","sha256":"8a3d62807833504bfbf39dd5af003902074305
+68004c98d3894f0784df7db30d","size":18886201,"subdir":"linux-64","timestamp":1
+603831188068,"version":"0.8.1"},"torchvision-0.8.1-py37_cu92.tar.bz2":{"build
+":"py37_cu92","build_number":0,"depends":["cudatoolkit >=9.2,<9.3","jpeg","li
+bpng","numpy >=1.11","pillow >=4.1.1","python >=3.7,<3.8.0a0","pytorch 1.7.0"
+],"license":"BSD","md5":"b323e915d1d44c84c8c46f4d593faece","name":"torchvisio
+n","sha256":"aeb1d3d5bc649c0a6d363714cbf22d63d3c849b8902e3f47cf5c9469df07cf2e
+","size":18624547,"subdir":"linux-64","timestamp":1603831132252,"version":"0.
+8.1"},"torchvision-0.8.1-py38_cpu.tar.bz2":{"build":"py38_cpu","build_number"
+:0,"depends":["jpeg","libpng","numpy >=1.11","pillow >=4.1.1","python >=3.8,<
+3.9.0a0","pytorch 1.7.0"],"features":"cpuonly","license":"BSD","md5":"6ef8faf
+150a29c9fc0852ea5fbee166e","name":"torchvision","sha256":"3f6f01da32bfc6c97dc
+f5b6ed17a946d3e31aeea031249bd94c96995e22e6daf","size":18026684,"subdir":"linu
+x-64","timestamp":1603831081766,"version":"0.8.1"},"torchvision-0.8.1-py38_cu
+101.tar.bz2":{"build":"py38_cu101","build_number":0,"depends":["cudatoolkit >
+=10.1,<10.2","jpeg","libpng","numpy >=1.11","pillow >=4.1.1","python >=3.8,<3
+.9.0a0","pytorch 1.7.0"],"license":"BSD","md5":"b67d27e36b39cfa3e8d29c1a482d3
+3ad","name":"torchvision","sha256":"47da002f8b6078420b4da8b521bc95c1b71ae4fa5
+87abce9ccb69fa6a144e69e","size":18799871,"subdir":"linux-64","timestamp":1603
+831194550,"version":"0.8.1"},"torchvision-0.8.1-py38_cu102.tar.bz2":{"build":
+"py38_cu102","build_number":0,"depends":["cudatoolkit >=10.2,<10.3","jpeg","l
+ibpng","numpy >=1.11","pillow >=4.1.1","python >=3.8,<3.9.0a0","pytorch 1.7.0
+"],"license":"BSD","md5":"0b196905aad9792c30daff3f9b742792","name":"torchvisi
+on","sha256":"0735c1d13f4737323eb963e1c376abe072949209b962047135ffb90a369a74d
+d","size":18701128,"subdir":"linux-64","timestamp":1603831194714,"version":"0
+.8.1"},"torchvision-0.8.1-py38_cu110.tar.bz2":{"build":"py38_cu110","build_nu
+mber":0,"depends":["cudatoolkit >=11.0,<11.1","jpeg","libpng","numpy >=1.11",
+"pillow >=4.1.1","python >=3.8,<3.9.0a0","pytorch 1.7.0"],"license":"BSD","md
+5":"904400aebba9b6b5a485d36931205324","name":"torchvision","sha256":"4c89e807
+e9e14262d4716855c3fec0bb527739c5df37382a7e9a9d249c71b426","size":18785353,"su
+bdir":"linux-64","timestamp":1603831172492,"version":"0.8.1"},"torchvision-0.
+8.1-py38_cu92.tar.bz2":{"build":"py38_cu92","build_number":0,"depends":["cuda
+toolkit >=9.2,<9.3","jpeg","libpng","numpy >=1.11","pillow >=4.1.1","python >
+=3.8,<3.9.0a0","pytorch 1.7.0"],"license":"BSD","md5":"46cf4e04eb88258f913d5c
+ab4c2d4266","name":"torchvision","sha256":"40c1413eab8b133f32da93ff17de3f7bd2
+8239294ab5ab50c351074a9808486d","size":18673119,"subdir":"linux-64","timestam
+p":1603831162729,"version":"0.8.1"},"torchvision-0.8.2-py36_cpu.tar.bz2":{"bu
+ild":"py36_cpu","build_number":0,"depends":["jpeg <=9b","libpng","numpy >=1.1
+1","pillow >=4.1.1","python >=3.6,<3.7.0a0","pytorch 1.7.1"],"features":"cpuo
+nly","license":"BSD","md5":"ed633b78ff4b2be9c426df58261bfdf4","name":"torchvi
+sion","sha256":"cf8364f484d11fca2a273682d1124f646638f5f44cd483334c38e3505108e
+fdd","size":18020219,"subdir":"linux-64","timestamp":1607386207246,"version":
+"0.8.2"},"torchvision-0.8.2-py36_cu101.tar.bz2":{"build":"py36_cu101","build_
+number":0,"depends":["cudatoolkit >=10.1,<10.2","jpeg <=9b","libpng","numpy >
+=1.11","pillow >=4.1.1","python >=3.6,<3.7.0a0","pytorch 1.7.1"],"license":"B
+SD","md5":"ed32689e0f3f1e24859356cb9e7ea610","name":"torchvision","sha256":"8
+621edfb93bd7fb9c53d1a60526a01451453fd2454397145fa01b3251f3e1f26","size":18716
+245,"subdir":"linux-64","timestamp":1607386360330,"version":"0.8.2"},"torchvi
+sion-0.8.2-py36_cu102.tar.bz2":{"build":"py36_cu102","build_number":0,"depend
+s":["cudatoolkit >=10.2,<10.3","jpeg <=9b","libpng","numpy >=1.11","pillow >=
+4.1.1","python >=3.6,<3.7.0a0","pytorch 1.7.1"],"license":"BSD","md5":"9f7284
+b2fa4ebe138f12268fed9b1aaa","name":"torchvision","sha256":"9473aec9b57f63f418
+5110805573409328c9f9c43f6314dd5d0c1f5df8dff0fe","size":18694731,"subdir":"lin
+ux-64","timestamp":1607386362538,"version":"0.8.2"},"torchvision-0.8.2-py36_c
+u110.tar.bz2":{"build":"py36_cu110","build_number":0,"depends":["cudatoolkit
+>=11.0,<11.1","jpeg <=9b","libpng","numpy >=1.11","pillow >=4.1.1","python >=
+3.6,<3.7.0a0","pytorch 1.7.1"],"license":"BSD","md5":"0d64db86c8eef6f466016fb
+9d8654990","name":"torchvision","sha256":"ee98df036789a7e36f653e9e4dbd17e62b9
+dfcd1306180398d88c04eb3ac9970","size":18735421,"subdir":"linux-64","timestamp
+":1607386335166,"version":"0.8.2"},"torchvision-0.8.2-py36_cu92.tar.bz2":{"bu
+ild":"py36_cu92","build_number":0,"depends":["cudatoolkit >=9.2,<9.3","jpeg <
+=9b","libpng","numpy >=1.11","pillow >=4.1.1","python >=3.6,<3.7.0a0","pytorc
+h 1.7.1"],"license":"BSD","md5":"e8f798d4bc47210c24d90cbcc5ecaaa9","name":"to
+rchvision","sha256":"774f6c1dcf5591b324193a50548ad1fb8c77189d624bbbea185c5cbe
+78651760","size":18546147,"subdir":"linux-64","timestamp":1607386313083,"vers
+ion":"0.8.2"},"torchvision-0.8.2-py37_cpu.tar.bz2":{"build":"py37_cpu","build
+_number":0,"depends":["jpeg <=9b","libpng","numpy >=1.11","pillow >=4.1.1","p
+ython >=3.7,<3.8.0a0","pytorch 1.7.1"],"features":"cpuonly","license":"BSD","
+md5":"d23a25f5220f0c6e8441653fd3ea41ff","name":"torchvision","sha256":"87a063
+1d12d17bcdd9a3c1b05938e42f805f209128205708e870626d6e0bba6b","size":17980756,"
+subdir":"linux-64","timestamp":1607386199972,"version":"0.8.2"},"torchvision-
+0.8.2-py37_cu101.tar.bz2":{"build":"py37_cu101","build_number":0,"depends":["
+cudatoolkit >=10.1,<10.2","jpeg <=9b","libpng","numpy >=1.11","pillow >=4.1.1
+","python >=3.7,<3.8.0a0","pytorch 1.7.1"],"license":"BSD","md5":"41aae032d46
+9c231ed16a003051d96d8","name":"torchvision","sha256":"47541c85c9895f308ac79fb
+f804621c3127447391a04ac799ba94544a94b086b","size":18758084,"subdir":"linux-64
+","timestamp":1607386335468,"version":"0.8.2"},"torchvision-0.8.2-py37_cu102.
+tar.bz2":{"build":"py37_cu102","build_number":0,"depends":["cudatoolkit >=10.
+2,<10.3","jpeg <=9b","libpng","numpy >=1.11","pillow >=4.1.1","python >=3.7,<
+3.8.0a0","pytorch 1.7.1"],"license":"BSD","md5":"60d627a1482313705ebfbb7a88e1
+4a1d","name":"torchvision","sha256":"9568e7adaa99bc56378071d57f59a970ccb63a13
+43096710f916c04da403e5dc","size":18698252,"subdir":"linux-64","timestamp":160
+7386301546,"version":"0.8.2"},"torchvision-0.8.2-py37_cu110.tar.bz2":{"build"
+:"py37_cu110","build_number":0,"depends":["cudatoolkit >=11.0,<11.1","jpeg <=
+9b","libpng","numpy >=1.11","pillow >=4.1.1","python >=3.7,<3.8.0a0","pytorch
+ 1.7.1"],"license":"BSD","md5":"fbd1352e119f607ff8b61adbf2c1fe93","name":"tor
+chvision","sha256":"a5891b18ddb9f8706e6ecd8146483c7da52942a1a55b83aac41a3fe1f
+246446b","size":18834332,"subdir":"linux-64","timestamp":1607386162814,"versi
+on":"0.8.2"},"torchvision-0.8.2-py37_cu92.tar.bz2":{"build":"py37_cu92","buil
+d_number":0,"depends":["cudatoolkit >=9.2,<9.3","jpeg <=9b","libpng","numpy >
+=1.11","pillow >=4.1.1","python >=3.7,<3.8.0a0","pytorch 1.7.1"],"license":"B
+SD","md5":"c2cf90c20f7eb68ec5111bf988f0c44c","name":"torchvision","sha256":"3
+0ac77db358a587c47c2429a252b5df009428feaf1d09ff3c9180c8aa7d5a8a2","size":18627
+056,"subdir":"linux-64","timestamp":1607386109652,"version":"0.8.2"},"torchvi
+sion-0.8.2-py38_cpu.tar.bz2":{"build":"py38_cpu","build_number":0,"depends":[
+"jpeg <=9b","libpng","numpy >=1.11","pillow >=4.1.1","python >=3.8,<3.9.0a0",
+"pytorch 1.7.1"],"features":"cpuonly","license":"BSD","md5":"f35f3b09ac10d84d
+f8002d4bdf584492","name":"torchvision","sha256":"4d9cecd037260905b10f4310471a
+0d901922ef84a81823648b58cbb3b1a65235","size":17992342,"subdir":"linux-64","ti
+mestamp":1607386232465,"version":"0.8.2"},"torchvision-0.8.2-py38_cu101.tar.b
+z2":{"build":"py38_cu101","build_number":0,"depends":["cudatoolkit >=10.1,<10
+.2","jpeg <=9b","libpng","numpy >=1.11","pillow >=4.1.1","python >=3.8,<3.9.0
+a0","pytorch 1.7.1"],"license":"BSD","md5":"5ad31ea965d2ba0b50d5b067ef1f1208"
+,"name":"torchvision","sha256":"0d002c6d7d7ca8f9ac30b80d4f02b869918694ec752bc
+811fbf3ce7139aa287c","size":18642215,"subdir":"linux-64","timestamp":16073863
+20258,"version":"0.8.2"},"torchvision-0.8.2-py38_cu102.tar.bz2":{"build":"py3
+8_cu102","build_number":0,"depends":["cudatoolkit >=10.2,<10.3","jpeg <=9b","
+libpng","numpy >=1.11","pillow >=4.1.1","python >=3.8,<3.9.0a0","pytorch 1.7.
+1"],"license":"BSD","md5":"bb2cf44018ba81d9053fd07146a57541","name":"torchvis
+3f64db96d8","size":18707130,"subdir":"linux-64","timestamp":1607386294505,"ve
+rsion":"0.8.2"},"torchvision-0.8.2-py38_cu110.tar.bz2":{"build":"py38_cu110",
+"build_number":0,"depends":["cudatoolkit >=11.0,<11.1","jpeg <=9b","libpng","
+numpy >=1.11","pillow >=4.1.1","python >=3.8,<3.9.0a0","pytorch 1.7.1"],"lice
+nse":"BSD","md5":"2f0823e67611a29ac03e18a5366742e0","name":"torchvision","sha
+256":"883045f366f7ca65c4f660676708264749ecaca2f385d08949a8a4d3c6857e0a","size
+":18814639,"subdir":"linux-64","timestamp":1607386156134,"version":"0.8.2"},"
+torchvision-0.8.2-py38_cu92.tar.bz2":{"build":"py38_cu92","build_number":0,"d
+epends":["cudatoolkit >=9.2,<9.3","jpeg <=9b","libpng","numpy >=1.11","pillow
+ >=4.1.1","python >=3.8,<3.9.0a0","pytorch 1.7.1"],"license":"BSD","md5":"ece
+589358fd93b8ae416f2c120c017e4","name":"torchvision","sha256":"7ee9592ce7ae29c
+31a639312c56867b4090d5d4e42b34ce73d7c6bba0782c302","size":18536477,"subdir":"
+linux-64","timestamp":1607386091067,"version":"0.8.2"},"torchvision-0.8.2-py3
+9_cpu.tar.bz2":{"build"1:"py39_cpu","build_number":0,"depends":["jpeg <=9b","
+libpng","numpy >=1.11","pillow >=4.1.1","python >=3.9,<3.10.0a0","python_abi
+3.9.* *_cp39","pytorch 1.7.1"],"features":"cpuonly","license":"BSD","md5":"1c
+505154928e85462beab0bef886f017","name":"torchvision","sha256":"cdc151a9f9c42c
+ca35f1bd7fa69d18940d5d1afcc6513e78207a44387a2a1226","size":6836386,"subdir":"
+linux-64","timestamp":1607386245020,"version":"0.8.2"},"torchvision-0.8.2-py3
+9_cu101.tar.bz2":{"build":"py39_cu101","build_number":0,"depends":["cudatoolk
+it >=10.1,<10.2","jpeg <=9b","libpng","numpy >=1.11","pillow >=4.1.1","python
+ >=3.9,<3.10.0a0","python_abi 3.9.* *_cp39","pytorch 1.7.1"],"license":"BSD",
+"md5":"044e0522604947f9b971aaeb473166a5","name":"torchvision","sha256":"4ec53
+876a98195708b1014a06fe00931ad1bfb781525acec57abfa026a4351b8","size":7577046,"
+subdir":"linux-64","timestamp":1607386548877,"version":"0.8.2"},"torchvision-
+0.8.2-py39_cu102.tar.bz2":{"build":"py39_cu102","build_number":0,"depends":["
+cudatoolkit >=10.2,<10.3","jpeg <=9b","libpng","numpy >=1.11","pillow >=4.1.1
+","python >=3.9,<3.10.0a0","python_abi 3.9.* *_cp39","pytorch 1.7.1"],"licens
+e":"BSD","md5":"3698100baa6e520233718ffea0a69335","name":"torchvision","sha25
+6":"c5f5ff6b08cc6df7ecdbf7878295e3d60dd7faabe92f76438d3bb189480b3981","size":
+7563051,"subdir":"linux-64","timestamp":1607386512839,"version":"0.8.2"},"tor
+chvision-0.8.2-py39_cu110.tar.bz2":{"build":"py39_cu110","build_number":0,"de
+pends":["cudatoolkit >=11.0,<11.1","jpeg <=9b","libpng","numpy >=1.11","pillo
+w >=4.1.1","python >=3.9,<3.10.0a0","python_abi 3.9.* *_cp39","pytorch 1.7.1"
+],"license":"BSD","md5":"824d721ed171f283d9a5ad6015e3341b","name":"torchvisio
+n","sha256":"528b52909fc991c6bfdd23065bfac8c913d0d6bb3c98a6ac7508ccae2285e731
+","size":7640089,"subdir":"linux-64","timestamp":1607386567540,"version":"0.8
+.2"},"torchvision-0.8.2-py39_cu92.tar.bz2":{"build":"py39_cu92","build_number
+":0,"depends":["cudatoolkit >=9.2,<9.3","jpeg <=9b","libpng","numpy >=1.11","
+pillow >=4.1.1","python >=3.9,<3.10.0a0","python_abi 3.9.* *_cp39","pytorch 1
+.7.1"],"license":"BSD","md5":"7b3ba3784e253ae48cf0cccbdaa6e7bf","name":"torch
+vision","sha256":"dabcba01be7816eefa806645f1d65c5680c13573b3dd1e2a83c3bdfcab9
+a1af0","size":7499396,"subdir":"linux-64","timestamp":1607386418575,"version"
+:"0.8.2"},"torchvision-0.9.0-py36_cpu.tar.bz2":{"build":"py36_cpu","build_num
+ber":0,"depends":["ffmpeg >=4.2","jpeg <=9b","libpng","numpy >=1.11","pillow
+>=4.1.1","python >=3.6,<3.7.0a0","pytorch 1.8.0"],"features":"cpuonly","licen
+se":"BSD","md5":"e9af8e41c65e7af2f3858ad99c99e0b7","name":"torchvision","sha2
+56":"306b3fc35eabfc83442e10a9e949b77353a80728c5a2d5d092ef52896ab73b06","size"
+:22939518,"subdir":"linux-64","timestamp":1614813137694,"version":"0.9.0"},"t
+orchvision-0.9.0-py36_cu101.tar.bz2":{"build":"py36_cu101","build_number":0,"
+depends":["cudatoolkit >=10.1,<10.2","ffmpeg >=4.2","jpeg <=9b","libpng","num
+py >=1.11","pillow >=4.1.1","python >=3.6,<3.7.0a0","pytorch 1.8.0"],"license
+":"BSD","md5":"38ca36c1c60dbd5cb0d18d3bec93b404","name":"torchvision","sha256
+":"a878a3402ef3f774e87ccb5c172f886386b66f43f2402b735a91780d2b594eaa","size":2
+6971088,"subdir":"linux-64","timestamp":1614813290142,"version":"0.9.0"},"tor
+chvision-0.9.0-py36_cu102.tar.bz2":{"build":"py36_cu102","build_number":0,"de
+pends":["cudatoolkit >=10.2,<10.3","ffmpeg >=4.2","jpeg <=9b","libpng","numpy
+ >=1.11","pillow >=4.1.1","python >=3.6,<3.7.0a0","pytorch 1.8.0"],"license":
+"BSD","md5":"66764b361c020c503dc396bd2a8bc100","name":"torchvision","sha256":
+"595f0a1b1c0b1615d590db0abbe4c52623b395b1a715bfca3c61e941e5b17f2d","size":269
+66923,"subdir":"linux-64","timestamp":1614813282453,"version":"0.9.0"},"torch
+vision-0.9.0-py36_cu111.tar.bz2":{"build":"py36_cu111","build_number":0,"depe
+nds":["cudatoolkit >=11.1,<11.2","ffmpeg >=4.2","jpeg <=9b","libpng","numpy >
+=1.11","pillow >=4.1.1","python >=3.6,<3.7.0a0","pytorch 1.8.0"],"license":"B
+SD","md5":"e2744061027a0912d5f5465bffbffbcb","name":"torchvision","sha256":"6
+1705e8141fa3fb9a0282b3eae75580e676e4977e705e0dbb9e19258e88f8dc4","size":27124
+154,"subdir":"linux-64","timestamp":1614814028335,"version":"0.9.0"},"torchvi
+sion-0.9.0-py37_cpu.tar.bz2":{"build":"py37_cpu","build_number":0,"depends":[
+"ffmpeg >=4.2","jpeg <=9b","libpng","numpy >=1.11","pillow >=4.1.1","python >
+=3.7,<3.8.0a0","pytorch 1.8.0"],"features":"cpuonly","license":"BSD","md5":"f
+773737243a6a311f6f397fc77727d8a","name":"torchvision","sha256":"7d5e00f6e8d17
+f7bc44cb4e49e0a3f3780a5183fea78adada1d099702de2cbfc","size":22933184,"subdir"
+:"linux-64","timestamp":1614813139393,"version":"0.9.0"},"torchvision-0.9.0-p
+y37_cu101.tar.bz2":{"build":"py37_cu101","build_number":0,"depends":["cudatoo
+lkit >=10.1,<10.2","ffmpeg >=4.2","jpeg <=9b","libpng","numpy >=1.11","pillow
+ >=4.1.1","python >=3.7,<3.8.0a0","pytorch 1.8.0"],"license":"BSD","md5":"833
+09f02c10f38bfdadfdd226638b070","name":"torchvision","sha256":"0ce05327931274e
+38594203ed9f6b0e1c0b6fd1e6d7bb41756c5ce9626deaefb","size":26908439,"subdir":"
+linux-64","timestamp":1614813284240,"version":"0.9.0"},"torchvision-0.9.0-py3
+7_cu102.tar.bz2":{"build":"py37_cu102","build_number":0,"depends":["cudatoolk
+it >=10.2,<10.3","ffmpeg >=4.2","jpeg <=9b","libpng","numpy >=1.11","pillow >
+=4.1.1","python >=3.7,<3.8.0a0","pytorch 1.8.0"],"license":"BSD","md5":"4856d
+5952d14fe7cf915196b5ae7acc3","name":"torchvision","sha256":"065ae0de3a9c54bc6
+83939d6b5bd1e7b12344d87e9ac78ebb6e60a7011522ee5","size":26961549,"subdir":"li
+nux-64","timestamp":1614813291212,"version":"0.9.0"},"torchvision-0.9.0-py37_
+cu111.tar.bz2":{"build":"py37_cu111","build_number":0,"depends":["cudatoolkit
+ >=11.1,<11.2","ffmpeg >=4.2","jpeg <=9b","libpng","numpy >=1.11","pillow >=4
+.1.1","python >=3.7,<3.8.0a0","pytorch 1.8.0"],"license":"BSD","md5":"d822143
+942fd36f5226965af90c98bc3","name":"torchvision","sha256":"b50aee39a19de8ed7e8
+c308d51643aa94354c9c188b0653335240153ab94a003","size":27170260,"subdir":"linu
+x-64","timestamp":1614813953880,"version":"0.9.0"},"torchvision-0.9.0-py38_cp
+u.tar.bz2":{"build":"py38_cpu","build_number":0,"depends":["ffmpeg >=4.2","jp
+eg <=9b","libpng","numpy >=1.11","pillow >=4.1.1","python >=3.8,<3.9.0a0","py
+torch 1.8.0"],"features":"cpuonly","license":"BSD","md5":"c22b1d40fae4713b59f
+6baac98c5c7c1","name":"torchvision","sha256":"5040f5b84fff262f58784ec45e2f718
+88ca428cc53f27c1020e5f64d699e18a6","size":22963864,"subdir":"linux-64","times
+tamp":1614813150100,"version":"0.9.0"},"torchvision-0.9.0-py38_cu101.tar.bz2"
+:{"build":"py38_cu101","build_number":0,"depends":["cudatoolkit >=10.1,<10.2"
+,"ffmpeg >=4.2","jpeg <=9b","libpng","numpy >=1.11","pillow >=4.1.1","python
+>=3.8,<3.9.0a0","pytorch 1.8.0"],"license":"BSD","md5":"c1264b9c5dc43908c6fe2
+889b5035f60","name":"torchvision","sha256":"2cdf3634bf4305821f09ae2846809944b
+d482e8f06c1744d74daad03b52030f5","size":26938058,"subdir":"linux-64","timesta
+mp":1614813295667,"version":"0.9.0"},"torchvision-0.9.0-py38_cu102.tar.bz2":{
+"build":"py38_cu102","build_number":0,"depends":["cudatoolkit >=10.2,<10.3","
+ffmpeg >=4.2","jpeg <=9b","libpng","numpy >=1.11","pillow >=4.1.1","python >=
+3.8,<3.9.0a0","pytorch 1.8.0"],"license":"BSD","md5":"3c822e47e69c17bbfaf68d0
+bf0261683","name":"torchvision"00,"sha256":"4914ab9f591823c5ec331e4ad05b9fbf4
+68b9e1437eb5f8e0957c09ae2d35f24","size":26944677,"subdir":"linux-64","timesta
+mp":1614813276206,"version":"0.9.0"},"torchvision-0.9.0-py38_cu111.tar.bz2":{
+"build":"py38_cu111","build_number":0,"depends":["cudatoolkit >=11.1,<11.2","
+ffmpeg >=4.2","jpeg <=9b","libpng","numpy >=1.11","pillow >=4.1.1","python >=
+3.8,<3.9.0a0","pytorch 1.8.0"],"license":"BSD","md5":"b0bd53013ef94399d6200c9
+fe7873c4d","name":"torchvision","sha256":"54cb5c9a144e43bb0ee9672c95bc6538c5e
+ca589cd7ca4d77113a5dd1fa6f9b0","size":27135412,"subdir":"linux-64","timestamp
+":1614813967534,"version":"0.9.0"},"torchvision-0.9.0-py39_cpu.tar.bz2":{"bui
+ld":"py39_cpu","build_number":0,"depends":["ffmpeg >=4.2","jpeg <=9b","libpng
+","numpy >=1.11","pillow >=4.1.1","python >=3.9,<3.10.0a0","python_abi 3.9.*
+*_cp39","pytorch 1.8.0"],"features":"cpuonly","license":"BSD","md5":"ac148f89
+374dbcb9e8683febbb078847","name":"torchvision","sha256":"434355464fb6e99ab565
+89bde61ce45dd904216b59400f977b1b5a1b1438f8af","size":711 3212,"subdir":"linux
+-64","timestamp":1614813172720,"version":"0.9.0"},"torchvision-0.9.0-py39_cu1
+01.tar.bz2":{"build":"py39_cu101","build_number":0,"depends":["cudatoolkit >=
+10.1,<10.2","ffmpeg >=4.2","jpeg <=9b","libpng","numpy >=1.11","pillow >=4.1.
+1","python >=3.9,<3.10.0a0","python_abi 3.9.* *_cp39","pytorch 1.8.0"],"licen
+se":"BSD","md5":"8094d692a782e07cdec9495836345308","name":"torchvision","sha2
+56":"4e74f9133815d3102ddfaa3db26f27d17c1aa778db41c663064480d4c29e8c23","size"
+:7991117,"subdir":"linux-64","timestamp":1614813491128,"version":"0.9.0"},"to
+rchvision-0.9.0-py39_cu102.tar.bz2":{"build":"py39_cu102","build_number":0,"d
+epends":["cudatoolkit >=10.2,<10.3","ffmpeg >=4.2","jpeg <=9b","libpng","nump
+y >=1.11","pillow >=4.1.1","python >=3.9,<3.10.0a0","python_abi 3.9.* *_cp39"
+,"pytorch 1.8.0"],"license":"BSD","md5":"afbc22ac022f9de40f442f6d3fb0b1e3","n
+ame":"torchvision","sha256":"32fc7e173415e5a617b131e8e1f64a8086626da1933ad560
+3bd15ede86150090","size":8017447,"subdir":"linux-64","timestamp":161481351313
+7,"version":"0.9.0"},"torchvision-0.9.0-py39_cu111.tar.bz2":{"build":"py39_cu
+111","build_number":0,"depends":["cudatoolkit >=11.1,<11.2","ffmpeg >=4.2","j
+peg <=9b","libpng","numpy >=1.11","pillow >=4.1.1","python >=3.9,<3.10.0a0","
+python_abi 3.9.* *_cp39","pytorch 1.8.0"],"license":"BSD","md5":"6666db2e50b6
+b21253b1e67aaf1f315b","name":"torchvision","sha256":"d47c38b171ab3e41347a2d15
+5357e18238a5147a4618794ef50744d18ce73de9","size":8192291,"subdir":"linux-64",
+"timestamp":1614814021649,"version":"0.9.0"},"torchvision-0.9.1-py36_cpu.tar.
+bz2":{"build":"py36_cpu","build_number":0,"depends":["ffmpeg >=4.2","jpeg <=9
+b","libpng","numpy >=1.11","pillow >=4.1.1","python >=3.6,<3.7.0a0","pytorch
+1.8.1"],"features":"cpuonly","license":"BSD","md5":"bc02727c77fad799a66abbbdb
+c4d518b","name":"torchvision","sha256":"07b6fcf61e4035ef4e60b5c905d127299cf17
+01dd63cc5836eb44a9715573045","size":22954499,"subdir":"linux-64","timestamp":
+1616644650241,"version":"0.9.1"},"torchvision-0.9.1-py36_cu101.tar.bz2":{"bui
+ld":"py36_cu101","build_number":0,"depends":["cudatoolkit >=10.1,<10.2","ffmp
+eg >=4.2","jpeg <=9b","libpng","numpy >=1.11","pillow >=4.1.1","python >=3.6,
+<3.7.0a0","pytorch 1.8.1"],"license":"BSD","md5":"41ba745f2ff3bb40148492e5427
+08f1b","name":"torchvision","sha256":"d52f8b28193168a7e86b9ab56a52a6408a91347
+10d72f6715c70ae052bd31432","size":26913725,"subdir":"linux-64","timestamp":16
+16644806313,"version":"0.9.1"},"torchvision-0.9.1-py36_cu102.tar.bz2":{"build
+":"py36_cu102","build_number":0,"depends":["cudatoolkit >=10.2,<10.3","ffmpeg
+ >=4.2","jpeg <=9b","libpng","numpy >=1.11","pillow >=4.1.1","python >=3.6,<3
+.7.0a0","pytorch 1.8.1"],"license":"BSD","md5":"2b05efc974b69afb270d1d55e7e1f
+675","name":"torchvision","sha256":"a2df915a3c3207caa72972b9ca04c464c3de766c7
+ab5315adef939e3111e22a7","size":26926171,"subdir":"linux-64","timestamp":1616
+644809223,"version":"0.9.1"},"torchvision-0.9.1-py36_cu111.tar.bz2":{"build":
+"py36_cu111","build_number":0,"depends":["cudatoolkit >=11.1,<11.2","ffmpeg >
+=4.2","jpeg <=9b","libpng","numpy >=1.11","pillow >=4.1.1","python >=3.6,<3.7
+.0a0","pytorch 1.8.1"],"license":"BSD","md5":"eda7a65f3c43cfee9b41cea3515d73a
+6","name":"torchvision","sha256":"e93ead43e13f8bff80b0ac524823f1677be1f075371
+6c0271b0756be002974bd","size":27107438,"subdir":"linux-64","timestamp":161664
+5453342,"version":"0.9.1"},"torchvision-0.9.1-py37_cpu.tar.bz2":{"build":"py3
+7_cpu","build_number":0,"depends":["ffmpeg >=4.2","jpeg <=9b","libpng","numpy
+ >=1.11","pillow >=4.1.1","python >=3.7,<3.8.0a0","pytorch 1.8.1"],"features"
+:"cpuonly","license":"BSD","md5":"35e316999e9e14e881b615dcddca9de6","name":"t
+orchvision","sha256":"f3f2ac25133c6db566d777c34ba17fb272199a828b29bfb1e3cffdd
+714f05a30","size":22929363,"subdir":"linux-64","timestamp":1616644664877,"ver
+sion":"0.9.1"},"torchvision-0.9.1-py37_cu101.tar.bz2":{"build":"py37_cu101","
+build_number":0,"depends":["cudatoolkit >=10.1,<10.2","ffmpeg >=4.2","jpeg <=
+9b","libpng","numpy >=1.11","pillow >=4.1.1","python >=3.7,<3.8.0a0","pytorch
+ 1.8.1"],"license":"BSD","md5":"2d3040c86cd3e7877aad656f3968e30e","name":"tor
+chvision","sha256":"7e32e073c32a3d419dfab0b3ee3b9e58cff8fa7eee9f3a6bb7851d12c
+1ee6bab","size":26933367,"subdir":"linux-64","timestamp":1616644812764,"versi
+on":"0.9.1"},"torchvision-0.9.1-py37_cu102.tar.bz2":{"build":"py37_cu102","bu
+ild_number":0,"depends":["cudatoolkit >=10.2,<10.3","ffmpeg >=4.2","jpeg <=9b
+","libpng","numpy >=1.11","pillow >=4.1.1","python >=3.7,<3.8.0a0","pytorch 1
+.8.1"],"license":"BSD","md5":"f238f7acf8ff0e8b33416bf6c75c79c2","name":"torch
+vision","sha256":"67d05262e3687a58b87c6b4b0dc1301e45890f1268d159c5ca42991066a
+ba6f2","size":26931838,"subdir":"linux-64","timestamp":1616644793118,"version
+":"0.9.1"},"torchvision-0.9.1-py37_cu111.tar.bz2":{"build":"py37_cu111","buil
+d_number":0,"depends":["cudatoolkit >=11.1,<11.2","ffmpeg >=4.2","jpeg <=9b",
+"libpng","numpy >=1.11","pillow >=4.1.1","python >=3.7,<3.8.0a0","pytorch 1.8
+.1"],"license":"BSD","md5":"d47215411c0bc1ca792d141584ec341a","name":"torchvi
+sion","sha256":"7c1e991c6813248711c065b4008cda728bc2b71b871cbaa83b6789084c312
+929","size":27126702,"subdir":"linux-64","timestamp":1616645473952,"version":
+"0.9.1"},"torchvision-0.9.1-py38_cpu.tar.bz2":{"build":"py38_cpu","build_numb
+er":0,"depends":["ffmpeg >=4.2","jpeg <=9b","libpng","numpy >=1.11","pillow >
+=4.1.1","python >=3.8,<3.9.0a0","pytorch 1.8.1"],"features":"cpuonly","licens
+e":"BSD","md5":"09f14b0232a8f8242c0af9c9660d8114","name":"torchvision","sha25
+6":"c96a995d9310d84d56a2fa186e53783918741f93432841cfae6bad6155ea6467","size":
+22904505,"subdir":"linux-64","timestamp":1616644668453,"version":"0.9.1"},"to
+rchvision-0.9.1-py38_cu101.tar.bz2":{"build":"py38_cu101","build_number":0,"d
+epends":["cudatoolkit >=10.1,<10.2","ffmpeg >=4.2","jpeg <=9b","libpng","nump
+y >=1.11","pillow >=4.1.1","python >=3.8,<3.9.0a0","pytorch 1.8.1"],"license"
+:"BSD","md5":"8253faefa7550a821e5a57d4642b4d9e","name":"torchvision","sha256"
+:"3f9f1327b32f5e75c510cc0c350efaf116d5f9df77b126d6e17b89c2ef01b027","size":26
+954909,"subdir":"linux-64","timestamp":1616644803728,"version":"0.9.1"},"torc
+hvision-0.9.1-py38_cu102.tar.bz2":{"build":"py38_cu102","build_number":0,"dep
+ends":["cudatoolkit >=10.2,<10.3","ffmpeg >=4.2","jpeg <=9b","libpng","numpy
+>=1.11","pillow >=4.1.1","python >=3.8,<3.9.0a0","pytorch 1.8.1"],"license":"
+BSD","md5":"1913d3291efb6bc972804103ae9eba86","name":"torchvision","sha256":"
+aae9f47e9bb37252314437d730e91a78673a82677dc1d20a60a728d4809989f4","size":2692
+5397,"subdir":"linux-64","timestamp":1616644796030,"version":"0.9.1"},"torchv
+ision-0.9.1-py38_cu111.tar.bz2":{"build":"py38_cu111","build_number":0,"depen
+ds":["cudatoolkit >=11.1,<11.2","ffmpeg >=4.2","jpeg <=9b","libpng","numpy >=
+1.11","pillow >=4.1.1","python >=3.8,<3.9.0a0","pytorch 1.8.1"],"license":"BS
+D","md5":"1c812e7d6ddcf0a8875284661d31b97d","name":"torchvision","sha256":"44
+a310e7ba9ffee31c227c17733daac524cdf17c1c8ba078f9506e631502d2a0","size":271134
+15,"subdir":"linux-64","timestamp":1616645454188,"version":"0.9.1"},"torchvis
+ion-0.9.1-py39_cpu.tar.bz2":{"build":"py39_cpu","build_number":0,"depends":["
+ffmpeg >=4.2","jpeg <=9b","libpng","numpy >=1.11","pillow >=4.1.1291","python
+ >=3.9,<3.10.0a0","python_abi 3.9.* *_cp39","pytorch 1.8.1"],"features":"cpuo
+nly","license":"BSD","md5":"6d8f0dfe986a93a24027253ed4f3ca18","name":"torchvi
+sion","sha256":"8b316bda9ed6408b29d471431650f3fe034cda9d5b3ecfe2dabed1d1b1d0b
+022","size":7102333,"subdir":"linux-64","timestamp":1616644685133,"version":"
+0.9.1"},"torchvision-0.9.1-py39_cu101.tar.bz2":{"build":"py39_cu101","build_n
+umber":0,"depends":["cudatoolkit >=10.1,<10.2","ffmpeg >=4.2","jpeg <=9b","li
+bpng","numpy >=1.11","pillow >=4.1.1","python >=3.9,<3.10.0a0","python_abi 3.
+9.* *_cp39","pytorch 1.8.1"],"license":"BSD","md5":"ad5ea1bec797a83b4b306521f
+1616bc3","name":"torchvision","sha256":"03789a205dc7cc29235a999d5e0d1e4326a21
+0160fb04e1471a32d09b48e884e","size":7993778,"subdir":"linux-64","timestamp":1
+616645034087,"version":"0.9.1"},"torchvision-0.9.1-py39_cu102.tar.bz2":{"buil
+d":"py39_cu102","build_number":0,"depends":["cudatoolkit >=10.2,<10.3","ffmpe
+g >=4.2","jpeg <=9b","libpng","numpy >=1.11","pillow >=4.1.1","python >=3.9,<
+3.10.0a0","py1thon_abi 3.9.* *_cp39","pytorch 1.8.1"],"license":"BSD","md5":"
+37a02efa1d78faaa03185824c8910d19","name":"torchvision","sha256":"e93169906cbf
+96396f86991996a2a6a044417a64255e09ca0a2b4ad5101cfd47","size":7991057,"subdir"
+:"linux-64","timestamp":1616644994713,"version":"0.9.1"},"torchvision-0.9.1-p
+y39_cu111.tar.bz2":{"build":"py39_cu111","build_number":0,"depends":["cudatoo
+lkit >=11.1,<11.2","ffmpeg >=4.2","jpeg <=9b","libpng","numpy >=1.11","pillow
+ >=4.1.1","python >=3.9,<3.10.0a0","python_abi 3.9.* *_cp39","pytorch 1.8.1"]
+,"license":"BSD","md5":"0772ef82e8b9e9dc7352ded4ab31dbd6","name":"torchvision
+","sha256":"52745f75e1adbfef8754466f0720d1ffcebc839e49a003a267783b47cbc59453"
+,"size":8188560,"subdir":"linux-64","timestamp":1616645525460,"version":"0.9.
+1"},"torchvision-cpu-0.2.1-py27_1.tar.bz2":{"arch":"x86_64","build":"py27_1",
+"build_number":1,"depends":["numpy >=1.11","pillow >=4.1.1","python >=2.7,<2.
+8.0a0","pytorch-cpu >=0.4","six"],"license":"BSD","md5":"b5da36c6b32ff9623fcd
+321c8c18c1ba","name":"torchvision-cpu","platform":"linux","sha256":"93f336ba1
+38e5ae1b9761abca52e4ac9b6f5cd285d101f654aaccf46802f8e32","size":126011,"subdi
+r":"linux-64","timestamp":1524660896357,"version":"0.2.1"},"torchvision-cpu-0
+.2.1-py35_1.tar.bz2":{"arch":"x86_64","build":"py35_1","build_number":1,"depe
+nds":["numpy >=1.11","pillow >=4.1.1","python >=3.5,<3.6.0a0","pytorch-cpu >=
+0.4","six"],"license":"BSD","md5":"243e60702969074719ae9a42dd932a42","name":"
+torchvision-cpu","platform":"linux","sha256":"367821a3c8b9881458cdeab31563d58
+c34e4052a86ed70af71ca26f7a43f8b46","size":127139,"subdir":"linux-64","timesta
+mp":1524660999085,"version":"0.2.1"},"torchvision-cpu-0.2.1-py36_1.tar.bz2":{
+"arch":"x86_64","build":"py36_1","build_number":1,"depends":["numpy >=1.11","
+pillow >=4.1.1","python >=3.6,<3.7.0a0","pytorch-cpu >=0.4","six"],"license":
+"BSD","md5":"01db6577c9718d4fb5f706e8990cc614","name":"torchvision-cpu","plat
+form":"linux","sha256":"b6a9f414436958df86efff0bf84a958519923a149001f9c568f19
+d0bbb2e89f8","size":125456,"subdir":"linux-64","timestamp":1524661098057,"ver
+sion":"0.2.1"},"torchvision-cpu-0.2.1-py37_1.tar.bz2":{"build":"py37_1","buil
+d_number":1,"depends":["numpy >=1.11","pillow >=4.1.1","python >=3.7,<3.8.0a0
+","pytorch-cpu >=0.4","six"],"license":"BSD","md5":"0b7d8f29512bb6407112d08d0
+a62c8d6","name":"torchvision-cpu","sha256":"224e7219b178b7ec8950b508c1532e93b
+0729b1e425e06f7dcbe28d1e13b5f78","size":128233,"subdir":"linux-64","timestamp
+":1534195827316,"version":"0.2.1"},"torchvision-cpu-0.3.0-py27_cuNone_1.tar.b
+z2":{"build":"py27_cuNone_1","build_number":1,"depends":["numpy >=1.11","pill
+ow >=4.1.1","python >=2.7,<2.8.0a0","pytorch-cpu >=1.1.0","six"],"license":"B
+SD","md5":"1dcffd0f4fc38b6251be697c4be7d83b","name":"torchvision-cpu","sha256
+":"645ef0a519f6ab8ba8237cc0101f49313ebbd47ed341c1594d7e8a12d7036cbb","size":4
+030492,"subdir":"linux-64","timestamp":1558553131504,"version":"0.3.0"},"torc
+hvision-cpu-0.3.0-py35_cuNone_1.tar.bz2":{"build":"py35_cuNone_1","build_numb
+er":1,"depends":["numpy >=1.11","pillow >=4.1.1","python >=3.5,<3.6.0a0","pyt
+orch-cpu >=1.1.0","six"],"license":"BSD","md5":"2a153d057382bebc916c09532c1c7
+d44","name":"torchvision-cpu","sha256":"2fb79f5d85763dfa9009de6dfc66a2be8302e
+1933dede07e337ed96cb23eee0f","size":4035125,"subdir":"linux-64","timestamp":1
+558553452042,"version":"0.3.0"},"torchvision-cpu-0.3.0-py36_cuNone_1.tar.bz2"
+:{"build":"py36_cuNone_1","build_number":1,"depends":["numpy >=1.11","pillow
+>=4.1.1","python >=3.6,<3.7.0a0","pytorch-cpu >=1.1.0","six"],"license":"BSD"
+,"md5":"7efa9a3331394598d0e47e112ca6fdbf","name":"torchvision-cpu","sha256":"
+d0763c249d597e47a67ae4d66c4536be6246addcb17cb949ac8a69119712137a","size":4034
+860,"subdir":"linux-64","timestamp":1558553718811,"version":"0.3.0"},"torchvi
+sion-cpu-0.3.0-py37_cuNone_1.tar.bz2":{"build":"py37_cuNone_1","build_number"
+:1,"depends":["numpy >=1.11","pillow >=4.1.1","python >=3.7,<3.8.0a0","pytorc
+h-cpu >=1.1.0","six"],"license":"BSD","md5":"3a6c67c9cdc0c067d3459781ae0bc214
+","name":"torchvision-cpu","sha256":"139f03a32ec0f02910988c167a8556c8fb083300
+3b0b286df8b54461e537125d","size":4035861,"subdir":"linux-64","timestamp":1558
+553988664,"version":"0.3.0"}},"packages.conda":{"faiss-cpu-1.10.0-py3.10_hf65
+b397_0_cpu.conda":{"build":"py3.10_hf65b397_0_cpu","build_number":0,"depends"
+:["__glibc >=2.17,<3.0.a0","_openmp_mutex >=4.5","libfaiss 1.10.0 py3.10_hf65
+b397_0_cpu","libgcc >=14","libstdcxx >=14","mkl 2023.0.*","numpy >=1.19,<2","
+numpy >=1.26.4,<2.0a0","packaging","python >=3.10,<3.11.0a0","python_abi 3.10
+.* *_cp310","python_abi <3.12"],"license":"MIT","license_family":"MIT","md5":
+"574c80c37b845669c379c5d55f30cdb8","name":"faiss-cpu","sha256":"f9aa961f4326f
+ed503b0de81a4350502f72db7f9bba8b9871fd7fef319181a25","size":2612729,"subdir":
+"linux-64","timestamp":1738363485161,"version":"1.10.0"},"faiss-cpu-1.10.0-py
+3.11_hf65b397_0_cpu.conda":{"build":"py3.11_hf65b397_0_cpu","build_number":0,
+"depends":["__glibc >=2.17,<3.0.a0","_openmp_mutex >=4.5","libfaiss 1.10.0 py
+3.11_hf65b397_0_cpu","libgcc >=14","libstdcxx >=14","mkl 2023.0.*","numpy >=1
+.19,<2","numpy >=1.26.4,<2.0a0","packaging","python >=3.11,<3.12.0a0","python
+_abi 3.11.* *_cp311","python_abi <3.12"],"license":"MIT","license_family":"MI
+T","md5":"c12530ca10234ce72f6e72801bc9327a","name":"faiss-cpu","sha256":"94ed
+e027118ac58a7bf01df7ec3d712a78371dc59fc5b8119556f045a19616f3","size":1700391,
+"subdir":"linux-64","timestamp":1738363788504,"version":"1.10.0"},"faiss-cpu-
+1.10.0-py3.12_hf65b397_0_cpu.conda":{"build":"py3.12_hf65b397_0_cpu","build_n
+umber":0,"depends":["__glibc >=2.17,<3.0.a0","_openmp_mutex >=4.5","libfaiss
+1.10.0 py3.12_hf65b397_0_cpu","libgcc >=14","libstdcxx >=14","mkl >=2023.2.0"
+,"numpy >=1.19,<2","numpy >=1.26.4,<2.0a0","packaging","python >=3.12,<3.13.0
+a0","python_abi 3.12.*","python_abi 3.12.* *_cp312"],"license":"MIT","license
+_family":"MIT","md5":"e479f2983b2561cc3c3a06e7bfd15c45","name":"faiss-cpu","s
+ha256":"27124ab80212670d494bc81bf5eea9614bbaf380e05cd8217af8e2917a4d0ee1","si
+ze":2751704,"subdir":"linux-64","timestamp":1738363182571,"version":"1.10.0"}
+,"faiss-cpu-1.10.0-py3.9_hf65b397_0_cpu.conda":{"build":"py3.9_hf65b397_0_cpu
+","build_number":0,"depends":["__glibc >=2.17,<3.0.a0","_openmp_mutex >=4.5",
+"libfaiss 1.10.0 py3.9_hf65b397_0_cpu","libgcc >=14","libstdcxx >=14","mkl 20
+23.0.*","numpy >=1.19,<2","numpy >=1.26.4,<2.0a0","packaging","python >=3.9,<
+3.10.0a0","python_abi 3.9.* *_cp39","python_abi <3.12"],"license":"MIT","lice
+nse_family":"MIT","md5":"98a8b2d0c1e513d244cbfae04817ebce","name":"faiss-cpu"
+,"sha256":"a7059c1fad0c9e122ccdf2e2649e155d5dda2c4181482dc03eebc4caad2e7d7e",
+"size":1647359,"subdir":"linux-64","timestamp":1738364089366,"version":"1.10.
+0"},"faiss-cpu-1.11.0-py3.10_hf65b397_0_cpu.conda":{"build":"py3.10_hf65b397_
+0_cpu","build_number":0,"depends":["__glibc >=2.17,<3.0.a0","_openmp_mutex >=
+4.5","libfaiss 1.11.0 py3.10_hf65b397_0_cpu","libgcc >=14","libstdcxx >=14","
+mkl 2023.0.*","numpy >=1.19,<2","numpy >=1.26.4,<2.0a0","packaging","python >
+=3.10,<3.11.0a0","python_abi 3.10.* *_cp310","python_abi <3.12"],"license":"M
+IT","license_family":"MIT","md5":"6ba619e6848d075fb00036605c5ebd20","name":"f
+aiss-cpu","sha256":"bk f8f39bdb75e36dafb8fe2aa581eaaecd34d485f34083de0e8ab01b
+2d9be5710","size":1700751,"subdir":"linux-64","timestamp":1745592532528,"vers
+ion":"1.11.0"},"faiss-cpu-1.11.0-py3.11_hf65b397_0_cpu.conda":{"build":"py3.1
+1_hf65b397_0_cpu","build_number":0,"depends":["__glibc >=2.17,<3.0.a0","_open
+mp_mutex >=4.5","libfaiss 1.11.0 py3.11_hf65b397_0_cpu","libgcc >=14","libstd
+cxx >=14","mkl 2023.0.*","numpy >=1.19,<2","numpy >=1.26.4,<2.0a0","packaging
+","python >=3.11,<3.12.0a0","python_abi 3.11.* *_cp311","python_abi <3.12"],"
+license":"MIT","license_family":"MIT","md5":"5e27c0468b369c7a3adca55b93574ab5
+","name":"faiss-cpu","sha256":"311fd5fe8a36f5cebe08b9abdf59db9632606f932f3c06
+1dd22d9f8efeba0857","size":2896911,"subdir":"linux-64","timestamp":1745592211
+273,"version":"1.11.0"},"faiss-cpu-1.11.0-py3.12_hf65b397_0_cpu.conda":{"buil
+d":"py3.12_hf65b397_0_cpu","build_number":0,"depends":["__glibc >=2.17,<3.0.a
+0","_openmp_mutex >=4.5","libfaiss 1.11.0 py3.12_hf65b397_0_cpu","libgcc >=14
+","libstdcxx >=14","mkl >=2023.2.0","numpy >=1 .19,<2","numpy >=1.26.4,<2.0a0
+","packaging","python >=3.12,<3.13.0a0","python_abi 3.12.*","python_abi 3.12.
+* *_cp312"],"license":"MIT","license_family":"MIT","md5":"e4259721543557a8df0
+f24c50123225c","name":"faiss-cpu","sha256":"521463a09c8abbd9f9f9c44900c44a564
+5f1f4343c85792370c0026370362db3","size":1855764,"subdir":"linux-64","timestam
+p":1745591894304,"version":"1.11.0"},"faiss-cpu-1.11.0-py3.9_hf65b397_0_cpu.c
+onda":{"build":"py3.9_hf65b397_0_cpu","build_number":0,"depends":["__glibc >=
+2.17,<3.0.a0","_openmp_mutex >=4.5","libfaiss 1.11.0 py3.9_hf65b397_0_cpu","l
+ibgcc >=14","libstdcxx >=14","mkl 2023.0.*","numpy >=1.19,<2","numpy >=1.26.4
+,<2.0a0","packaging","python >=3.9,<3.10.0a0","python_abi 3.9.* *_cp39","pyth
+on_abi <3.12"],"license":"MIT","license_family":"MIT","md5":"842c1e9e6f114954
+adc7b21300678ec6","name":"faiss-cpu","sha256":"e900e7e7190e3556b50ab4f00e6a0f
+682a9fc4ff36f79faccbfd23374e8a7b9c","size":2765038,"subdir":"linux-64","times
+tamp":1745591569162,"version":"1.11.0"},"faiss-cpu-1.12.0-py3.10_hf65b397_0_c
+pu.conda":{"build":"py3.10_hf65b397_0_cpu","build_number":0,"depends":["__gli
+bc >=2.17,<3.0.a0","_openmp_mutex >=4.5","libfaiss 1.12.0 py3.10_hf65b397_0_c
+pu","libgcc >=15","libstdcxx >=15","mkl 2023.0.*","numpy >=1.19,<2","numpy >=
+1.26.4,<2.0a0","packaging","python >=3.10,<3.11.0a0","python_abi 3.10.* *_cp3
+10","python_abi <3.12"],"license":"MIT","license_family":"MIT","md5":"8e435cb
+d28fdc168695be7f3274980e6","name":"faiss-cpu","sha256":"ff30f8d7cde94b54c4bdd
+528c36f7c5c7510b1f3a7327d9ce49c1fd0502abaa1","size":1768165,"subdir":"linux-6
+4","timestamp":1755019200211,"version":"1.12.0"},"faiss-cpu-1.12.0-py3.11_hf6
+5b397_0_cpu.conda":{"build":"py3.11_hf65b397_0_cpu","build_number":0,"depends
+":["__glibc >=2.17,<3.0.a0","_openmp_mutex >=4.5","libfaiss 1.12.0 py3.11_hf6
+5b397_0_cpu","libgcc >=15","libstdcxx >=15","mkl 2023.0.*","numpy >=1.19,<2",
+"numpy >=1.26.4,<2.0a0","packaging","python >=3.11,<3.12.0a0","python_abi 3.1
+1.* *_cp311","python_abi <3.12"],"license":"MIT","license_family":"MIT","md5"
+:"e21081f47853f9495c54b9a0b16c5a41","name":"faiss-cpu","sha256":"d0da8e39a289
+e1efc96c0de02294f50c2fc82516e1b275afe4697e752a09fcc6","size":1965984,"subdir"
+:"linux-64","timestamp":1755018850224,"version":"1.12.0"},"faiss-cpu-1.12.0-p
+y3.12_hf65b397_0_cpu.conda":{"build":"py3.12_hf65b397_0_cpu","build_number":0
+,"depends":["__glibc >=2.17,<3.0.a0","_openmp_mutex >=4.5","libfaiss 1.12.0 p
+y3.12_hf65b397_0_cpu","libgcc >=15","libstdcxx >=15","mkl >=2023.2.0","numpy
+>=1.19,<2","numpy >=1.26.4,<2.0a0","packaging","python >=3.12,<3.13.0a0","pyt
+hon_abi 3.12.*","python_abi 3.12.* *_cp312"],"license":"MIT","license_family"
+:"MIT","md5":"c0456b20a29ef9ad924e0a97c8fe363a","name":"faiss-cpu","sha256":"
+627005f480bdb7df1a9240d1ea01e957ae22038b79001f282b0dc39706b9af5b","size":4116
+615,"subdir":"linux-64","timestamp":1755018490089,"version":"1.12.0"},"faiss-
+gpu-1.10.0-py3.10_h125bfce_0_cuda11.4.4.conda":{"build":"py3.10_h125bfce_0_cu
+da11.4.4","build_number":0,"depends":["__glibc >=2.17,<3.0.a0","_openmp_mutex
+ >=4.5","libfaiss 1.10.0 h125bfce_0_cuda11.4.4","libgcc >=14","libstdcxx >=14
+","numpy >=1.19,<2","numpy >=1.26.4,<2.0a0","packaging","python >=3.10,<3.11.
+0a0","python_abi 3.10.* *_cp310"],"license":"MIT","license_family":"MIT","md5
+":"52f7c15d2aedab501a46076b1a672cd3","name":"faiss-gpu","sha256":"143aa30e690
+eb82c1583db7bfa643a8b9792e03aceeaf5c07219bf73ed6caf5c","size":1777164,"subdir
+":"linux-64","timestamp":1738367922637,"version":"1.10.0"},"faiss-gpu-1.10.0-
+py3.10_h4818125_0_cuda12.1.1.conda":{"build":"py3.10_h4818125_0_cuda12.1.1","
+build_number":0,"depends":["__glibc >=2.17,<3.0.a0","_openmp_mutex >=4.5","li
+bfaiss 1.10.0 h4818125_0_cuda12.1.1","libgcc >=14","libstdcxx >=14","numpy >=
+1.19,<2","numpy >=1.26.4,<2.0a0","packaging","python >=3.10,<3.11.0a0","pytho
+n_abi 3.10.* *_cp310"],"license":"MIT","license_family":"MIT","md5":"dafbe14e
+cf9d6dd0fe3559aa90079f4b","name":"faiss-gpu","sha256":"00710c5436a6ac70859b7a
+f2374cb34703068eef56baca78b6fcbf425af417c2","size":3032800,"subdir":"linux-64
+","timestamp":1738366978975,"version":"1.10.0"},"faiss-gpu-1.10.0-py3.11_h125
+bfce_0_cuda11.4.4.conda":{"build":"py3.11_h125bfce_0_cuda11.4.4","build_numbe
+r":0,"depends":["__glibc >=2.17,<3.0.a0","_openmp_mutex >=4.5","libfaiss 1.10
+.0 h125bfce_0_cuda11.4.4","libgcc >=14","libstdcxx >=14","numpy >=1.19,<2","n
+umpy >=1.26.4,<2.0a0","packaging","python >=3.11,<3.12.0a0","python_abi 3.11.
+* *_cp311"],"license":"MIT","license_family":"MIT","md5":"09b61b41f4af8fc1f62
+fabb8cb7bacb7","name":"faiss-gpu","sha256":"c67aa021603968f393a7f4939ea0501ab
+807995f9cc2dbc2e6316b36f85e3573","size":1931483,"subdir":"linux-64","timestam
+p":1738367567043,"version":"1.10.0"},"faiss-gpu-1.10.0-py3.11_h4818125_0_cuda
+12.1.1.conda":{"build":"py3.11_h4818125_0_cuda12.1.1","build_number":0,"depen
+ds":["__glibc >=2.17,<3.0.a0","_openmp_mutex >=4.5","libfaiss 1.10.0 h4818125
+_0_cuda12.1.1","libgcc >=14","libstdcxx >=14","numpy >=1.19,<2","numpy >=1.26
+.4,<2.0a0","packaging","python >=3.11,<3.12.0a0","python_abi 3.11.* *_cp311"]
+,"license":"MIT","license_family":"MIT","md5":"d1c706f69e2c957222bb294a689c75
+36","name":"faiss-gpu","sha256":"2a220a2d6f5957cb9eaead07bc457179a95fe98ad8c8
+f9abf2cea919f4dd44d6","size":1955041,"subdir":"linux-64","timestamp":17383666
+27373,"version":"1.10.0"},"faiss-gpu-1.10.0-py3.12_h125bfce_0_cuda11.4.4.cond
+a":{"build":"py3.12_h125bfce_0_cuda11.4.4","build_number":0,"depends":["__gli
+bc >=2.17,<3.0.a0","_openmp_mutex >=4.5","libfaiss 1.10.0 h125bfce_0_cuda11.4
+.4","libgcc >=14","libstdcxx >=14","numpy >=1.19,<2","numpy >=1.26.4,<2.0a0",
+"packaging","python >=3.12,<3.13.0a0","python_abi 3.12.* *_cp312"],"license":
+"MIT","license_family":"MIT","md5":"9bfbcc4e38ff9010a1cd8fae94ba1f3e","name":
+"faiss-gpu","sha256":"6bec242d8196c5ca3f3fd5179e1fc16e071e7836d1e3f1b3cccccc0
+64363dc0a","size":3062988,"subdir":"linux-64","timestamp":1738366855696,"vers
+ion":"1.10.0"},"faiss-gpu-1.10.0-py3.12_h4818125_0_cuda12.1.1.conda":{"build"
+:"py3.12_h4818125_0_cuda12.1.1","build_number":0,"depends":["__glibc >=2.17,<
+3.0.a0","_openmp_mutex >=4.5","libfaiss 1.10.0 h4818125_0_cuda12.1.1","libgcc
+ >=14","libstdcxx >=14","numpy >=1.19,<2","numpy >=1.26.4,<2.0a0","packaging"
+,"python >=3.12,<3.13.0a0","python_abi 3.12.* *_cp312"],"license":"MIT","lice
+nse_family":"MIT","md5":"189d4392fe8a2b483e13fcb799495118","name":"faiss-gpu"
+,"sha256":"7f8b131a8f51dd80e947395ccfa5ae7142e87c42478895d351461b4557ed78bf",
+"size":1959251,"subdir":"linux-64","timestamp":1738366275648,"version":"1.10.
+0"},"faiss-gpu-1.10.0-py3.9_h125bfce_0_cuda11.4.4.conda":{"build":"py3.9_h125
+bfce_0_cuda11.4.4","build_number":0,"depends":["__glibc >=2.17,<3.0.a0","_ope
+nmp_mutex >=4.5","libfaiss 1.10.0 h125bfce_0_cuda11.4.4","libgcc >=14","libst
+dcxx >=14","numpy >=1.19,<2","numpy >=1.26.4,<2.0a0","packaging","python >=3.
+9,<3.10.0a0","python_abi 3.9.* *_cp39"],"license":"MIT","license_family":"MIT
+","md5":"8c38f2b9bc32a48bb5093ef9b62d0292","name":"faiss-gpu","sha256":"cf5b0
+7d8510975f3bb838cae699ce78df42d0cf57090ecaef201b550e8fcb965","size":1788253,"
+subdir":"linux-64","timestamp":1738367211352,"version":"1.10.0"},"faiss-gpu-1
+.10.0-py3.9_h4818125_0_cuda12.1.1.conda":{"build":"py31.9_h4818125_0_cuda12.1
+.1","build_number":0,"depends":["__glibc >=2.17,<3.0.a0","_openmp_mutex >=4.5
+","libfaiss 1.10.0 h4818125_0_cuda12.1.1","libgcc >=14","libstdcxx >=14","num
+py >=1.19,<2","numpy >=1.26.4,<2.0a0","packaging","python >=3.9,<3.10.0a0","p
+ython_abi 3.9.* *_cp39"],"license":"MIT","license_family":"MIT","md5":"003c8b
+67b52f809b7d12ce536a6ed3ff","name":"faiss-gpu","sha256":"1b22b227c500eab59a12
+6d20126a0ad6e8f7cfd3f881741bec96427b13a81a0c","size":1969129,"subdir":"linux-
+64","timestamp":1738367331403,"version":"1.10.0"},"faiss-gpu-1.11.0-py3.10_h1
+25bfce_0_cuda11.4.4.conda":{"build":"py3.10_h125bfce_0_cuda11.4.4","build_num
+ber":0,"depends":["__glibc >=2.17,<3.0.a0","_openmp_mutex >=4.5","libfaiss 1.
+11.0 h125bfce_0_cuda11.4.4","libgcc >=14","libstdcxx >=14","mkl 2023.0.*","nu
+mpy >=1.19,<2","numpy >=1.26.4,<2.0a0","packaging","python >=3.10,<3.11.0a0",
+"python_abi 3.10.* *_cp310"],"license":"MIT","license_family":"MIT","md5":"25
+e8d40a68f7c3b19e45ab25b06729e2","name":"faiss-gpu","sha256":"16a388e7349f2a7a
+803f3b9d3d4af9b9866f4333044dc7b44566142f5891edb1f","size":3243848,"subdir":"l
+inux-64","timestamp":1745595745034,"version":"1.11.0"},"faiss-gpu-1.11.0-py3.
+10_h4818125_0_cuda12.1.1.conda":{"build":"py3.10_h4818125_0_cuda12.1.1","buil
+d_number":0,"depends":["__glibc >=2.17,<3.0.a0","_openmp_mutex >=4.5","libfai
+ss 1.11.0 h4818125_0_cuda12.1.1","libgcc >=14","libstdcxx >=14","mkl 2023.0.*
+","numpy >=1.19,<2","numpy >=1.26.4,<2.0a0","packaging","python >=3.10,<3.11.
+0a0","python_abi 3.10.* *_cp310"],"license":"MIT","license_family":"MIT","md5
+":"e10c31f557f2cb1715c5fb58d25e51bf","name":"faiss-gpu","sha256":"1d6777481a0
+bdbf9f48480b39f9e0935c3577bd13ba344bf3e92eccad6c3725a","size":3127868,"subdir
+":"linux-64","timestamp":1745595861310,"version":"1.11.0"},"faiss-gpu-1.11.0-
+py3.11_h125bfce_0_cuda11.4.4.conda":{"build":"py3.11_h125bfce_0_cuda11.4.4","
+build_number":0,"depends":["__glibc >=2.17,<3.0.a0","_openmp_mutex >=4.5","li
+bfaiss 1.11.0 h125bfce_0_cuda11.4.4","libgcc >=14","libstdcxx >=14","mkl 2023
+.0.*","numpy >=1.19,<2","numpy >=1.26.4,<2.0a0","packaging","python >=3.11,<3
+.12.0a0","python_abi 3.11.* *_cp311"],"license":"MIT","license_family":"MIT",
+"md5":"713718f99598996f9a4b97073892b6fc","name":"faiss-gpu","sha256":"4e5bb17
+a8bf017c25d10a775c07b9dce71efe5741e831b2a1f72e526d3f3a6bb","size":3406788,"su
+bdir":"linux-64","timestamp":1745596500414,"version":"1.11.0"},"faiss-gpu-1.1
+1.0-py3.11_h4818125_0_cuda12.1.1.conda":{"build":"py3.11_h4818125_0_cuda12.1.
+1","build_number":0,"depends":["__glibc >=2.17,<3.0.a0","_openmp_mutex >=4.5"
+,"libfaiss 1.11.0 h4818125_0_cuda12.1.1","libgcc >=14","libstdcxx >=14","mkl
+2023.0.*","numpy >=1.19,<2","numpy >=1.26.4,<2.0a0","packaging","python >=3.1
+1,<3.12.0a0","python_abi 3.11.* *_cp311"],"license":"MIT","license_family":"M
+IT","md5":"1b7a42fbc648446a1208ade44500c3c7","name":"faiss-gpu","sha256":"d11
+85ef05f317c9f68c9dc1d9d6490cbd23556f81f779d41f0df7dc697d422a6","size":4463813
+,"subdir":"linux-64","timestamp":1745594726231,"version":"1.11.0"},"faiss-gpu
+-1.11.0-py3.12_h125bfce_0_cuda11.4.4.conda":{"build":"py3.12_h125bfce_0_cuda1
+1.4.4","build_number":0,"depends":["__glibc >=2.17,<3.0.a0","_openmp_mutex >=
+4.5","libfaiss 1.11.0 h125bfce_0_cuda11.4.4","libgcc >=14","libstdcxx >=14","
+mkl 2023.0.*","numpy >=1.19,<2","numpy >=1.26.4,<2.0a0","packaging","python >
+=3.12,<3.13.0a0","python_abi 3.12.* *_cp312"],"license":"MIT","license_family
+":"MIT","md5":"523ff01c1277bba17e163d9e5ff10327","name":"faiss-gpu","sha256":
+"0a72d240d46ed1ee6c3e89934a00ae82e2b8f32848ce2018be9f38179b5a74e3","size":322
+8008,"subdir":"linux-64","timestamp":1745596126087,"version":"1.11.0"},"faiss
+-gpu-1.11.0-py3.12_h4818125_0_cuda12.1.1.conda":{"build":"py3.12_h4818125_0_c
+uda12.1.1","build_number":0,"depends":["__glibc >=2.17,<3.0.a0","_openmp_mute
+x >=4.5","libfaiss 1.11.0 h4818125_0_cuda12.1.1","libgcc >=14","libstdcxx >=1
+4","mkl 2023.0.*","numpy >=1.19,<2","numpy >=1.26.4,<2.0a0","packaging","pyth
+on >=3.12,<3.13.0a0","python_abi 3.12.* *_cp312"],"license":"MIT","license_fa
+mily":"MIT","md5":"3f69c3671d7af23a309568e2d89e97b0","name":"faiss-gpu","sha2
+56":"9794b3bde63f1552b3b6d20956bf0bc8e89c731514bd8c56fa89c0108f536b23","size"
+:3226552,"subdir":"linux-64","timestamp":1745595111087,"version":"1.11.0"},"f
+aiss-gpu-1.11.0-py3.9_h125bfce_0_cuda11.4.4.conda":{"build":"py3.9_h125bfce_0
+_cuda11.4.4","build_number":0,"depends":["__glibc >=2.17,<3.0.a0","_openmp_mu
+tex >=4.5","libfaiss 1.11.0 h125bfce_0_cuda11.4.4","libgcc >=14","libstdcxx >
+=14","mkl 2023.0.*","numpy >=1.19,<2","numpy >=1.26.4,<2.0a0","packaging","py
+thon >=3.9,<3.10.0a0","python_abi 3.9.* *_cp39"],"license":"MIT","license_fam
+ily":"MIT","md5":"b144473e064c77a0c3bfd9101614c05b","name":"faiss-gpu","sha25
+6":"726742f1351631b274bb23ebb330ec2e946a31d84e46388cfa672ab80cd21d40","size":
+4396736,"subdir":"linux-64","timestamp":1745595370428,"version":"1.11.0"},"fa
+iss-gpu-1.11.0-py3.9_h4818125_0_cuda12.1.1.conda":{"build":"py3.9_h4818125_0_
+cuda12.1.1","build_number":0,"depends":["__glibc >=2.17,<3.0.a0","_openmp_mut
+ex >=4.5","libfaiss 1.11.0 h4818125_0_cuda12.1.1","libgcc >=14","libstdcxx >=
+14","mkl 2023.0.*","numpy >=1.19,<2","numpy >=1.26.4,<2.0a0","packaging","pyt
+hon >=3.9,<3.10.0a0","python_abi 3.9.* *_cp39"],"license":"MIT","license_fami
+ly":"MIT","md5":"2c1dba9ae2c5a0e81a6872f2f2b6ef0d","name":"faiss-gpu","sha256
+":"e5e54c79b7dedf2396788a5e30f22441991f28766b515c01f3ccc9b97347ca57","size":3
+255362,"subdir":"linux-64","timestamp":1745595485580,"version":"1.11.0"},"fai
+ss-gpu-1.12.0-py3.10_ha3bacd1_0_cuda12.4.0.conda":{"build":"py3.10_ha3bacd1_0
+_cuda12.4.0","build_number":0,"depends":["__glibc >=2.17,<3.0.a0","_openmp_mu
+tex >=4.5","libfaiss 1.12.0 ha3bacd1_0_cuda12.4.0","libgcc >=15","libstdcxx >
+=15","mkl 2023.0.*","numpy >=1.19,<2","numpy >=1.26.4,<2.0a0","packaging","py
+thon >=3.10,<3.11.0a0","python_abi 3.10.* *_cp310"],"license":"MIT","license_
+family":"MIT","md5":"b5cd7e764216df1c5685989977f1bf58","name":"faiss-gpu","sh
+a256":"df4bcce369e0716de8e2803214c66ab3b7480121ee7d290e620993789752f00d","siz
+e":3207270,"subdir":"linux-64","timestamp":1755022062852,"version":"1.12.0"},
+"faiss-gpu-1.12.0-py3.11_ha3bacd1_0_cuda12.4.0.conda":{"build":"py3.11_ha3bac
+d1_0_cuda12.4.0","build_number":0,"depends":["__glibc >=2.17,<3.0.a0","_openm
+p_mutex >=4.5","libfaiss 1.12.0 ha3bacd1_0_cuda12.4.0","libgcc >=15","libstdc
+xx >=15","mkl 2023.0.*","numpy >=1.19,<2","numpy >=1.26.4,<2.0a0","packaging"
+,"python >=3.11,<3.12.0a0","python_abi 3.11.* *_cp311"],"license":"MIT","lice
+nse_family":"MIT","md5":"6c524ea89c1911c9b598b5133f946f36","name":"faiss-gpu"
+,"sha256":"cb62638b8fbd5007edd5b6b780457a5ede3dbedb9546ec29ea8a2147013ce828",
+"size":2172541,"subdir":"linux-64","timestamp":1755022464028,"version":"1.12.
+0"},"faiss-gpu-1.12.0-py3.12_ha3bacd1_0_cuda12.4.0.conda":{"build":"py3.12_ha
+3bacd1_0_cuda12.4.0","build_number":0,"depends":["__glibc >=2.17,<3.0.a0","_o
+penmp_mutex >=4.5","libfaiss 1.12.0 ha3bacd1_0_cuda12.4.0","libgcc >=15","lib
+stdcxx >=15","mkl 2023.0.*","numpy >=1.19,<2","numpy >=1.26.4,<2.0a0","packag
+ing","python >=3.12,<3.13.0a0","python_abi 3.12.* *_cp312"],"license":"MIT","
+license_family":"MIT","md5":"2bcd600887fae65c4a2e775b588d1468","name":"faiss-
+gpu","sha256":"84666d9f59b9439333a05a4d86d05d46c3505f06330e44a8a4a7b9ec79850d
+6f","size":3353264,"subdir":"linux-64","timestamp":1755021659264,"version":"1
+.12.0"},"faiss-gpu-cuvs-1.10.0-py3.10_h8b3b203_0_cuda11.8.0.conda":{"build":"
+py3.10_h8b3b203_0_cuda11.8.0","build_number":0,"depends":["__glibc >=2.17,<3.
+0.a0","_openmp_mutex 4.5 2_kmp_llvm","_openmp_mutex >=4.5","libfaiss 1.10.0 h
+8b3b203_0_cuda11.8.0_cuvs","libgcc >=12","libstdcxx >=12","numpy >=1.19,<2","
+numpy >=1.26.4,<2.0a0","packaging","python >=3.10,<3.11.0a0","python_abi 3.10
+.* *_cp310"],"license":"MIT","license_family":"MIT","md5":"a984299881f39f5546
+52351ed861f955","name":"faiss-gpu-cuvs","sha256":"6318c068dc21b825aa8bfd3e3aa
+c600db91d32bc140b3d4e78773eb321f3b8ba","size":4347580,"subdir":"linux-64","ti
+mestamp":1738368796516,"version":"1.10.0"},"faiss-gpu-cuvs-1.10.0-py3.10_ha3b
+acd1_0_cuda12.4.0.conda":{"build":"py3.10_ha3bacd1_0_cuda12.4.0","build_numbe
+r":0,"depends":["__glibc >=2.17,<3.0.a0","_openmp_mutex 4.5 2_kmp_llvm","_ope
+nmp_mutex0  >=4.5","libfaiss 1.10.0 ha3bacd1_0_cuda12.4.0_cuvs","libgcc >=12"
+,"libstdcxx >=12","numpy >=1.19,<2","numpy >=1.26.4,<2.0a0","packaging","pyth
+on >=3.10,<3.11.0a0","python_abi 3.10.* *_cp310"],"license":"MIT","license_fa
+mily":"MIT","md5":"15fa84148e3629dfbcdccf0979fe51bf","name":"faiss-gpu-cuvs",
+"sha256":"7a2c12fd3de6cfa02be425bef9b81628309edf6147c8a65b8cc8046ce58ff3d0","
+size":3156956,"subdir":"linux-64","timestamp":1738367445918,"version":"1.10.0
+"},"faiss-gpu-cuvs-1.10.0-py3.11_h8b3b203_0_cuda11.8.0.conda":{"build":"py3.1
+1_h8b3b203_0_cuda11.8.0","build_number":0,"depends":["__glibc >=2.17,<3.0.a0"
+,"_openmp_mutex 4.5 2_kmp_llvm","_openmp_mutex >=4.5","libfaiss 1.10.0 h8b3b2
+03_0_cuda11.8.0_cuvs","libgcc >=12","libstdcxx >=12","numpy >=1.19,<2","numpy
+ >=1.26.4,<2.0a0","packaging","python >=3.11,<3.12.0a0","python_abi 3.11.* *_
+cp311"],"license":"MIT","license_family":"MIT","md5":"ecb8386b03f3cdbf050e0d7
+1d1d856aa","name":"faiss-gpu-cuvs","sha256":"1f79eb89e702584f8bf847caf33ac299
+7a387e51c7f62a55fc083e366fb0da61","size":3205966,"subdir":"linux-64","timesta
+mp":1738367606287,"version":"1.10.0"},"faiss-gpu-cuvs-1.10.0-py3.11_ha3bacd1_
+0_cuda12.4.0.conda":{"build":"py3.11_ha3bacd1_0_cuda12.4.0","build_number":0,
+"depends":["__glibc >=2.17,<3.0.a0","_openmp_mutex 4.5 2_kmp_llvm","_openmp_m
+utex >=4.5","libfaiss 1.10.0 ha3bacd1_0_cuda12.4.0_cuvs","libgcc >=12","libst
+dcxx >=12","numpy >=1.19,<2","numpy >=1.26.4,<2.0a0","packaging","python >=3.
+11,<3.12.0a0","python_abi 3.11.* *_cp311"],"license":"MIT","license_family":"
+MIT","md5":"be05e59e36b3175c9a8db41b13f34377","name":"faiss-gpu-cuvs","sha256
+":"ccbdf41e4fd16a13be42c7d90b4100d225147247da7c49f360ab279521cc651a","size":1
+982696,"subdir":"linux-64","timestamp":1738368607307,"version":"1.10.0"},"fai
+ss-gpu-cuvs-1.10.0-py3.12_h8b3b203_0_cuda11.8.0.conda":{"build":"py3.12_h8b3b
+203_0_cuda11.8.0","build_number":0,"depends":["__glibc >=2.17,<3.0.a0","_open
+mp_mutex 4.5 2_kmp_llvm","_openmp_mutex >=4.5","libfaiss 1.10.0 h8b3b203_0_cu
+da11.8.0_cuvs","libgcc >=12","libstdcxx >=12","numpy >=1.19,<2","numpy >=1.26
+.4,<2.0a0","packaging","python >=3.12,<3.13.0a0","python_abi 3.12.* *_cp312"]
+,"license":"MIT","license_family":"MIT","md5":"46ef0b6955a569a5652c9ebb59e114
+10","name":"faiss-gpu-cuvs","sha256":"aa6da285d5cd785cb395bf50902ab2e402dfe0e
+fe6fc640845f5948afca79955","size":4506554,"subdir":"linux-64","timestamp":173
+8368004739,"version":"1.10.0"},"faiss-gpu-cuvs-1.10.0-py3.12_ha3bacd1_0_cuda1
+2.4.0.conda":{"build":"py3.12_ha3bacd1_0_cuda12.4.0","build_number":0,"depend
+s":["__glibc >=2.17,<3.0.a0","_openmp_mutex 4.5 2_kmp_llvm","_openmp_mutex >=
+4.5","libfaiss 1.10.0 ha3bacd1_0_cuda12.4.0_cuvs","libgcc >=12","libstdcxx >=
+12","numpy >=1.19,<2","numpy >=1.26.4,<2.0a0","packaging","python >=3.12,<3.1
+3.0a0","python_abi 3.12.* *_cp312"],"license":"MIT","license_family":"MIT","m
+d5":"84a37ed52b7cbaa6eb6d40cbc3247af4","name":"faiss-gpu-cuvs","sha256":"3725
+91e8a88b8c7526e3e1ebc15153d1c92a6b2095d5083f2553438fe05322ae","size":3164502,
+"subdir":"linux-64","timestamp":1738368221442,"version":"1.10.0"},"faiss-gpu-
+cuvs-1.10.0-py3.9_h8b3b203_0_cuda11.8.0.conda":{"build":"py3.9_h8b3b203_0_cud
+a11.8.0","build_number":0,"depends":["__glibc >=2.17,<3.0.a0","_openmp_mutex
+4.5 2_kmp_llvm","_openmp_mutex >=4.5","libfaiss 1.10.0 h8b3b203_0_cuda11.8.0_
+cuvs","libgcc >=12","libstdcxx >=12","numpy >=1.19,<2","numpy >=1.26.4,<2.0a0
+","packaging","python >=3.9,<3.10.0a0","python_abi 3.9.* *_cp39"],"license":"
+MIT","license_family":"MIT","md5":"8b1c268b3b746712ac584c2f5e978f04","name":"
+faiss-gpu-cuvs","sha256":"ca91943109ab680c14ce99c1db1daf370dfbdec578333e501dc
+29608eac83257","size":3041919,"subdir":"linux-64","timestamp":1738368401308,"
+version":"1.10.0"},"faiss-gpu-cuvs-1.10.0-py3.9_ha3bacd1_0_cuda12.4.0.conda":
+{"build":"py3.9_ha3bacd1_0_cuda12.4.0","build_number":0,"depends":["__glibc >
+=2.17,<3.0.a0","_openmp_mutex 4.5 2_kmp_llvm","_openmp_mutex >=4.5","libfaiss
+ 1.10.0 ha3bacd1_0_cuda12.4.0_cuvs","libgcc >=12","libstdcxx >=12","numpy >=1
+.19,<2","numpy >=1.26.4,<2.0a0","packaging","python >=3.9,<3.10.0a0","python_
+abi 3.9.* *_cp39"],"license":"MIT","license_family":"MIT","md5":"15759688e2c1
+c77de716eb8a40897996","name":"faiss-gpu-cuvs","sha256":"579aa0cd77558daa3b99f
+b295463f845a599cbb21ada08d992cf642af8c9f957","size":3051088,"subdir":"linux-6
+4","timestamp":1738367830774,"version":"1.10.0"},"faiss-gpu-cuvs-1.11.0-py3.1
+0_h8b3b203_0_cuda11.8.0.conda":{"build":"py3.10_h8b3b203_0_cuda11.8.0","build
+_number":0,"depends":["__glibc >=2.17,<3.0.a0","_openmp_mutex 4.5 2_kmp_llvm"
+,"_openmp_mutex >=4.5","libfaiss 1.11.0 h8b3b203_0_cuda11.8.0_cuvs","libgcc >
+=12","libstdcxx >=12","mkl 2023.0.*","numpy >=1.19,<2","numpy >=1.26.4,<2.0a0
+","packaging","python >=3.10,<3.11.0a0","python_abi 3.10.* *_cp310"],"license
+":"MIT","license_family":"MIT","md5":"7c0aaf4ee30b3dfc0031229e063d49a9","name
+":"faiss-gpu-cuvs","sha256":"6301ebda62c04c2291c5f274a385d4cde94232d9582a2624
+d718169c7b2e9afe","size":3090008,"subdir":"linux-64","timestamp":174559597868
+3,"version":"1.11.0"},"faiss-gpu-cuvs-1.11.0-py3.10_ha3bacd1_0_cuda12.4.0.con
+da":{"build":"py3.10_ha3bacd1_0_cuda12.4.0","build_number":0,"depends":["__gl
+ibc >=2.17,<3.0.a0","_openmp_mutex 4.5 2_kmp_llvm","_openmp_mutex >=4.5","lib
+faiss 1.11.0 ha3bacd1_0_cuda12.4.0_cuvs","libgcc >=12","libstdcxx >=12","mkl
+2023.0.*","numpy >=1.19,<2","numpy >=1.26.4,<2.0a0","packaging","python >=3.1
+0,<3.11.0a0","python_abi 3.10.* *_cp310"],"license":"MIT","license_family":"M
+IT","md5":"c0205afb0ae669188f9738277c1ccd4a","name":"faiss-gpu-cuvs","sha256"
+:"c19794b9d743332c97348820e9a171cc60655ce66efbc5fd5cf0df267a2b2a49","size":31
+01169,"subdir":"linux-64","timestamp":1745595531224,"version":"1.11.0"},"fais
+s-gpu-cuvs-1.11.0-py3.11_h8b3b203_0_cuda11.8.0.conda":{"build":"py3.11_h8b3b2
+03_0_cuda11.8.0","build_number":0,"depends":["__glibc >=2.17,<3.0.a0","_openm
+p_mutex 4.5 2_kmp_llvm","_openmp_mutex >=4.5","libfaiss 1.11.0 h8b3b203_0_cud
+a11.8.0_cuvs","libgcc >=12","libstdcxx >=12","mkl 2023.0.*","numpy >=1.19,<2"
+,"numpy >=1.26.4,<2.0a0","packaging","python >=3.11,<3.12.0a0","python_abi 3.
+11.* *_cp311"],"license":"MIT","license_family":"MIT","md5":"6fbd328764ff7654
+3db0b63ab9052e43","name":"faiss-gpu-cuvs","sha256":"bbbb2adb2260420fb8215f1d7
+50bfa061d072f827a4232f79f8573214d128936","size":2041620,"subdir":"linux-64","
+timestamp":1745596345668,"version":"1.11.0"},"faiss-gpu-cuvs-1.11.0-py3.11_ha
+3bacd1_0_cuda12.4.0.conda":{"build":"py3.11_ha3bacd1_0_cuda12.4.0","build_num
+ber":0,"depends":["__glibc >=2.17,<3.0.a0","_openmp_mutex 4.5 2_kmp_llvm","_o
+penmp_mutex >=4.5","libfaiss 1.11.0 ha3bacd1_0_cuda12.4.0_cuvs","libgcc >=12"
+,"libstdcxx >=12","mkl 2023.0.*","numpy >=1.19,<2","numpy >=1.26.4,<2.0a0","p
+ackaging","python >=3.11,<3.12.0a0","python_abi 3.11.* *_cp311"],"license":"M
+IT","license_family":"MIT","md5":"450360f3bbb896df28726e2be6e34085","name":"f
+aiss-gpu-cuvs","sha256":"80ee9fc00dada93fd35a8e0279a6b791f8c2efd1476fb4154033
+ec373ffe68f8","size":3488182,"subdir":"linux-64","timestamp":1745595898153,"v
+ersion":"1.11.0"},"faiss-gpu-cuvs-1.11.0-py3.12_h8b3b203_0_cuda11.8.0.conda":
+{"build":"py3.12_h8b3b203_0_cuda11.8.0","build_number":0,"depends":["__glibc
+>=2.17,<3.0.a0","_openmp_mutex 4.5 2_kmp_llvm","_openmp_mutex >=4.5","libfais
+s 1.11.0 h8b3b203_0_cuda11.8.0_cuvs","libgcc >=12","libstdcxx >=12","mkl 2023
+.0.*","numpy >=1.19,<2","numpy >=1.26.4,<2.0a0","packaging","python >=3.12,<3
+.13.0a0","python_abi 3.12.* *_cp312"],"license":"MIT","license_family":"MIT",
+"md5":"f813d96fb0a44761596ef1ebcdae4c86","name":"faiss-gpu-cuvs","sha256":"e0
+4fcda482bf8553b9ca4130836a6423fe79b45adfcea150b373fb2bceaec3e8","size":473620
+3,"subdir":"linux-64","timestamp":1745595605737,"version":"1.11.0"},"faiss-gp
+u-cuvs-1.11.0-py3.12_ha3bacd1_0_cuda12.4.0.conda":{"build":"py3.12_ha3bacd1_0
+_cuda12.4.0","build_number":0,"depends":["__glibc >=2.17,<3.0.a0","_openmp_mu
+tex 4.5 2_kmp_llvm","_openmp_mutex >=4.5","libfaiss 1.11.0 ha3bacd1_0_cuda12.
+4.0_cuvs","libgcc >=12","libstdcxx >=12","mkl 2023.0.*","numpy >=1.19,<2","nu
+mpy >=1.26.4,<2.0a0","packaging","python >=3.12,<3.13.0a0","python_abi 3.12.*
+ *_cp312"],"license":"MIT","license_family":"MIT","md5":"72d6abf69ff333f13257
+bff8753bbb7d","name":"faiss-gpu-cuvs","sh129a256":"e98c7a1d824a0dcd1103dfa3ce
+f741c4393d10985ec35ca5c2ec58f725e5cad0","size":2074471,"subdir":"linux-64","t
+imestamp":1745595166949,"version":"1.11.0"},"faiss-gpu-cuvs-1.11.0-py3.9_h8b3
+b203_0_cuda11.8.0.conda":{"build":"py3.9_h8b3b203_0_cuda11.8.0","build_number
+":0,"depends":["__glibc >=2.17,<3.0.a0","_openmp_mutex 4.5 2_kmp_llvm","_open
+mp_mutex >=4.5","libfaiss 1.11.0 h8b3b203_0_cuda11.8.0_cuvs","libgcc >=12","l
+ibstdcxx >=12","mkl 2023.0.*","numpy >=1.19,<2","numpy >=1.26.4,<2.0a0","pack
+aging","python >=3.9,<3.10.0a0","python_abi 3.9.* *_cp39"],"license":"MIT","l
+icense_family":"MIT","md5":"77ac21741e7296fa6742c605ef3d2455","name":"faiss-g
+pu-cuvs","sha256":"7d13b240be3214e587bdbdf48b30c3b0d958715c9636c4e13c5ae7adbd
+216d1b","size":4452570,"subdir":"linux-64","timestamp":1745595226601,"version
+":"1.11.0"},"faiss-gpu-cuvs-1.11.0-py3.9_ha3bacd1_0_cuda12.4.0.conda":{"build
+":"py3.9_ha3bacd1_0_cuda12.4.0","build_number":0,"depends":["__glibc >=2.17,<
+3.0.a0","_openmp_mutex 4.5 2_kmp_llvm","_openmp_mutex >=4.5","libfa1kiss 1.11
+.0 ha3bacd1_0_cuda12.4.0_cuvs","libgcc >=12","libstdcxx >=12","mkl 2023.0.*",
+"numpy >=1.19,<2","numpy >=1.26.4,<2.0a0","packaging","python >=3.9,<3.10.0a0
+","python_abi 3.9.* *_cp39"],"license":"MIT","license_family":"MIT","md5":"cc
+853e1aa8587d4877039c1b1d7c8150","name":"faiss-gpu-cuvs","sha256":"b03101e9110
+4fb9e8557cd1e6fc60702789a372da9c799ad07ea07a6d9d176be","size":3229439,"subdir
+":"linux-64","timestamp":1745596266489,"version":"1.11.0"},"faiss-gpu-cuvs-1.
+12.0-py3.10_ha3bacd1_0_cuda12.4.0.conda":{"build":"py3.10_ha3bacd1_0_cuda12.4
+.0","build_number":0,"depends":["__glibc >=2.17,<3.0.a0","_openmp_mutex 4.5 2
+_kmp_llvm","_openmp_mutex >=4.5","libfaiss 1.12.0 ha3bacd1_0_cuda12.4.0_cuvs"
+,"libgcc >=12","libstdcxx >=12","mkl 2023.0.*","numpy >=1.19,<2","numpy >=1.2
+6.4,<2.0a0","packaging","python >=3.10,<3.11.0a0","python_abi 3.10.* *_cp310"
+],"license":"MIT","license_family":"MIT","md5":"4021adb5dce3270474d60841aac6e
+51e","name":"faiss-gpu-cuvs","sha256":"a98628e1f55d0e8695b5c9fe8cc8ea18d51945
+1ce3d633a4f96890ed24604b44","size":3200628,"subdir":"linux-64","timestamp":17
+55022368799,"version":"1.12.0"},"faiss-gpu-cuvs-1.12.0-py3.11_ha3bacd1_0_cuda
+12.4.0.conda":{"build":"py3.11_ha3bacd1_0_cuda12.4.0","build_number":0,"depen
+ds":["__glibc >=2.17,<3.0.a0","_openmp_mutex 4.5 2_kmp_llvm","_openmp_mutex >
+=4.5","libfaiss 1.12.0 ha3bacd1_0_cuda12.4.0_cuvs","libgcc >=12","libstdcxx >
+=12","mkl 2023.0.*","numpy >=1.19,<2","numpy >=1.26.4,<2.0a0","packaging","py
+thon >=3.11,<3.12.0a0","python_abi 3.11.* *_cp311"],"license":"MIT","license_
+family":"MIT","md5":"5aae683af464e64a97eae5a2bd6512db","name":"faiss-gpu-cuvs
+","sha256":"4d05af95eb539e0f775fda97606e890ee0f8557a86e004ef731ce0a958d18f5e"
+,"size":3547278,"subdir":"linux-64","timestamp":1755023157457,"version":"1.12
+.0"},"faiss-gpu-cuvs-1.12.0-py3.12_ha3bacd1_0_cuda12.4.0.conda":{"build":"py3
+.12_ha3bacd1_0_cuda12.4.0","build_number":0,"depends":["__glibc >=2.17,<3.0.a
+0","_openmp_mutex 4.5 2_kmp_llvm","_openmp_mutex >=4.5","libfaiss 1.12.0 ha3b
+acd1_0_cuda12.4.0_cuvs","libgcc >=12","libstdcxx >=12","mkl 2023.0.*","numpy
+>=1.19,<2","numpy >=1.26.4,<2.0a0","packaging","python >=3.12,<3.13.0a0","pyt
+hon_abi 3.12.* *_cp312"],"license":"MIT","license_family":"MIT","md5":"194ee3
+348abe4772a8502574cae5df38","name":"faiss-gpu-cuvs","sha256":"89ba2e557ffa774
+9610d5b53f1e965a20c4789c48e7e3eed4256b525356af93c","size":4799617,"subdir":"l
+inux-64","timestamp":1755022764761,"version":"1.12.0"},"libfaiss-1.10.0-h125b
+fce_0_cuda11.4.4.conda":{"build":"h125bfce_0_cuda11.4.4","build_number":0,"de
+pends":["__glibc >=2.17,<3.0.a0","cuda-cudart >=11.4,<12","libcublas >=11.6,<
+12","libgcc","libgcc-ng >=12","libstdcxx","libstdcxx-ng >=12","mkl 2023.0.*"]
+,"license":"MIT","license_family":"MIT","md5":"3dc3a4940bfb3d580bbb209b2b8b00
+ca","name":"libfaiss","sha256":"10f6843970c06da29be5262440910b5ac9a1764f269f3
+d1d34bad361149ff51f","size":189293589,"subdir":"linux-64","timestamp":1738366
+290341,"version":"1.10.0"},"libfaiss-1.10.0-h4818125_0_cuda12.1.1.conda":{"bu
+ild":"h4818125_0_cuda12.1.1","build_number":0,"depends":["__glibc >=2.17,<3.0
+.a0","cuda-cudart >=12.1,<13","libcublas >=12.1,<13","libgcc >=14","libstdcxx
+ >=14","mkl 2023.0.*"],"license":"MIT","license_family":"MIT","md5":"b36fb2e4
+1b300f9b12175547d8b2b37c","name":"libfaiss","sha256":"c4b26bfa1af8902e567732b
+579e4514848d7ae46f273109faddce18663e7e312","size":154949099,"subdir":"linux-6
+4","timestamp":1738365739003,"version":"1.10.0"},"libfaiss-1.10.0-h8b3b203_0_
+cuda11.8.0_cuvs.conda":{"build":"h8b3b203_0_cuda11.8.0_cuvs","build_number":0
+,"depends":["__glibc >=2.17,<3.0.a0","_openmp_mutex 4.5 2_kmp_llvm","_openmp_
+mutex >=4.5","cuda-cudart >=11.4,<12","cuda-version >=11.4,<12","libcublas >=
+11.6,<12","libcuvs 24.12.*","libgcc >=12","libstdcxx >=12","mkl 2023.*"],"lic
+ense":"MIT","license_family":"MIT","md5":"e2e825aefeba364546ac5340ec7aff79","
+name":"libfaiss","sha256":"97acf969d7a8f69c1b6c970ad791cdff048049a13931529dfc
+61b1868f8b30a3","size":159689217,"subdir":"linux-64","timestamp":173836698521
+5,"version":"1.10.0"},"libfaiss-1.10.0-ha3bacd1_0_cuda12.4.0_cuvs.conda":{"bu
+ild":"ha3bacd1_0_cuda12.4.0_cuvs","build_number":0,"depends":["__glibc >=2.17
+,<3.0.a0","_openmp_mutex 4.5 2_kmp_llvm","_openmp_mutex >=4.5","cuda-cudart >
+=12.1,<12.5","cuda-version >=12.1,<12.5","libcublas >=12.1,<13","libcuvs 24.1
+2.*","libgcc >=12","libstdcxx >=12","mkl 2023.*"],"license":"MIT","license_fa
+mily":"MIT","md5":"abd1c9cee63d87d65333911d763b639b","name":"libfaiss","sha25
+6":"a61fa1e7c7146067dcc697fd278af435264dc2ac5ee238f48fe447325f1775d7","size":
+159015762,"subdir":"linux-64","timestamp":1738366866685,"version":"1.10.0"},"
+libfaiss-1.10.0-py3.10_hf65b397_0_cpu.conda":{"build":"py3.10_hf65b397_0_cpu"
+,"build_number":0,"depends":["__glibc >=2.17,<3.0.a0","_openmp_mutex * *_llvm
+","_openmp_mutex >=4.5","libgcc >=14","liblief 0.12.3.*","liblief >=0.12.3,<0
+.13.0a0","libstdcxx >=14","llvm-openmp >=19.1.7","mkl 2023.0.*","python >=3.1
+0,<3.11.0a0","python_abi 3.10.* *_cp310","python_abi <3.12"],"license":"MIT",
+"license_family":"MIT","md5":"1049c03eb288d472bd9dd6db742b6653","name":"libfa
+iss","sha256":"26f0aa2239adb4fff64abef07e73f0258a91e061dee3b270ae8ad0e5c8854b
+1d","size":4561403,"subdir":"linux-64","timestamp":1738362812075,"version":"1
+.10.0"},"libfaiss-1.10.0-py3.11_hf65b397_0_cpu.conda":{"build":"py3.11_hf65b3
+97_0_cpu","build_number":0,"depends":["__glibc >=2.17,<3.0.a0","_openmp_mutex
+ * *_llvm","_openmp_mutex >=4.5","libgcc >=14","liblief 0.12.3.*","liblief >=
+0.12.3,<0.13.0a0","libstdcxx >=14","llvm-openmp >=19.1.7","mkl 2023.0.*","pyt
+hon >=3.11,<3.12.0a0","python_abi 3.11.* *_cp311","python_abi <3.12"],"licens
+e":"MIT","license_family":"MIT","md5":"d3c75dee7f2a0aac8d5f188dce7524d8","nam
+e":"libfaiss","sha256":"4e991019c98eba3a71fc1593f66532ece6e8628629c1fd126dd55
+6e900011f4d","size":4561389,"subdir":"linux-64","timestamp":1738362839591,"ve
+rsion":"1.10.0"},"libfaiss-1.10.0-py3.12_hf65b397_0_cpu.conda":{"build":"py3.
+12_hf65b397_0_cpu","build_number":0,"depends":["__glibc >=2.17,<3.0.a0","_ope
+nmp_mutex * *_llvm","_openmp_mutex >=4.5","libgcc >=14","liblief 0.15.1.*","l
+iblief >=0.15.1,<0.16.0a0","libstdcxx >=14","llvm-openmp >=19.1.7","mkl >=202
+3.2.0","python >=3.12,<3.13.0a0","python_abi 3.12.*","python_abi 3.12.* *_cp3
+12"],"license":"MIT","license_family":"MIT","md5":"78b0abc99d4e8bebb7360cc596
+32e1dd","name":"libfaiss","sha256":"73940bcdc24c5e09fc6bccb7d3dc73dea47041513
+ecd8545bf4108b076b63119","size":4561390,"subdir":"linux-64","timestamp":17383
+62782041,"version":"1.10.0"},"libfaiss-1.10.0-py3.9_hf65b397_0_cpu.conda":{"b
+uild":"py3.9_hf65b397_0_cpu","build_number":0,"depends":["__glibc >=2.17,<3.0
+.a0","_openmp_mutex * *_llvm","_openmp_mutex >=4.5","libgcc >=14","liblief 0.
+12.3.*","liblief >=0.12.3,<0.13.0a0","libstdcxx >=14","llvm-openmp >=19.1.7",
+"mkl 2023.0.*","python >=3.9,<3.10.0a0","python_abi 3.9.* *_cp39","python_abi
+ <3.12"],"license":"MIT","license_family":"MIT","md5":"3479f1fe65adde19eda8fe
+0d0ac5e16c","name":"libfaiss","sha256":"9b57a86f4c79e505af8e9323d2d693afa4e20
+af33647826f89239d20dc369c3c","size":4561401,"subdir":"linux-64","timestamp":1
+738362867515,"version":"1.10.0"},"libfaiss-1.11.0-h125bfce_0_cuda11.4.4.cond
+a":{"build":"h125bfce_0_cuda11.4.4","build_number":0,"depends":["__glibc >=2.
+17,<3.0.a0","cuda-cudart >=11.4,<12","libcublas >=11.6,<12","libgcc","libgcc-
+ng >=12","libstdcxx","libstdcxx-ng >=12","mkl 2023.0.*"],"license":"MIT","lic
+ense_family":"MIT","md5":"67313e44d65be068494e8fdc8eb96c4c","name":"libfaiss"
+,"sha256":"257413095365c771bf09be07a26842907d9c4bdc98f7062710b92ea212b9d5c3",
+"size":189989182,"subdir":"linux-64","timestamp":1745594794500,"version":"1.1
+1.0"},"libfaiss-1.11.0-h4818125_0_cuda12.1.1.conda":{"build":"h4818125_0_cuda
+12.1.1","build_number":0,"depends":["__glibc >=2.17,<3.0.a0","cuda-cudart >=1
+2.1,<13","libcublas >=12.1,<13","libgcc >=14","libstdcxx >=14","mkl 2023.0.*"
+],"license":"MIT","license_family":"MIT","md5":"896e4022fa34dd136f32fbabcaed8
+a9b","name":"libfaiss","sha256":"0924601ba80c14b5946031529975da6128f42fcb5273
+88ed397b086d0a1a3376","size":155197026,"subdir":"linux-64","timestamp":174559
+4173981,"version":"1.11.0"},"libfaiss-1.11.0-h8b3b203_0_cuda11.8.0_cuvs.conda
+":{"build":"h8b3b203_0_cuda11.8.0_cuvs","build_number":0,"depends":["__glibc
+>=2.17,<3.0.a0","_openmp_mutex 4.5 2_kmp_llvm","_openmp_mutex >=4.5","cuda-cu
+dart >=11.4,<12","cuda-version >=11.4,<12","libcublas >=11.6,<12","libcuvs 25
+.04.*","libgcc >=12","libnvjitlink","libstdcxx >=12","mkl 2023.*"],"license":
+"MIT","license_family":"MIT","md5":"4390eea2526270620e2a184ffcbe6279","name":
+"libfaiss","sha256":"1a5358ee92ac284bc60c348be01812769bec926533ba3d2289db0c4f
+9db9c3d4","size":159777520,"subdir":"linux-64","timestamp":1745594640438,"ver
+sion":"1.11.0"},"libfaiss-1.11.0-ha3bacd1_0_cuda12.4.0_cuvs.conda":{"build":"
+ha3bacd1_0_cuda12.4.0_cuvs","build_number":0,"depends":["__glibc >=2.17,<3.0.
+a0","_openmp_mutex 4.5 2_kmp_llvm","_openmp_mutex >=4.5","cuda-cudart >=12.1,
+<12.5","cuda-version >=12.1,<12.5","libcublas >=12.1,<13","libcuvs 25.04.*","
+libgcc >=12","libnvjitlink","libstdcxx >=12","mkl 2023.*"],"license":"MIT","l
+icense_family":"MIT","md5":"52bb0f0b8cf987a1114598e4dc6edc93","name":"libfais
+s","sha256":"9c12bae151ff1564d884a44891173577a081cdf30b952ba2d84c9efcd7f796cc
+","size":159062347,"subdir":"linux-64","timestamp":1745594579816,"version":"1
+.11.0"},"libfaiss-1.11.0-py3.10_hf65b397_0_cpu.conda":{"build":"py3.10_hf65b3
+97_0_cpu","build_number":0,"depends":["__glibc >=2.17,<3.0.a0","_openmp_mutex
+ * *_llvm","_openmp_mutex >=4.5","libgcc >=14","libstdcxx >=14","llvm-openmp
+>=20.1.3","mkl 2023.0.*","python >=3.10,<3.11.0a0","python_abi 3.10.* *_cp310
+","python_abi <3.12"],"license":"MIT","license_family":"MIT","md5":"1b3d05495
+e392c540b9e19599965807c","name":"libfaiss","sha256":"22c8f08548e0df9922e6b9d0
+653ff29e7cf41eb4f33306ce656a7ff5fecf21ab","size":5044971,"subdir":"linux-64",
+"timestamp":1745591246222,"version":"1.11.0"},"libfaiss-1.11.0-py3.11_hf65b39
+7_0_cpu.conda":{"build":"py3.11_hf65b397_0_cpu","build_number":0,"depends":["
+__glibc >=2.17,<3.0.a0","_openmp_mutex * *_llvm","_openmp_mutex >=4.5","libgc
+c >=14","libstdcxx >=14","llvm-openmp >=20.1.3","mkl 2023.0.*","python >=3.11
+,<3.12.0a0","python_abi 3.11.* *_cp311","python_abi <3.12"],"license":"MIT","
+license_family":"MIT","md5":"3c0baac288cabc873f694ae0555a6953","name":"libfai
+ss","sha256":"3cbc37df2bc2582c67bed0d1ed8390295c61d0962029fc34570e09d217dadef
+8","size":5045011,"subdir":"linux-64","timestamp":1745591218337,"version":"1.
+11.0"},"libfaiss-1.11.0-py3.12_hf65b397_0_cpu.conda":{"build":"py3.12_hf65b39
+7_0_cpu","build_number":0,"depends":["__glibc >=2.17,<3.0.a0","_openmp_mutex
+* *_llvm","_openmp_mutex >=4.5","libgcc >=14","libstdcxx >=14","llvm-openmp >
+=20.1.3","mkl >=2023.2.0","python >=3.12,<3.13.0a0","python_abi 3.12.*","pyth
+on_abi 3.12.* *_cp312"],"license":"MIT","license_family":"MIT","md5":"0bf8a12
+2c71f5dbad92789de8a1fc37d","name":"libfaiss","sha256":"7502883013feca60e7982f
+358318d6e58c1f2ce47b53e1b4672429f492a5ac1d","size":5044986,"subdir":"linux-64
+","timestamp":1745591190242,"version":"1.11.0"},"libfaiss-1.11.0-py3.9_hf65b3
+97_0_cpu.conda":{"build":"py3.9_hf65b397_0_cpu","build_number":0,"depends":["
+__glibc >=2.17,<3.0.a0","_openmp_mutex * *_llvm","_openmp_mutex >=4.5","libgc
+c >=14","libstd   0     0  1385k      0 --:--:-- --:--:-- --:--:-- 1383k
+* Connection #0 to host 127.0.0.1 left intact
+cxx >=14","llvm-openmp >=20.1.3","mkl 2023.0.*","python >=3.9,<3.10.0a0","pyt
+hon_abi 3.9.* *_cp39","python_abi <3.12"],"license":"MIT","license_family":"M
+IT","md5":"bb26f0ca2a258686bc4f8a057aa2b13c","name":"libfaiss","sha256":"8dea
+81798d42f4816363f275296815369122a64d2f6077391a46df02fce16192","size":5045004,
+"subdir":"linux-64","timestamp":1745591158829,"version":"1.11.0"},"libfaiss-1
+.12.0-ha3bacd1_0_cuda12.4.0.conda":{"build":"ha3bacd1_0_cuda12.4.0","build_nu
+mber":0,"depends":["__glibc >=2.17,<3.0.a0","cuda-cudart >=12.4,<13","libcubl
+as >=12.4,<13","libgcc >=15","libstdcxx >=15","mkl 2023.0.*"],"license":"MIT"
+,"license_family":"MIT","md5":"d21ae3c81e1eab3cda82a15b26790acb","name":"libf
+aiss","sha256":"810fd4ee81544648518605e390715478d09891a8a9eee813a7223ab25897d
+341","size":155167263,"subdir":"linux-64","timestamp":1755021052399,"version"
+:"1.12.0"},"libfaiss-1.12.0-ha3bacd1_0_cuda12.4.0_cuvs.conda":{"build":"ha3ba
+cd1_0_cuda12.4.0_cuvs","build_number":0,"depends":["__glibc >=2.17,<3.0.a0","
+_openmp_mutex 4.5 2_kmp_llvm","_openmp_mutex >=4.5","cuda-cudart >=12.1,<12.5
+","cuda-version >=12.1,<12.5","libcublas >=12.1,<13","libcuvs 25.08.*","libgc
+c >=12","libnvjitlink","libstdcxx >=12","mkl 2023.*"],"license":"MIT","licens
+e_family":"MIT","md5":"321570d37450eeca07bdc10a5a8f5df6","name":"libfaiss","s
+ha256":"9b02f600ad7bd9db8aa029a3be5ec060f589a828636549c96bbaa8a5aa8a15c7","si
+ze":158055832,"subdir":"linux-64","timestamp":1755021768304,"version":"1.12.0
+"},"libfaiss-1.12.0-py3.10_hf65b397_0_cpu.conda":{"build":"py3.10_hf65b397_0_
+cpu","build_number":0,"depends":["__glibc >=2.17,<3.0.a0","_openmp_mutex * *_
+llvm","_openmp_mutex >=4.5","libgcc >=15","libstdcxx >=15","llvm-openmp >=20.
+1.8","mkl 2023.0.*","python >=3.10,<3.11.0a0","python_abi 3.10.* *_cp310","py
+thon_abi <3.12"],"license":"MIT","license_family":"MIT","md5":"ebcc9c5a0147d6
+982e69ae3f30bf3daf","name":"libfaiss","sha256":"50a92fd43ce50f8a5d64971ec0039
+6f7bdd35c720e06b3229ccbe289ab58902f","size":5507211,"subdir":"linux-64","time
+stamp":1755018117414,"version":"1.12.0"},"libfaiss-1.12.0-py3.11_hf65b397_0_c
+pu.conda":{"build":"py3.11_hf65b397_0_cpu","build_number":0,"depends":["__gli
+bc >=2.17,<3.0.a0","_openmp_mutex * *_llvm","_openmp_mutex >=4.5","libgcc >=1
+5","libstdcxx >=15","llvm-openmp >=20.1.8","mkl 2023.0.*","python >=3.11,<3.1
+2.0a0","python_abi 3.11.* *_cp311","python_abi <3.12"],"license":"MIT","licen
+se_family":"MIT","md5":"9429761eab81cb985e0636361b041097","name":"libfaiss","
+sha256":"84bf02f6122a1e646d1396d694562b63f516846184fc721cb373148974a9b829","s
+ize":5507215,"subdir":"linux-64","timestamp":1755018081942,"version":"1.12.0"
+},"libfaiss-1.12.0-py3.12_hf65b397_0_cpu.conda":{"build":"py3.12_hf65b397_0_c
+pu","build_number":0,"depends":["__glibc >=2.17,<3.0.a0","_openmp_mutex * *_l
+lvm","_openmp_mutex >=4.5","libgcc >=15","libstdcxx >=15","llvm-openmp >=20.1
+.8","mkl >=2023.2.0","python >=3.12,<3.13.0a0","python_abi 3.12.*","python_ab
+i 3.12.* *_cp312"],"license":"MIT","license_family":"MIT","md5":"1ec3c522b425
+5e9459ded4fad060f713","name":"libfaiss","sha256":"6a26823d6f53e823dd3cc4eba3d
+d96b902bcf93fe66cba9c9db1ebb8e99cfd94","size":5507148,"subdir":"linux-64","ti
+mestamp":1755018043714,"version":"1.12.0"}},"removed":[],"repodata_version":1
+}(sige) (envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 21:50:54
+COMMAND EXECUTED: cat <<EOF > pixi.toml
+======================================================
+
+(sige) (envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง cat <<E
+OF > pixi.toml
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+
+
+======================================================
+SESSION START: 2025-10-29 21:51:06
+COMMAND EXECUTED: [workspace]
+======================================================
+
+> [workspace]
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+
+
+======================================================
+SESSION START: 2025-10-29 21:51:18
+COMMAND EXECUTED: channels = ["conda-forge", "pytorch", "nvidia"]
+======================================================
+
+> channels = ["conda-forge", "pytorch", "nvidia"]
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+
+
+======================================================
+SESSION START: 2025-10-29 21:51:31
+COMMAND EXECUTED: name = "sige"
+======================================================
+
+> name = "sige"
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+
+
+======================================================
+SESSION START: 2025-10-29 21:51:43
+COMMAND EXECUTED: platforms = ["linux-64"]
+======================================================
+
+> platforms = ["linux-64"]
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+
+
+======================================================
+SESSION START: 2025-10-29 21:51:55
+COMMAND EXECUTED: version = "0.1.0"
+======================================================
+
+> version = "0.1.0"
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+
+
+======================================================
+SESSION START: 2025-10-29 21:52:07
+COMMAND EXECUTED: [tasks]
+======================================================
+
+> [tasks]
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+
+
+======================================================
+SESSION START: 2025-10-29 21:52:20
+COMMAND EXECUTED: [dependencies]
+======================================================
+
+> [dependencies]
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+
+
+======================================================
+SESSION START: 2025-10-29 21:52:32
+COMMAND EXECUTED: python = "3.10.*"
+======================================================
+
+> python = "3.10.*"
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+
+
+======================================================
+SESSION START: 2025-10-29 21:52:44
+COMMAND EXECUTED: uv = ">=0.9.5,<0.10"
+======================================================
+
+> uv = ">=0.9.5,<0.10"
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+
+
+======================================================
+SESSION START: 2025-10-29 21:52:56
+COMMAND EXECUTED: torch = "*"
+======================================================
+
+> torch = "*"
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+
+
+======================================================
+SESSION START: 2025-10-29 21:53:09
+COMMAND EXECUTED: torchvision = "*"
+======================================================
+
+> torchvision = "*"
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+
+
+======================================================
+SESSION START: 2025-10-29 21:53:21
+COMMAND EXECUTED: torchaudio = "*"
+======================================================
+
+> torchaudio = "*"
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+
+
+======================================================
+SESSION START: 2025-10-29 21:53:33
+COMMAND EXECUTED: pytorch-cuda = "=12.4"
+======================================================
+
+> pytorch-cuda = "=12.4"
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+
+
+======================================================
+SESSION START: 2025-10-29 21:55:35
+COMMAND EXECUTED: EOFpixi install
+======================================================
+
+> EOFpixi install
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+
+
+======================================================
+SESSION START: 2025-10-29 21:55:53
+COMMAND EXECUTED: pixi install
+======================================================
+
+> pixi install
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+
+
+======================================================
+SESSION START: 2025-10-29 21:55:55
+COMMAND EXECUTED: EOF
+======================================================
+
+> EOF
+(sige) (envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 21:55:58
+COMMAND EXECUTED: pixi install
+======================================================
+
+(sige) (envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง pixi in
+stall
+Error:   [31m×[39m expected an equals, found an identifier
+     ╭─[[1;4m[36m/workspace/sige/pixi.toml:154:9[0m[39m[49m]
+ [2m153[0m[39m[49m │
+ [2m154[0m[39m[49m │ [1m[35m╭─▶[0m[39m[49m EOFpixi install
+ [2m155[0m[39m[49m │ [1m[35m│[0m[39m[49m
+ [2m156[0m[39m[49m │ [1m[35m│[0m[39m[49m
+ [2m157[0m[39m[49m │ [1m[35m│[0m[39m[49m
+ [2m158[0m[39m[49m │ [1m[35m│[0m[39m[49m
+ [2m159[0m[39m[49m │ [1m[35m╰─▶[0m[39m[49m
+ [2m160[0m[39m[49m │
+ [2m161[0m[39m[49m │
+     ╰────
+
+(sige) (envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
+
+
+======================================================
+SESSION START: 2025-10-29 23:10:12
+COMMAND EXECUTED: cat pixi.toml
+======================================================
+
+(sige) (envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง(sige) (
+envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง(sige) (envagent
+)root@ubuntu-SYS-4(sige) (envagent)root@ubuntu-SYS-4029GP-TRT(sige) (envagent
+)root@ubuntu-SYS-4029GP-TRT(sige) (envagent)root@ub(sige) (envagent)root@ubun
+tu-SYS-4029GP-TRT2:/workspace/sige ((sige) (envagent)root@ubuntu-SYS(sige) ((
+sige) (envagent)root@ubuntu-SYS-4029GP(sige) (envagent)root@ubu(sige) (envage
+nt)root@ubuntu-SYS(sige) (envagent)roo(sige) (envagent)root@ubuntu-SYS-4029GP
+(sige) (envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง cat pix
+i.toml
+
+
+
+
+
+
+
+
+
+
+[workspace]
+
+
+
+
+
+
+
+
+
+
+channels = ["conda-forge", "pytorch", "nvidia"]
+
+
+
+
+
+
+
+
+
+
+name = "sige"
+
+
+
+
+
+
+
+
+
+
+platforms = ["linux-64"]
+
+
+
+
+
+
+
+
+
+
+version = "0.1.0"
+
+
+
+
+
+
+
+
+
+
+[tasks]
+
+
+
+
+
+
+
+
+
+
+[dependencies]
+
+
+
+
+
+
+
+
+
+
+python = "3.10.*"
+
+
+
+
+
+
+
+
+
+
+uv = ">=0.9.5,<0.10"
+
+
+
+
+
+
+
+
+
+
+torch = "*"
+
+
+
+
+
+
+
+
+
+
+torchvision = "*"
+
+
+
+
+
+
+
+
+
+
+torchaudio = "*"
+
+
+
+
+
+
+
+
+
+
+pytorch-cuda = "=12.4"
+
+
+
+
+
+
+
+
+
+
+EOFpixi install
+
+
+
+
+
+
+
+
+
+
+pixi install
+
+
+
+
+
+
+
+
+
+
+(sige) (envagent)root@ubuntu-SYS-4029GP-TRT2:/workspace/sige (ง •_•)ง
